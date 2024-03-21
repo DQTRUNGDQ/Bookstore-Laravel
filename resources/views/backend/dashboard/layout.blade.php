@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html>
     <head>
-        @include('backend.dashboard.component.head');
+        @include('backend.dashboard.component.head')
     </head>
     <body>
         <div id="wrapper">
-            @include('backend.dashboard.component.sidebar');
+            @include('backend.dashboard.component.sidebar')
             
             <div id="page-wrapper" class="gray-bg">
                 @include('backend.dashboard.component.nav')
@@ -14,6 +14,5 @@
             </div>
         </div>   
         @include('backend.dashboard.component.script')
-    </'
-    ody>
+    <body>
 </html>

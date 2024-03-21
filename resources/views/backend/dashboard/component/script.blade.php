@@ -1,8 +1,8 @@
     <!-- Mainly /pts -->
     <script src="temp/js/bootstrap.min.js"></script>
-    <script src="temp/js/jquery-3.1.1.min.js"></script>
     <script src="temp/js/plugins/metisMenu/jquery.metisMenu.js"></script>
     <script src="temp/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+    <script src="temp/library/library.js"></script>
 
     <!-- jQuery UI -->
     <script src="temp/js/plugins/jquery-ui/jquery-ui.min.js"></script>
