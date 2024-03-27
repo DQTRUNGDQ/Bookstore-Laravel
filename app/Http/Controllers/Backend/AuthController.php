@@ -27,6 +27,17 @@ class AuthController extends Controller
        
     }
 
+    public function product()
+    {
+        if(Auth::id() > 0){
+            return redirect()->route('dashboard.index');
+        }
+        else{
+             return view('frontend.productdetails');
+        }
+       
+    }
+
     public function login(AuthRequest $request){  
         $credentials = [
             'email' => $request->input('email'), 

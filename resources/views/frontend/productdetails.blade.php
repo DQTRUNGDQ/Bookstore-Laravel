@@ -69,6 +69,184 @@
     </header>
     <main>
         <div class="main-container-dt">
+            <div id="overlay" class="overlay">
+                        <div id="loginModal" class="modal">
+                            <button class="btn-close" onclick="closeModal()">
+                                <i class="fa-solid fa-xmark"></i>
+                            </button>
+                            <div class="login-container">
+                                <div class="login-with-email">
+                                    <div class="heading">
+                                        <h4>Đăng nhập bằng email</h4>
+                                        <p>
+                                            Nhập email và mật khẩu của tài khoản
+                                            BookWorld
+                                        </p>
+                                    </div>
+                                    <form
+                                        method="post"
+                                        action="{{ route('auth.login') }}"
+                                    >
+                                        @csrf
+                                        <div class="input">
+                                            <input
+                                                type="text"
+                                                name="email"
+                                                id="email"
+                                                placeholder="acb@email.com"
+                                                value="{{ old('email') }}"
+                                            />
+                                        </div>
+                                        <!-- Thông báo lỗi validate -->
+                                        @if ($errors->has('email'))
+                                        <span class="error-message">
+                                            * {{ $errors->first('email') }}
+                                        </span>
+                                        @endif
+                                        <div class="input">
+                                            <input
+                                                type="password"
+                                                name="password"
+                                                id="password"
+                                                placeholder="Mật khẩu"
+                                            />
+                                            <span class="show-pass">Hiện</span>
+                                        </div>
+                                        <!-- Thông báo lỗi validate -->
+                                        @if ($errors->has('password'))
+                                        <span class="error-message">
+                                            * {{ $errors->first('password') }}
+                                        </span>
+                                        @endif
+                                        <button>Đăng nhập</button>
+                                    </form>
+                                    <p class="forgot-pass">Quên mật khẩu</p>
+                                    <p class="create-account">
+                                        Chưa có tài khoản?
+                                        <span id="createAccountBtn"
+                                            >Tạo tài khoản</span
+                                        >
+                                    </p>
+
+                                    <div class="social-login">
+                                        <div class="social-heading">
+                                            <span>Hoặc tiếp tục bằng</span>
+                                        </div>
+                                        <ul class="social-items">
+                                            <li class="social-item">
+                                                <img
+                                                    width="58px"
+                                                    src="./upload/img/Login/fb.png"
+                                                    alt=""
+                                                />
+                                            </li>
+                                            <li class="social-item">
+                                                <img
+                                                    width="58px"
+                                                    src="./upload/img/Login/gg.png"
+                                                    alt=""
+                                                />
+                                            </li>
+                                        </ul>
+                                        <p class="note">
+                                            Bằng việc tiếp tục, bạn đã đọc và
+                                            đồng ý với
+                                            <a href="">điều khoản sử dụng</a> và
+                                            <a href=""
+                                                >Chính sách bảo mật thông tin cá
+                                                nhân</a
+                                            >
+                                            của BookWorld
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="login-right">
+                                <img
+                                    width="203"
+                                    src="./upload/img/Login/loginright.png"
+                                    alt=""
+                                />
+                                <div class="content-lgr">
+                                    <h4>Mua sắm tại BookWorld</h4>
+                                    <span>Siêu ưu đãi mỗi ngày</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div
+                            id="registerModal"
+                            class="modal"
+                            style="display: none"
+                        >
+                            <button class="btn-close" onclick="closeModal()">
+                                <i class="fa-solid fa-xmark"></i>
+                            </button>
+                            <button class="btn-back" onclick="showLogin()">
+                                <i class="fa-solid fa-chevron-left"></i>
+                            </button>
+                            <div class="register-container">
+                                <div class="register">
+                                    <div class="heading">
+                                        <h4>Tạo tài khoản</h4>
+                                        <p>Vui lòng nhập thông tin</p>
+                                    </div>
+                                    <form action="" method="post">
+                                        <div class="input">
+                                            <input
+                                                type="fullname"
+                                                name="fullname"
+                                                placeholder="Họ tên"
+                                                value
+                                            />
+                                        </div>
+                                        <div class="input">
+                                            <input
+                                                type="email"
+                                                name="email"
+                                                placeholder="acb@email.com"
+                                                value
+                                            />
+                                        </div>
+                                        <div class="input">
+                                            <input
+                                                type="password"
+                                                name="password"
+                                                placeholder="Mật khẩu"
+                                            />
+                                        </div>
+                                        <div class="input">
+                                            <input
+                                                type="password"
+                                                name="password_confirm"
+                                                placeholder="Nhập lại mật khẩu"
+                                            />
+                                        </div>
+                                        <div class="input">
+                                            <input
+                                                type="tel"
+                                                name="phone"
+                                                placeholder="Số điện thoại"
+                                                maxlength="10"
+                                            />
+                                        </div>
+                                        <button type="submit">Đăng Ký</button>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="login-right-rg">
+                                <img
+                                    width="203"
+                                    src="./upload/img/Login/loginright.png"
+                                    alt=""
+                                />
+                                <div class="content-lgr">
+                                    <h4>Mua sắm tại BookWorld</h4>
+                                    <span>Siêu ưu đãi mỗi ngày</span>
+                            </div>
+                    </div>
+                </div>
+            </div>
             <div class="breadcrumb-container">
                 <a href="" class="breadcrumb-item">
                     <span>Trang chủ</span>

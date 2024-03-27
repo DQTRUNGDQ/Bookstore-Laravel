@@ -21,6 +21,9 @@ Route::get('/', function(){
 Route::get('homepage', [AuthController::class, 'homepage'])->name('auth.homepage')
 ->middleware('login');
 
+Route::get('product/{id}', [AuthController::class, 'product'])->name('product.show')
+->middleware('login');
+
 Route::get('dashboard/index', [DashboardController::class, 'index'])->name
 ('dashboard.index')->middleware('admin');
 
@@ -36,4 +39,3 @@ Route::get('user/index', [UserController::class, 'index'])->name
 Route::get('homepage', [HomepageController::class, 'data'])->name('auth.homepage');
 
 Route::get('product/{id}', [ShowProductController::class, 'product'])-> name('product.show');
-
