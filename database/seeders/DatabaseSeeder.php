@@ -20,5 +20,19 @@ class DatabaseSeeder extends Seeder
             'email' => 'trungthpthy@gmail.com',
             'password' => Hash::make('password'),
         ]);
+        DB::table('productdetails')->insert([
+            'dealtoday_id' =>  '',
+            'issuingcompany'=> '',
+            'versiontype' => '',
+            'publicationdate' => '',
+            'size' => '',
+            'translator' => '',
+            'covertype' => '',
+            'pages' => '',
+            'language' => '',
+            'publishingcompany' => '',
+            'description' => '',
+            'descriptionmore' => ''
+        ]);
     }
 }

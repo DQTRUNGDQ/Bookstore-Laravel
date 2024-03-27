@@ -427,64 +427,30 @@
                                 <div class="body-deal">
                                     <div class="content-deal">
                                         <div class="deal-slider">
-                                            <?php foreach ($deals as $deal):?>
-                                            <div
-                                                class="product-deal"
-                                                style="
-                                                    transition: all 1s
-                                                        ease-in-out 0s;
-                                                "
-                                            >
-                                                <div>
-                                                    <a
-                                                        class="deal-item"
-                                                        href=""
-                                                    >
-                                                        <div
-                                                            style="
-                                                                position: relative;
-                                                            "
-                                                        >
-                                                            <img
-                                                                src="<?= $deal['image']?>"
-                                                                alt=""
-                                                                width="171"
-                                                                height="171"
-                                                            />
-                                                        </div>
-                                                        <span class="discount"
-                                                            ><?= "-".$deal['discount']."%"?></span
-                                                        >
-                                                        <div
-                                                            class="price-discount"
-                                                        >
-                                                            <span>
-                                                                <?= number_format($deal['pricediscount'], 0, ',', '.') ?>
-                                                                <sup>₫</sup>
-                                                            </span>
-                                                        </div>
-                                                        <div
-                                                            class="price-quantity"
-                                                        >
-                                                            <div
-                                                                class="deal-progress"
-                                                                style="
-                                                                    min-width: <?=
-                                                                        $deal[
-                                                                        'percentsold']?>px;
-                                                                "
-                                                            ></div>
-                                                            <span
-                                                                ><?= $deal['status']?></span
-                                                            >
-                                                        </div>
-                                                    </a>
+                                            @foreach ($deals as $deal)
+                                                <div class="product-deal" style="transition: all 1s ease-in-out 0s;">
+                                                    <div>
+                                                        <a class="deal-item" href="{{ route('product.show', ['id' => $deal['dealtoday_id']]) }}">
+                                                            {{ $deal['name'] }}
+                                                            <div style="position: relative;">
+                                                                <img src="<?= $deal['image'] ?>" alt="" width="171" height="171" />
+                                                            </div>
+                                                            <span class="discount"><?= "-".$deal['discount']."%" ?></span>
+                                                            <div class="price-discount">
+                                                                <span><?= number_format($deal['pricediscount'], 0, ',', '.') ?><sup>₫</sup></span>
+                                                            </div>
+                                                            <div class="price-quantity">
+                                                                <div class="deal-progress" style="min-width: <?= $deal['percentsold'] ?>px;"></div>
+                                                                <span><?= $deal['status'] ?></span>
+                                                            </div>
+                                                        </a>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <?php endforeach; ?>
+                                            @endforeach
                                         </div>
                                     </div>
                                 </div>
+
                             </div>
 
                             <div class="care-products">

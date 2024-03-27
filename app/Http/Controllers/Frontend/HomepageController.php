@@ -15,6 +15,7 @@ use App\Models\suggestionwidget;
 use App\Models\bestproduct;
 use App\Models\brandofficial;
 use App\Models\careproduct;
+use App\Models\productdetails;
 
 class HomepageController extends Controller
 {
@@ -30,12 +31,13 @@ class HomepageController extends Controller
         $quicktools = quicktool::all();
         $sgproducts = suggestionwidget::all();
         $brandproducts = brandofficial::all();
+        $productdetails = productdetails::all();
 
         return view('backend.homepage', 
         compact(
             'categories','populartools','banners',
             'bestproducts','careproducts','deals','QAs',
-            'quicktools','sgproducts','brandproducts'
+            'quicktools','sgproducts','brandproducts', 'productdetails'
             )
         );
     }
