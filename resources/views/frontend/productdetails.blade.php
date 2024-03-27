@@ -5,7 +5,7 @@
         <div class="header-container">
             <div class="header-container-dt">
                 <div class="logo-header">
-                    <a href="">
+                    <a href="{{ route('auth.homepage') }}">
                         <img src="{{asset('./upload/logo/logo.png')}}" alt="" width="180" height="40" />
                         <span>Uy tín 100%</span>
                     </a>
@@ -24,8 +24,8 @@
 
                             <div class="main-nav-right">
                                 <div class="homepage-item">
-                                    <i class="fa-solid fa-house"></i>
-                                    <a href="">Trang chủ</a>
+                                    <i class="fa-solid fa-house"style="color:#808089"></i>
+                                    <a href="{{ route('auth.homepage') }}" style="color:#808089">Trang chủ</a>
                                 </div>
                                 <div id="accountBtn" class="account-item">
                                     <i class="fa-regular fa-face-smile-wink"></i>
@@ -100,7 +100,7 @@
                     <div class="item-left">
                         <div class="wrapper">
                             <div
-                                style="display:flex;flex-direction:column;width:400px;height:680px;background:white;position:sticky;top:12px;gap:16px;padding:16px 0px 12px 0px">
+                                style="display:flex;flex-direction:column;width:400px;height:700px;background:white;position:sticky;top:12px;gap:16px;padding:16px 0px 12px 0px; margin-bottom:20px">
                                 <div class="gallery">
                                     <div class="main-image">
                                         <img id="mainImg" src=" {{ asset($productdetails->image) }}"
@@ -249,17 +249,21 @@
                                             <div class="wrapper-combo">
                                                 <div class="wrapper-rule">
                                                     <div class="rule-item">
-                                                        <img width="16" height="16" src="{{asset('./upload/img/Productdetails/rule.png')}}"
+                                                        <img width="16" height="16" src="{{ asset('/upload/img/Productdetails/rule.png') }}"
                                                             alt="">
                                                         <span>Mua 3 giảm 5%</span>
                                                     </div>
 
                                                 </div>
-                                                    <div class="wrapper-item">
-                                                        <img style="display: block; height: 76px; width: auto; object-fit: contain; cursor: pointer; opacity: 1;"
-                                                            src="" alt="">
-                                                    </div>
-
+                                                <div class="wrapper-item">
+                                                    @foreach($similarproducts as $similarproduct)
+                                                        @if($similarproduct->dealtoday_id == $productdetails->dealtoday_id)
+                                                            <img style="display: block; height: 76px; width: auto; object-fit: contain; cursor: pointer; opacity: 1;"
+                                                                src="{{ asset($similarproduct->imgbook) }}" alt="">
+                                                        @endif
+                                                    @endforeach
+                                                </div>
+                                                    
                                             </div>
                                         </div>
                                     </div>
@@ -911,10 +915,10 @@
                                                 <strong>{{ $productdetails->titledescription }}</strong>
                                             </p>
                                             <p style="text-align:justify">
-                                                {{ $productdetails->description }}
+                                                {!! nl2br($productdetails->description) !!}
                                             </p>
                                             <p class="fade-out-text" style="text-align:justify">
-                                                {{ $productdetails->descriptionmore }}
+                                                {!! nl2br($productdetails->descriptionmore) !!}
                                                 <span class="gradient"></span>
                                             </p>
                                             <p>&nbsp;</p>

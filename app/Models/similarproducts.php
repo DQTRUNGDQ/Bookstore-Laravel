@@ -7,10 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class similarproducts extends Model
 {
-   protected $table = 'similarproducts';
+    protected $table = 'similarproducts';
     use HasFactory;
     protected $fillable = [
-        'name',
+        'namebook',
         'imgbook'
     ];
 }

@@ -39,7 +39,7 @@
             <div class="header-container">
                 <div class="header-container-dt">
                     <div class="logo-header">
-                        <a href="">
+                        <a href="{{ route('auth.homepage') }}">
                             <img
                                 src="./upload/logo/logo.png"
                                 alt=""
@@ -431,7 +431,6 @@
                                                 <div class="product-deal" style="transition: all 1s ease-in-out 0s;">
                                                     <div>
                                                         <a class="deal-item" href="{{ route('product.show', ['id' => $deal['dealtoday_id']]) }}">
-                                                            {{ $deal['name'] }}
                                                             <div style="position: relative;">
                                                                 <img src="<?= $deal['image'] ?>" alt="" width="171" height="171" />
                                                             </div>

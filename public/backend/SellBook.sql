@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Mar 27, 2024 at 03:07 PM
+-- Generation Time: Mar 27, 2024 at 06:12 PM
 -- Server version: 10.8.4-MariaDB
 -- PHP Version: 8.1.9
 
@@ -204,9 +204,7 @@ INSERT INTO `category` (`id`, `image`, `title`, `Published_at`) VALUES
 (20, './upload/img/category/tapchi.jpeg', 'Tạp Chí - Catalogue', '2024-03-10 16:43:54'),
 (21, './upload/img/category/tamly.jpg', 'Sách Tâm lý - Giới tính', '2024-03-10 16:43:54'),
 (22, './upload/img/category/giadinh.jpg', 'Sách Thường Thức - Gia Đình', '2024-03-10 16:43:54'),
-(23, './upload/img/category/thethao.jpg', 'Thể Dục - Thể Thao', '2024-03-10 16:43:54'),
-(25, 'New', 'New', '2024-03-14 14:51:18'),
-(26, 'New', 'New', '2024-03-14 14:51:18');
+(23, './upload/img/category/thethao.jpg', 'Thể Dục - Thể Thao', '2024-03-10 16:43:54');
 
 -- --------------------------------------------------------
 
@@ -246,7 +244,7 @@ INSERT INTO `dealtoday` (`dealtoday_id`, `name`, `image`, `thumbnail1`, `thumbna
 (15, '', './upload/img/Productsdeal/giaithichnguphaptienganh.jpg', '', '', '', '', '', '', '', '', 0, 0, 33, '147900', 'Vừa mở bán', 150),
 (16, '', './upload/img/Productsdeal/hieuvetraitim.jpg', '', '', '', '', '', '', '', '', 0, 0, 17, '130500', 'Vừa mở bán', 70),
 (17, '', './upload/img/Productsdeal/khongphailasoicungdunglacuu.jpg', '', '', '', '', '', '', '', '', 0, 0, 29, '91200', 'Vừa mở bán', 100),
-(18, '', './upload/img/Productsdeal/luattamthuc.jpg', '', '', '', '', '', '', '', '', 0, 0, 23, '226000', 'Vừa mở bán', 50),
+(18, 'Luật Tâm Thức - Giải Mã Ma Trận Vũ Trụ', './upload/img/Productsdeal/luattamthuc.jpg', './upload/img/Productsdeal/luattamthuc.jpg', '/upload/img/Productdetails/sach/Luattamthuc/xemtruoc.jpg', '/upload/img/Productdetails/sach/Luattamthuc/xemtruoc1.jpg', '/upload/img/Productdetails/sach/Luattamthuc/xemtruoc2.jpg', 'Ngô Sa Thạch', 'Giải thích quy luật tự nhiên và nguồn gốc vũ trụ một cách đơn giản và liên quan chặt chẽ tới khoa học hiện đại.', 'Giải thích hiện tượng tâm linh như quy hồi tiền kiếp và tiên đoán sự kiện.', 'Cung cấp cách thay đổi cuộc sống bằng cách thay đổi tâm thức và hiểu đúng về quy luật vũ trụ.', 6640, 5000, 23, '226000', 'Vừa mở bán', 50),
 (19, 'Nhà Giả Kim (Tái Bản 2020)', './upload/img/Productsdeal/nhagiakim.jpg', '/upload/img/Productdetails/sach/Nhagiakim/covertruoc.jpg', '/upload/img/Productdetails/sach/Nhagiakim/xemtruoc.jpg', '/upload/img/Productdetails/sach/Nhagiakim/xemtruoc1.jpg', '/upload/img/Productdetails/sach/Nhagiakim/xemtruoc2.jpg', 'Paulo Coelho', 'Câu chuyện cổ tích giản dị, giàu chất thơ và nhân ái.', 'Thấm đẫm những minh triết huyền bí của phương Đông.\r\n\r\n', 'Có khả năng thay đổi cuộc sống người đọc.', 5850, 5000, 23, '60600', 'Vừa mở bán', 160),
 (20, '', './upload/img/Productsdeal/nonggianlabannang.jpg', '', '', '', '', '', '', '', '', 0, 0, 29, '63200', 'Vừa mở bán', 90),
 (21, '', './upload/img/Productsdeal/tuoithodudoi.jpg', '', '', '', '', '', '', '', '', 0, 0, 40, '48000', 'Vừa mở bán', 60),
@@ -306,10 +304,10 @@ CREATE TABLE `migrations` (
 --
 
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
-(1, '2014_10_12_000000_create_users_table', 1),
-(2, '2014_10_12_100000_create_password_resets_table', 1),
-(3, '2019_08_19_000000_create_failed_jobs_table', 1),
-(4, '2019_12_14_000001_create_personal_access_tokens_table', 1);
+(5, '2014_10_12_000000_create_users_table', 1),
+(6, '2014_10_12_100000_create_password_resets_table', 1),
+(7, '2019_08_19_000000_create_failed_jobs_table', 1),
+(8, '2019_12_14_000001_create_personal_access_tokens_table', 1);
 
 -- --------------------------------------------------------
 
@@ -389,7 +387,8 @@ CREATE TABLE `productdetails` (
 --
 
 INSERT INTO `productdetails` (`id`, `dealtoday_id`, `issuingcompany`, `versiontype`, `publicationdate`, `size`, `translator`, `covertype`, `pages`, `language`, `publishingcompany`, `titledescription`, `description`, `descriptionmore`) VALUES
-(1, 19, 'Nhã Nam', 'Phiên bản thường', '2020-04-01 00:00:00', '13 x 20.5 cm', 'Lê Chu Cầu', 'Bìa mềm', '228', 'Tiếng Việt', 'Nhà Xuất Bản Hà Nội', 'Sơ lược về tác phẩm', 'Tất cả những trải nghiệm trong chuyến phiêu du theo đuổi vận mệnh của mình đã giúp Santiago thấu hiểu được ý nghĩa sâu xa nhất của hạnh phúc, hòa hợp với vũ trụ và con người.\r\n\r\nTiểu thuyết Nhà giả kim của Paulo Coelho như một câu chuyện cổ tích giản dị, nhân ái, giàu chất thơ, thấm đẫm những minh triết huyền bí của phương Đông. Trong lần xuất bản đầu tiên tại Brazil vào năm 1988, sách chỉ bán được 900 bản. Nhưng, với số phận đặc biệt của cuốn sách dành cho toàn nhân loại, vượt ra ngoài biên giới quốc gia, Nhà giả kim đã làm rung động hàng triệu tâm hồn, trở thành một trong những cuốn sách bán chạy nhất mọi thời đại, và có thể làm thay đổi cuộc đời người đọc.', '“Nhưng nhà luyện kim đan không quan tâm mấy đến những điều ấy. Ông đã từng thấy nhiều người đến rồi đi, trong khi ốc đảo và sa mạc vẫn là ốc đảo và sa mạc. Ông đã thấy vua chúa và kẻ ăn xin đi qua biển cát này, cái biển cát thường xuyên thay hình đổi dạng vì gió thổi nhưng vẫn mãi mãi là biển cát mà ông đã biết từ thuở nhỏ. Tuy vậy, tự đáy lòng mình, ông không thể không cảm thấy vui trước hạnh phúc của mỗi người lữ khách, sau bao ngày chỉ có cát vàng với trời xanh nay được thấy chà là xanh tươi hiện ra trước mắt. ‘Có thể Thượng đế tạo ra sa mạc chỉ để cho con người biết quý trọng cây chà là,’ ông nghĩ.”\r\n\r\n- Trích Nhà giả kim\r\n\r\nNhận định\r\n\r\n“Sau Garcia Márquez, đây là nhà văn Mỹ Latinh được đọc nhiều nhất thế giới.”\r\n\r\n- The Economist, London, Anh\r\n\r\n“Santiago có khả năng cảm nhận bằng trái tim như Hoàng tử bé của Saint-Exupéry.”\r\n\r\n- Frankfurter Allgemeine Zeitung, Đức');
+(1, 19, 'Nhã Nam', 'Phiên bản thường', '2020-04-01 00:00:00', '13 x 20.5 cm', 'Lê Chu Cầu', 'Bìa mềm', '228', 'Tiếng Việt', 'Nhà Xuất Bản Hà Nội', 'Sơ lược về tác phẩm', 'Tất cả những trải nghiệm trong chuyến phiêu du theo đuổi vận mệnh của mình đã giúp Santiago thấu hiểu được ý nghĩa sâu xa nhất của hạnh phúc, hòa hợp với vũ trụ và con người.\r\n\r\nTiểu thuyết Nhà giả kim của Paulo Coelho như một câu chuyện cổ tích giản dị, nhân ái, giàu chất thơ, thấm đẫm những minh triết huyền bí của phương Đông. Trong lần xuất bản đầu tiên tại Brazil vào năm 1988, sách chỉ bán được 900 bản. Nhưng, với số phận đặc biệt của cuốn sách dành cho toàn nhân loại, vượt ra ngoài biên giới quốc gia, Nhà giả kim đã làm rung động hàng triệu tâm hồn, trở thành một trong những cuốn sách bán chạy nhất mọi thời đại, và có thể làm thay đổi cuộc đời người đọc.', '“Nhưng nhà luyện kim đan không quan tâm mấy đến những điều ấy. Ông đã từng thấy nhiều người đến rồi đi, trong khi ốc đảo và sa mạc vẫn là ốc đảo và sa mạc. Ông đã thấy vua chúa và kẻ ăn xin đi qua biển cát này, cái biển cát thường xuyên thay hình đổi dạng vì gió thổi nhưng vẫn mãi mãi là biển cát mà ông đã biết từ thuở nhỏ. Tuy vậy, tự đáy lòng mình, ông không thể không cảm thấy vui trước hạnh phúc của mỗi người lữ khách, sau bao ngày chỉ có cát vàng với trời xanh nay được thấy chà là xanh tươi hiện ra trước mắt. ‘Có thể Thượng đế tạo ra sa mạc chỉ để cho con người biết quý trọng cây chà là,’ ông nghĩ.”\r\n\r\n- Trích Nhà giả kim\r\n\r\nNhận định\r\n\r\n“Sau Garcia Márquez, đây là nhà văn Mỹ Latinh được đọc nhiều nhất thế giới.”\r\n\r\n- The Economist, London, Anh\r\n\r\n“Santiago có khả năng cảm nhận bằng trái tim như Hoàng tử bé của Saint-Exupéry.”\r\n\r\n- Frankfurter Allgemeine Zeitung, Đức'),
+(2, 18, 'Skybooks', 'Phiên bản đặc biệt', '2021-05-01 00:00:00', '18 x 23.5 cm', '\r\n', 'Bìa mềm', '408', 'Tiếng Việt', 'Nhà Xuất Bản Dân Trí', '', 'Dịch bệnh, thiên tai, chiến tranh… có phải là lời cảnh cáo của tự nhiên đến con người?\r\n\r\n“Biến đổi khí hậu” là một nước đi chính trị hay chỉ là sự thay đổi của Trái Đất theo chu kỳ?\r\n\r\nUFO, người ngoài hành tinh có thật không?\r\n\r\nTại sao Kinh dịch lại tiên đoán được các sự kiện?\r\n\r\nMỗi con người có số mệnh định sẵn không? Chúng ta sẽ đi về đâu sau khi chết?\r\n…', 'Liệu tất cả chỉ là ngẫu nhiên, hay có một sự sắp đặt tài tình của vũ trụ?\r\n\r\n“Luật Tâm Thức - giải mã ma trận vũ trụ” sẽ giải đáp tất cả những khía cạnh mà có thể bạn không nhận thức được chúng tồn tại, và có thể khám phá những vùng đất mình chưa từng biết đến.\r\n\r\nNhững góc nhìn trong “Luật Tâm Thức” bắt nguồn từ tất cả những kiến thức cổ xưa nhất của loài người… nhưng được tác giả Ngô Sa Thạch giải thích bằng một góc nhìn gần gũi, đặc biệt, qua đó bạn sẽ hiểu được:\r\n\r\nNguồn gốc của vũ trụ, những quy luật tự nhiên chi phối sự hình thành của mọi vật, trí tuệ cổ xưa khi thông hiểu và ứng dụng các quy luật tự nhiên.\r\n\r\nNăng lượng và tần số rung động, giải thích những hiện tượng tâm linh như quy hồi tiền kiếp, tiên đoán sự kiện, du hành thời gian,\r\n\r\nCon người: tổ hợp thân - tâm - trí, nghiệp quả, sứ mệnh trong các kiếp, sự tiến hóa của tâm thức.\r\n\r\nThay đổi cuộc sống bằng cách thay đổi tâm thức, hiểu đúng về các quy luật vũ trụ để thu hút năng lượng cải thiện cuộc sống của mình và cả vũ trụ.\r\nCuốn sách này sẽ giúp bạn thấy rằng những kiến thức của người xưa không hề cao siêu huyền bí mà vô cùng đơn giản và liên quan chặt chẽ tới khoa học hiện đại.\r\n\r\nViệc của bạn chỉ là đọc với một tâm trí cởi mở để thức tỉnh, vượt qua những rào cản của tâm trí, những niềm tin cố hữu của mình.\r\n\r\nNếu con người cứ đóng khung tư duy của mình trong hai trường phái duy vật và duy tâm, chúng ta sẽ mãi mãi không bao giờ có thể giải đáp được những vấn đề lớn lao của nhân loại. Khi đó, chúng ta cũng sẽ không bao giờ hiểu được bản chất của những câu chuyện về tâm linh, cũng như những vấn đề chưa lý giải được của khoa học.\r\n\r\nSự thiếu hiểu biết này, sẽ dẫn tới những con người mù quáng khi có một số trải nghiệm “tâm linh”, sa đà vào mê tín. Ngược lại, chính nó cũng hình thành một nhóm người mù quáng tin vào khoa học, duy vật, dẫn tới sự hủy hoại nghiêm trọng tới sự sống trên cả hành tinh này.\r\n\r\nHiểu về luật tâm thức, nâng cao tâm thức là quá trình mỗi linh hồn trải nghiệm và vượt qua những bài học cuộc đời.');
 
 -- --------------------------------------------------------
 
@@ -438,6 +437,35 @@ INSERT INTO `quicktoolswidget` (`id`, `image`, `title`) VALUES
 (3, './upload/img/quicklinkswidget/sanphammoi.png', 'Sách mới nhất'),
 (4, './upload/img/quicklinkswidget/nhasach.png', 'Nhà sách BookWorld'),
 (5, './upload/img/quicklinkswidget/maydocsach.jpg', 'Máy đọc sách');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `similarproducts`
+--
+
+CREATE TABLE `similarproducts` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `dealtoday_id` bigint(20) UNSIGNED NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `namebook` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `imgbook` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `similarproducts`
+--
+
+INSERT INTO `similarproducts` (`id`, `dealtoday_id`, `created_at`, `updated_at`, `namebook`, `imgbook`) VALUES
+(1, 19, NULL, NULL, '', '/upload/img/Productdetails/combo/nhagiakim.jpg'),
+(2, 19, NULL, NULL, '', '/upload/img/Productdetails/combo/danongsaohoadanbasaokim.jpg'),
+(3, 19, NULL, NULL, '', '/upload/img/Productdetails/combo/batdaucauhoitaisao.jpg'),
+(4, 19, NULL, NULL, '', '/upload/img/Productdetails/combo/muonanduocan.jpg'),
+(5, 18, NULL, NULL, '', '/upload/img/Productdetails/combo/luattamthuc.jpg'),
+(6, 18, NULL, NULL, '', '/upload/img/Productdetails/combo/danongsaohoadanbasaokim.jpg'),
+(7, 18, NULL, NULL, '', '/upload/img/Productdetails/combo/batdaucauhoitaisao.jpg'),
+(8, 18, NULL, NULL, '', '/upload/img/Productdetails/combo/muonanduocan.jpg');
 
 -- --------------------------------------------------------
 
@@ -581,6 +609,12 @@ ALTER TABLE `quicktoolswidget`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `similarproducts`
+--
+ALTER TABLE `similarproducts`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `sugestionproduct`
 --
 ALTER TABLE `sugestionproduct`
@@ -613,7 +647,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -625,7 +659,13 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT for table `productdetails`
 --
 ALTER TABLE `productdetails`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `similarproducts`
+--
+ALTER TABLE `similarproducts`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `users`
