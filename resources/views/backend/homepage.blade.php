@@ -85,7 +85,7 @@
                                         <span href="">Tài khoản</span>
                                     </div>
                                     <div class="cart-item">
-                                        <a href="#">
+                                        <a href="{{ route('cart.show') }}">
                                             <div class="border-cart">
                                                 <div class="cart-wrapper">
                                                     <i

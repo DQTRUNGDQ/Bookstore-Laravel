@@ -19,6 +19,8 @@
 
     <link rel="stylesheet"  href="{{ asset('backend/CSS/style.css') }}" />
     <link rel="stylesheet" href="{{ asset('backend/CSS/product.css') }}" />
+    <link rel="stylesheet" href="{{ asset('backend/CSS/cart.css') }}" />
+    
     <script src="{{ asset('backend/JS/homepage.js') }}"></script>
     <script src="{{ asset('backend/JS/login.js') }}"></script>
 

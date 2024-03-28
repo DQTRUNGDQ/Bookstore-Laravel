@@ -5,11 +5,13 @@ use Illuminate\Support\Facades\Route;
 use App\http\Controllers\Backend\AuthController;
 use App\Http\Controllers\Backend\DashboardController;
 use App\Http\Controllers\Backend\UserController;
+use App\Http\Controllers\Frontend\CartController;
 
 /** FRONTEND */
 
 use App\Http\Controllers\Frontend\HomepageController;
 use App\hTTP\Controllers\Frontend\ShowProductController;
+
 
 Route::get('/', function(){
     return view('welcome');
@@ -41,3 +43,5 @@ Route::get('homepage', [HomepageController::class, 'data'])->name('auth.homepage
 Route::get('product/{id}', [ShowProductController::class, 'product'])-> name('product.show');
 
 Route::get('product/{id}',[ShowProductController::class, 'breadcrumb'])-> name('product.show');
+
+Route::get('cart', [CartController::class, 'cart'])-> name('cart.show');

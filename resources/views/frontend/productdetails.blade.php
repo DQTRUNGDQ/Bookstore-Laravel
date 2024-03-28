@@ -248,7 +248,7 @@
                 </div>
             </div>
             <div class="breadcrumb-container">
-                <a href="" class="breadcrumb-item">
+                <a href="{{ route('auth.homepage') }}" class="breadcrumb-item">
                     <span>Trang chủ</span>
                 </a>
                 <span><i class="fa-solid fa-angle-right"></i></span>

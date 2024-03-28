@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Mar 27, 2024 at 06:12 PM
+-- Generation Time: Mar 28, 2024 at 07:47 AM
 -- Server version: 10.8.4-MariaDB
 -- PHP Version: 8.1.9
 
@@ -45,7 +45,10 @@ INSERT INTO `banner` (`id`, `image`) VALUES
 (6, './upload/img/banner/ChildrenSpring.jpg'),
 (7, './upload/img/banner/CollectionsRC.jpg'),
 (8, './upload/img/banner/SpringBreakTravel.jpg'),
-(9, './upload/img/banner/ShelfSteals.jpg');
+(9, './upload/img/banner/ShelfSteals.jpg'),
+(10, './upload/img/banner/TheSchoolofAthens.jpg'),
+(11, './upload/img/banner/sen.jpg'),
+(12, './upload/img/banner/longden.jpg');
 
 -- --------------------------------------------------------
 
@@ -216,6 +219,8 @@ CREATE TABLE `dealtoday` (
   `dealtoday_id` int(11) NOT NULL,
   `name` varchar(1000) NOT NULL,
   `image` varchar(1000) NOT NULL,
+  `category` varchar(256) NOT NULL,
+  `subcategory` varchar(256) NOT NULL,
   `thumbnail1` varchar(256) NOT NULL,
   `thumbnail2` varchar(256) NOT NULL,
   `thumbnail3` varchar(256) NOT NULL,
@@ -236,19 +241,19 @@ CREATE TABLE `dealtoday` (
 -- Dumping data for table `dealtoday`
 --
 
-INSERT INTO `dealtoday` (`dealtoday_id`, `name`, `image`, `thumbnail1`, `thumbnail2`, `thumbnail3`, `thumbnail4`, `author`, `feature1`, `feature2`, `feature3`, `quantity`, `sold`, `discount`, `pricediscount`, `status`, `percentsold`) VALUES
-(1, '', './upload/img/Productsdeal/thientaibentraikedienbenphai.jpg', '', '', '', '', '', '', '', '', 0, 0, 31, '124000', 'Vừa mở bán', 50),
-(2, '', './upload/img/Productsdeal/caycamngotcuatoi.jpg', '', '', '', '', '', '', '', '', 0, 0, 32, '73100', 'Vừa mở bán', 100),
-(3, '', './upload/img/Productsdeal/chuthuathoichien.jpg', '', '', '', '', '', '', '', '', 0, 0, 10, '30000', 'Vừa mở bán', 50),
-(14, '', './upload/img/Productsdeal/chunghiakhacky.jpg', '', '', '', '', '', '', '', '', 0, 0, 30, '106000', 'Vừa mở bán', 70),
-(15, '', './upload/img/Productsdeal/giaithichnguphaptienganh.jpg', '', '', '', '', '', '', '', '', 0, 0, 33, '147900', 'Vừa mở bán', 150),
-(16, '', './upload/img/Productsdeal/hieuvetraitim.jpg', '', '', '', '', '', '', '', '', 0, 0, 17, '130500', 'Vừa mở bán', 70),
-(17, '', './upload/img/Productsdeal/khongphailasoicungdunglacuu.jpg', '', '', '', '', '', '', '', '', 0, 0, 29, '91200', 'Vừa mở bán', 100),
-(18, 'Luật Tâm Thức - Giải Mã Ma Trận Vũ Trụ', './upload/img/Productsdeal/luattamthuc.jpg', './upload/img/Productsdeal/luattamthuc.jpg', '/upload/img/Productdetails/sach/Luattamthuc/xemtruoc.jpg', '/upload/img/Productdetails/sach/Luattamthuc/xemtruoc1.jpg', '/upload/img/Productdetails/sach/Luattamthuc/xemtruoc2.jpg', 'Ngô Sa Thạch', 'Giải thích quy luật tự nhiên và nguồn gốc vũ trụ một cách đơn giản và liên quan chặt chẽ tới khoa học hiện đại.', 'Giải thích hiện tượng tâm linh như quy hồi tiền kiếp và tiên đoán sự kiện.', 'Cung cấp cách thay đổi cuộc sống bằng cách thay đổi tâm thức và hiểu đúng về quy luật vũ trụ.', 6640, 5000, 23, '226000', 'Vừa mở bán', 50),
-(19, 'Nhà Giả Kim (Tái Bản 2020)', './upload/img/Productsdeal/nhagiakim.jpg', '/upload/img/Productdetails/sach/Nhagiakim/covertruoc.jpg', '/upload/img/Productdetails/sach/Nhagiakim/xemtruoc.jpg', '/upload/img/Productdetails/sach/Nhagiakim/xemtruoc1.jpg', '/upload/img/Productdetails/sach/Nhagiakim/xemtruoc2.jpg', 'Paulo Coelho', 'Câu chuyện cổ tích giản dị, giàu chất thơ và nhân ái.', 'Thấm đẫm những minh triết huyền bí của phương Đông.\r\n\r\n', 'Có khả năng thay đổi cuộc sống người đọc.', 5850, 5000, 23, '60600', 'Vừa mở bán', 160),
-(20, '', './upload/img/Productsdeal/nonggianlabannang.jpg', '', '', '', '', '', '', '', '', 0, 0, 29, '63200', 'Vừa mở bán', 90),
-(21, '', './upload/img/Productsdeal/tuoithodudoi.jpg', '', '', '', '', '', '', '', '', 0, 0, 40, '48000', 'Vừa mở bán', 60),
-(22, '', './upload/img/Productsdeal/vithanquyetdinh.jpg', '', '', '', '', '', '', '', '', 0, 0, 28, '57000', 'Vừa mở bán', 50);
+INSERT INTO `dealtoday` (`dealtoday_id`, `name`, `image`, `category`, `subcategory`, `thumbnail1`, `thumbnail2`, `thumbnail3`, `thumbnail4`, `author`, `feature1`, `feature2`, `feature3`, `quantity`, `sold`, `discount`, `pricediscount`, `status`, `percentsold`) VALUES
+(1, '', './upload/img/Productsdeal/thientaibentraikedienbenphai.jpg', '', '', '', '', '', '', '', '', '', '', 0, 0, 31, '124000', 'Vừa mở bán', 50),
+(2, '', './upload/img/Productsdeal/caycamngotcuatoi.jpg', '', '', '', '', '', '', '', '', '', '', 0, 0, 32, '73100', 'Vừa mở bán', 100),
+(3, '', './upload/img/Productsdeal/chuthuathoichien.jpg', '', '', '', '', '', '', '', '', '', '', 0, 0, 10, '30000', 'Vừa mở bán', 50),
+(14, '', './upload/img/Productsdeal/chunghiakhacky.jpg', '', '', '', '', '', '', '', '', '', '', 0, 0, 30, '106000', 'Vừa mở bán', 70),
+(15, '', './upload/img/Productsdeal/giaithichnguphaptienganh.jpg', '', '', '', '', '', '', '', '', '', '', 0, 0, 33, '147900', 'Vừa mở bán', 150),
+(16, '', './upload/img/Productsdeal/hieuvetraitim.jpg', '', '', '', '', '', '', '', '', '', '', 0, 0, 17, '130500', 'Vừa mở bán', 70),
+(17, '', './upload/img/Productsdeal/khongphailasoicungdunglacuu.jpg', '', '', '', '', '', '', '', '', '', '', 0, 0, 29, '91200', 'Vừa mở bán', 100),
+(18, 'Luật Tâm Thức - Giải Mã Ma Trận Vũ Trụ', './upload/img/Productsdeal/luattamthuc.jpg', 'Sách kiến thức tổng hợp', 'Lĩnh vực khác', './upload/img/Productsdeal/luattamthuc.jpg', '/upload/img/Productdetails/sach/Luattamthuc/xemtruoc.jpg', '/upload/img/Productdetails/sach/Luattamthuc/xemtruoc1.jpg', '/upload/img/Productdetails/sach/Luattamthuc/xemtruoc2.jpg', 'Ngô Sa Thạch', 'Giải thích quy luật tự nhiên và nguồn gốc vũ trụ một cách đơn giản và liên quan chặt chẽ tới khoa học hiện đại.', 'Giải thích hiện tượng tâm linh như quy hồi tiền kiếp và tiên đoán sự kiện.', 'Cung cấp cách thay đổi cuộc sống bằng cách thay đổi tâm thức và hiểu đúng về quy luật vũ trụ.', 6640, 5000, 23, '226000', 'Vừa mở bán', 50),
+(19, 'Nhà Giả Kim (Tái Bản 2020)', './upload/img/Productsdeal/nhagiakim.jpg', 'Sách văn học', 'Tác phẩm kinh điển', '/upload/img/Productdetails/sach/Nhagiakim/covertruoc.jpg', '/upload/img/Productdetails/sach/Nhagiakim/xemtruoc.jpg', '/upload/img/Productdetails/sach/Nhagiakim/xemtruoc1.jpg', '/upload/img/Productdetails/sach/Nhagiakim/xemtruoc2.jpg', 'Paulo Coelho', 'Câu chuyện cổ tích giản dị, giàu chất thơ và nhân ái.', 'Thấm đẫm những minh triết huyền bí của phương Đông.\r\n\r\n', 'Có khả năng thay đổi cuộc sống người đọc.', 5850, 5000, 23, '60600', 'Vừa mở bán', 160),
+(20, '', './upload/img/Productsdeal/nonggianlabannang.jpg', '', '', '', '', '', '', '', '', '', '', 0, 0, 29, '63200', 'Vừa mở bán', 90),
+(21, '', './upload/img/Productsdeal/tuoithodudoi.jpg', '', '', '', '', '', '', '', '', '', '', 0, 0, 40, '48000', 'Vừa mở bán', 60),
+(22, '', './upload/img/Productsdeal/vithanquyetdinh.jpg', '', '', '', '', '', '', '', '', '', '', 0, 0, 28, '57000', 'Vừa mở bán', 50);
 
 -- --------------------------------------------------------
 
@@ -274,22 +279,6 @@ INSERT INTO `event` (`id`, `TitleEvent`, `TimeEvent`, `Description`, `More`) VAL
 -- --------------------------------------------------------
 
 --
--- Table structure for table `failed_jobs`
---
-
-CREATE TABLE `failed_jobs` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `uuid` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `connection` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `queue` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `exception` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `failed_at` timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `migrations`
 --
 
@@ -304,40 +293,7 @@ CREATE TABLE `migrations` (
 --
 
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
-(5, '2014_10_12_000000_create_users_table', 1),
-(6, '2014_10_12_100000_create_password_resets_table', 1),
-(7, '2019_08_19_000000_create_failed_jobs_table', 1),
-(8, '2019_12_14_000001_create_personal_access_tokens_table', 1);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `password_resets`
---
-
-CREATE TABLE `password_resets` (
-  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `personal_access_tokens`
---
-
-CREATE TABLE `personal_access_tokens` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `tokenable_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `tokenable_id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `token` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `abilities` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `last_used_at` timestamp NULL DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+(13, '2014_10_12_000000_create_users_table', 1);
 
 -- --------------------------------------------------------
 
@@ -450,22 +406,24 @@ CREATE TABLE `similarproducts` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `namebook` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `imgbook` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
+  `imgbook` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `subimg` varchar(256) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `pricebook` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `similarproducts`
 --
 
-INSERT INTO `similarproducts` (`id`, `dealtoday_id`, `created_at`, `updated_at`, `namebook`, `imgbook`) VALUES
-(1, 19, NULL, NULL, '', '/upload/img/Productdetails/combo/nhagiakim.jpg'),
-(2, 19, NULL, NULL, '', '/upload/img/Productdetails/combo/danongsaohoadanbasaokim.jpg'),
-(3, 19, NULL, NULL, '', '/upload/img/Productdetails/combo/batdaucauhoitaisao.jpg'),
-(4, 19, NULL, NULL, '', '/upload/img/Productdetails/combo/muonanduocan.jpg'),
-(5, 18, NULL, NULL, '', '/upload/img/Productdetails/combo/luattamthuc.jpg'),
-(6, 18, NULL, NULL, '', '/upload/img/Productdetails/combo/danongsaohoadanbasaokim.jpg'),
-(7, 18, NULL, NULL, '', '/upload/img/Productdetails/combo/batdaucauhoitaisao.jpg'),
-(8, 18, NULL, NULL, '', '/upload/img/Productdetails/combo/muonanduocan.jpg');
+INSERT INTO `similarproducts` (`id`, `dealtoday_id`, `created_at`, `updated_at`, `namebook`, `imgbook`, `subimg`, `pricebook`) VALUES
+(1, 19, NULL, NULL, '', '/upload/img/Productdetails/combo/nhagiakim.jpg', '', 0),
+(2, 19, NULL, NULL, '', '/upload/img/Productdetails/combo/danongsaohoadanbasaokim.jpg', '', 0),
+(3, 19, NULL, NULL, '', '/upload/img/Productdetails/combo/batdaucauhoitaisao.jpg', '', 0),
+(4, 19, NULL, NULL, '', '/upload/img/Productdetails/combo/muonanduocan.jpg', '', 0),
+(5, 18, NULL, NULL, '', '/upload/img/Productdetails/combo/luattamthuc.jpg', '', 0),
+(6, 18, NULL, NULL, '', '/upload/img/Productdetails/combo/danongsaohoadanbasaokim.jpg', '', 0),
+(7, 18, NULL, NULL, '', '/upload/img/Productdetails/combo/batdaucauhoitaisao.jpg', '', 0),
+(8, 18, NULL, NULL, '', '/upload/img/Productdetails/combo/muonanduocan.jpg', '', 0);
 
 -- --------------------------------------------------------
 
@@ -518,6 +476,13 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `name`, `phone`, `province_id`, `district_id`, `ward_id`, `address`, `birthday`, `image`, `description`, `user_agent`, `ip`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
+(1, 'TrungDepTrai', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'trungthpthy@gmail.com', NULL, '$2y$10$9dbOqYk.v/Ccl6dvPqh8QupRG9ID82FToyKoG/f6au8LegKqH4BNO', NULL, NULL, NULL);
+
+--
 -- Indexes for dumped tables
 --
 
@@ -558,31 +523,10 @@ ALTER TABLE `dealtoday`
   ADD PRIMARY KEY (`dealtoday_id`);
 
 --
--- Indexes for table `failed_jobs`
---
-ALTER TABLE `failed_jobs`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `failed_jobs_uuid_unique` (`uuid`);
-
---
 -- Indexes for table `migrations`
 --
 ALTER TABLE `migrations`
   ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `password_resets`
---
-ALTER TABLE `password_resets`
-  ADD KEY `password_resets_email_index` (`email`);
-
---
--- Indexes for table `personal_access_tokens`
---
-ALTER TABLE `personal_access_tokens`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `personal_access_tokens_token_unique` (`token`),
-  ADD KEY `personal_access_tokens_tokenable_type_tokenable_id_index` (`tokenable_type`,`tokenable_id`);
 
 --
 -- Indexes for table `populartool`
@@ -635,25 +579,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `banner`
 --
 ALTER TABLE `banner`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
-
---
--- AUTO_INCREMENT for table `failed_jobs`
---
-ALTER TABLE `failed_jobs`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
-
---
--- AUTO_INCREMENT for table `personal_access_tokens`
---
-ALTER TABLE `personal_access_tokens`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `productdetails`
@@ -671,7 +603,7 @@ ALTER TABLE `similarproducts`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
