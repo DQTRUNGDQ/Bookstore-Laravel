@@ -39,3 +39,5 @@ Route::get('user/index', [UserController::class, 'index'])->name
 Route::get('homepage', [HomepageController::class, 'data'])->name('auth.homepage');
 
 Route::get('product/{id}', [ShowProductController::class, 'product'])-> name('product.show');
+
+Route::get('product/{id}',[ShowProductController::class, 'breadcrumb'])-> name('product.show');

@@ -253,23 +253,15 @@
                 </a>
                 <span><i class="fa-solid fa-angle-right"></i></span>
                 <a href="" class="breadcrumb-item">
-                    <span>Nhà sách BookWorld</span>
+                    <span>{{ $breadcrumb['category'] }}</span>
                 </a>
                 <span><i class="fa-solid fa-angle-right"></i></span>
                 <a href="" class="breadcrumb-item">
-                    <span>Sách tiếng Việt</span>
+                    <span>{{ $breadcrumb['subcategory'] }}</span>
                 </a>
                 <span><i class="fa-solid fa-angle-right"></i></span>
                 <a href="" class="breadcrumb-item">
-                    <span>Sách kỹ năng sống</span>
-                </a>
-                <span><i class="fa-solid fa-angle-right"></i></span>
-                <a href="" class="breadcrumb-item">
-                    <span>Sách tư duy - kỹ năng sống</span>
-                </a>
-                <span><i class="fa-solid fa-angle-right"></i></span>
-                <a href="" class="breadcrumb-item">
-                    <span>Điều Kỳ Diệu Của Tiệm Tạp Hóa NAMIYA (Tái Bản)</span>
+                    <span>{{ $breadcrumb['name'] }}</span>
                 </a>
             </div>
 

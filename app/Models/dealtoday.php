@@ -10,6 +10,9 @@ class dealtoday extends Model
     protected $table = 'dealtoday';
     use HasFactory;
     protected $fillable = [
+        'name',
+        'category',
+        'subcategory',
         'discount',
         'image',
         'pricediscount',
