@@ -255,7 +255,7 @@
                 <div class="cart-content-heading cart-grid">
                     <label for="" class="checkbox-styled">
                         <input type="checkbox" class="checkbox">
-                        <span class="label">Tất cả (36 sản phẩm)</span>
+                        <span class="label">Tất cả sản phẩm</span>
                     </label>
                     <span>Đơn giá</span>
                     <span>Số lượng</span>
@@ -277,245 +277,57 @@
                                 </label>
                             </div>
                             <div class="seller-intended">
-                                <div class="seller-product cart-grid">
-                                    <div class="item-info">
-                                        <label for="" class="checkbox-styled">
-                                            <input type="checkbox" class="checkbox">
-                                        </label>
-                                        <a href="" target="_blank">
-                                            <img width="80" height="80"
-                                                src="{{ asset('/upload/img/productdetails/sanphamtuongtu/neubiettramnalahuuhan.jpg') }}"
-                                                alt="">
-                                        </a>
-                                        <div class="info-styled">
-                                            <img width="89" height="20" src="{{ asset('/upload/img/official.png') }}" alt="">
-                                            <a href="http://" target="_blank" class="item-name-styled">
-                                                Nếu Biết Trăm Năm Là Hữu Hạn
-                                            </a>
-                                            <div class="styled-delivery-title">
-                                                <img width="32" height="16" src="./upload/img/delivery.png" alt=""></img>
-                                                <span class="delivery-text">Giao ngày mai</span>
+                                @foreach($cartItems as $item)
+                                    <div class="seller-product cart-grid">
+                                            <div class="item-info">
+                                                <label for="" class="checkbox-styled">
+                                                    <input type="checkbox" class="checkbox">
+                                                </label>
+                                                <a href="" target="_blank">
+                                                    <img width="80" height="80"
+                                                        src="{{ $item->options->image }}"
+                                                        alt="">
+                                                </a>
+                                                
+                                                <div class="info-styled">
+                                                    <img width="89" height="20" src="{{ asset('/upload/img/official.png') }}" alt="">
+                                                    <a href="http://" target="_blank" class="item-name-styled">
+                                                        {{ $item->name }}
+                                                    </a>
+                                                    <div class="styled-delivery-title">
+                                                        <img width="32" height="16" src="./upload/img/delivery.png" alt=""></img>
+                                                        <span class="delivery-text">Giao ngày mai</span>
+                                                    </div>
+                                                    <p class="styled-book-care">
+                                                        Có thể bọc bằng Bookcare
+                                                    </p>
+                                                </div>
                                             </div>
-                                            <p class="styled-book-care">
-                                                Có thể bọc bằng Bookcare
-                                            </p>
-                                        </div>
+                                            <div class="item-price">
+                                                <div class="item-price-styled" data-price="{{ $item->price }}">
+                                                    <span>{{ number_format($item->price, 0, ',', '.') }}</span>
+                                                    <sup>₫</sup>
+                                                </div>
+                                            </div>
+                                            <div class="item-quantity">
+                                                <span class="qty-decrease">
+                                                    <i class="fa-solid fa-minus"></i>
+                                                </span>
+                                                <input type="tel" class="qty-input" value="{{ $item->qty }}">
+                                                <span class="qty-increase">
+                                                    <i class="fa-solid fa-plus"></i>
+                                                </span>
+                                            </div>
+                                            <div class="item-subtotal" data-price="{{ $item->price }}">
+                                                {{ number_format($item->subtotal, 0, ',', '.') }}
+                                                <sup>₫</sup>
+                                            </div>
+                                            <div class="item-action">
+                                                <i class="fa-regular fa-trash-can"></i>
+                                            </div>
                                     </div>
-                                    <div class="item-price">
-                                        <div class="item-price-styled">
-                                            239.350
-                                            <sup>₫</sup>
-                                        </div>
-                                    </div>
-                                    <div class="item-quantity">
-                                        <span class="qty-decrease">
-                                            <i class="fa-solid fa-minus"></i>
-                                        </span>
-                                        <input type="tel" class="qty-input" value="1">
-                                        <span class="qty-increase">
-                                            <i class="fa-solid fa-plus"></i>
-                                        </span>
-                                    </div>
-                                    <div class="item-subtotal">
-                                        239.350
-                                        <sup>₫</sup>
-                                    </div>
-                                    <div class="item-action">
-                                        <i class="fa-regular fa-trash-can"></i>
-                                    </div>
-                                </div>
+                                @endforeach
 
-                                <div class="seller-product cart-grid">
-                                    <div class="item-info">
-                                        <label for="" class="checkbox-styled">
-                                            <input type="checkbox" class="checkbox">
-                                        </label>
-                                        <a href="" target="_blank">
-                                            <img width="80" height="80" src="./upload/img/cart/muonkiepnhansinh2.jpg"
-                                                alt="">
-                                        </a>
-                                        <div class="info-styled">
-                                            <img width="89" height="20" src="./upload/img/official.png" alt="">
-                                            <a href="http://" target="_blank" class="item-name-styled">
-                                                Muôn Kiếp Nhân Sinh 2 (Bìa Cứng)
-                                            </a>
-                                            <div class="styled-delivery-title">
-                                                <img width="32" height="16" src="./upload/img/delivery.png" alt=""></img>
-                                                <span class="delivery-text">Giao ngày mai</span>
-                                            </div>
-                                            <p class="styled-book-care">
-                                                Có thể bọc bằng Bookcare
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div class="item-price">
-                                        <div class="item-price-styled">
-                                            338.000
-                                            <sup>₫</sup>
-                                        </div>
-                                    </div>
-                                    <div class="item-quantity">
-                                        <span class="qty-decrease">
-                                            <i class="fa-solid fa-minus"></i>
-                                        </span>
-                                        <input type="tel" class="qty-input" value="1">
-                                        <span class="qty-increase">
-                                            <i class="fa-solid fa-plus"></i>
-                                        </span>
-                                    </div>
-                                    <div class="item-subtotal">
-                                        338.000
-                                        <sup>₫</sup>
-                                    </div>
-                                    <div class="item-action">
-                                        <i class="fa-regular fa-trash-can"></i>
-                                    </div>
-                                </div>
-
-                                <div class="seller-product cart-grid">
-                                    <div class="item-info">
-                                        <label for="" class="checkbox-styled">
-                                            <input type="checkbox" class="checkbox">
-                                        </label>
-                                        <a href="" target="_blank">
-                                            <img width="80" height="80"
-                                                src="./upload/img/productdetails/sanphamtuongtu/buocchamlaigiuathegianvoiva.jpg"
-                                                alt="">
-                                        </a>
-                                        <div class="info-styled">
-                                            <img width="89" height="20" src="./upload/img/official.png" alt="">
-                                            <a href="http://" target="_blank" class="item-name-styled">
-                                                Bước Chậm Lại Giữa Thế Gian Vội Vã (Tái
-                                                Bản)
-                                            </a>
-                                            <div class="styled-delivery-title">
-                                                <img width="32" height="16" src="./upload/img/delivery.png" alt=""></img>
-                                                <span class="delivery-text">Giao ngày mai</span>
-                                            </div>
-                                            <p class="styled-book-care">
-                                                Có thể bọc bằng Bookcare
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div class="item-price">
-                                        <div class="item-price-styled">
-                                            63.750
-                                            <sup>₫</sup>
-                                        </div>
-                                    </div>
-                                    <div class="item-quantity">
-                                        <span class="qty-decrease">
-                                            <i class="fa-solid fa-minus"></i>
-                                        </span>
-                                        <input type="tel" class="qty-input" value="1">
-                                        <span class="qty-increase">
-                                            <i class="fa-solid fa-plus"></i>
-                                        </span>
-                                    </div>
-                                    <div class="item-subtotal">
-                                        63.750
-                                        <sup>₫</sup>
-                                    </div>
-                                    <div class="item-action">
-                                        <i class="fa-regular fa-trash-can"></i>
-                                    </div>
-                                </div>
-
-                                <div class="seller-product cart-grid">
-                                    <div class="item-info">
-                                        <label for="" class="checkbox-styled">
-                                            <input type="checkbox" class="checkbox">
-                                        </label>
-                                        <a href="" target="_blank">
-                                            <img width="80" height="80"
-                                                src="./upload/img/productdetails/sanphamtuongtu/damtreodaiduongden.png"
-                                                alt="">
-                                        </a>
-                                        <div class="info-styled">
-                                            <img width="89" height="20" src="./upload/img/official.png" alt="">
-                                            <a href="http://" target="_blank" class="item-name-styled">
-                                                Đám Trẻ Ở Đại Dương Đen
-                                            </a>
-                                            <div class="styled-delivery-title">
-                                                <img width="32" height="16" src="./upload/img/delivery.png" alt=""></img>
-                                                <span class="delivery-text">Giao ngày mai</span>
-                                            </div>
-                                            <p class="styled-book-care">
-                                                Có thể bọc bằng Bookcare
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div class="item-price">
-                                        <div class="item-price-styled">
-                                            60.600
-                                            <sup>₫</sup>
-                                        </div>
-                                    </div>
-                                    <div class="item-quantity">
-                                        <span class="qty-decrease">
-                                            <i class="fa-solid fa-minus"></i>
-                                        </span>
-                                        <input type="tel" class="qty-input" value="1">
-                                        <span class="qty-increase">
-                                            <i class="fa-solid fa-plus"></i>
-                                        </span>
-                                    </div>
-                                    <div class="item-subtotal">
-                                        60.600
-                                        <sup>₫</sup>
-                                    </div>
-                                    <div class="item-action">
-                                        <i class="fa-regular fa-trash-can"></i>
-                                    </div>
-                                </div>
-
-                                <div class="seller-product cart-grid">
-                                    <div class="item-info">
-                                        <label for="" class="checkbox-styled">
-                                            <input type="checkbox" class="checkbox">
-                                        </label>
-                                        <a href="" target="_blank">
-                                            <img width="80" height="80"
-                                                src="upload/img/productdetails/sanphamtuongtu/yeunhungdieukhonghoanhao.jpg"
-                                                alt="">
-                                        </a>
-                                        <div class="info-styled">
-                                            <img width="89" height="20" src="./upload/img/official.png" alt="">
-                                            <a href="http://" target="_blank" class="item-name-styled">
-                                                Yêu Những Điều Không Hoàn Hảo
-                                            </a>
-                                            <div class="styled-delivery-title">
-                                                <img width="32" height="16" src="./upload/img/delivery.png" alt=""></img>
-                                                <span class="delivery-text">Giao ngày mai</span>
-                                            </div>
-                                            <p class="styled-book-care">
-                                                Có thể bọc bằng Bookcare
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div class="item-price">
-                                        <div class="item-price-styled">
-                                            107.000
-                                            <sup>₫</sup>
-                                        </div>
-                                    </div>
-                                    <div class="item-quantity">
-                                        <span class="qty-decrease">
-                                            <i class="fa-solid fa-minus"></i>
-                                        </span>
-                                        <input type="tel" class="qty-input" value="1">
-                                        <span class="qty-increase">
-                                            <i class="fa-solid fa-plus"></i>
-                                        </span>
-                                    </div>
-                                    <div class="item-subtotal">
-                                        107.000
-                                        <sup>₫</sup>
-                                    </div>
-                                    <div class="item-action">
-                                        <i class="fa-regular fa-trash-can"></i>
-                                    </div>
-                                </div>
                             </div>
                             <div class="seller-discount">
                                 <div class="discount-wrapper">

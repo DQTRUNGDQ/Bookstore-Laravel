@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class dealtoday extends Model
 {
     protected $table = 'dealtoday';
+    protected $primaryKey = 'dealtoday_id';
+    
     use HasFactory;
     protected $fillable = [
         'name',
@@ -17,6 +19,7 @@ class dealtoday extends Model
         'image',
         'pricediscount',
         'percentsold',
-        'status'
+        'status',
+        'quantity'
     ];
 }

@@ -32,7 +32,7 @@
                                     <span href="">Tài khoản</span>
                                 </div>
                                 <div class="cart-item">
-                                    <a href="#">
+                                    <a href="{{ route('cart.show') }}">
                                         <div class="border-cart">
                                             <div class="cart-wrapper">
                                                 <i class="fa-solid fa-cart-shopping"></i>
@@ -1151,12 +1151,12 @@
                                                 Số lượng
                                             </p>
                                             <div class="group-input">
-                                                <button class="disable">
+                                                <button class="disable decrease-btn">
                                                     <i class="fa-solid fa-minus"></i>
 
                                                 </button>
-                                                <input type="text" value="1" class="inpit">
-                                                <button>
+                                                <input  type="text" value="1" class="input-quantity">
+                                                <button class="increase-btn">
                                                     <i class="fa-solid fa-plus"></i>
                                                 </button>
                                             </div>
@@ -1164,8 +1164,8 @@
                                     </div>
                                     <div class="price-container-styled mg-t">
                                         <div class="price-label-styled">Tạm tính</div>
-                                        <div class="price-product">
-                                            63.000
+                                        <div class="price-product" data-price="{{ $productdetails->pricediscount }}"> 
+                                            {{ number_format($productdetails->pricediscount, 0, ',', '.') }}
                                             <sup>
                                                 ₫
                                             </sup>
@@ -1175,9 +1175,14 @@
                                         <button class="buy-now-btn">
                                             Mua ngay
                                         </button>
-                                        <button class="add-to-cart-btn cart-styled">
-                                            Thêm vào giỏ
-                                        </button>
+
+                                        <form id="addToCartForm" action="{{ url('/add-to-cart/'.$productdetails->dealtoday_id) }}" method="post">
+                                            @csrf
+                                            <button type="submit" class="add-to-cart-btn cart-styled" id="add-to-cart-btn">
+                                                    Thêm vào giỏ
+                                            </button> 
+                                        </form>
+                                         
                                         <button class="buy-second-btn cart-styled">
                                             Mua trước trả sau
                                         </button>

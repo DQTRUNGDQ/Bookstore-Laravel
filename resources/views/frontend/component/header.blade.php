@@ -16,10 +16,10 @@
         href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css" />
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 
-
     <link rel="stylesheet"  href="{{ asset('backend/CSS/style.css') }}" />
     <link rel="stylesheet" href="{{ asset('backend/CSS/product.css') }}" />
     <link rel="stylesheet" href="{{ asset('backend/CSS/cart.css') }}" />
+    
     
     <script src="{{ asset('backend/JS/homepage.js') }}"></script>
     <script src="{{ asset('backend/JS/login.js') }}"></script>

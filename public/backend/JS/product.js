@@ -50,6 +50,8 @@ document.addEventListener("DOMContentLoaded", function() {
   });
 });
 
+//Làm mờ description dài quá 
+
 function toggleGradient() {
     var additionalContent = document.getElementById('additional-content');
     additionalContent.classList.toggle('hidden');
@@ -64,3 +66,51 @@ function toggleGradient() {
         btnMore.textContent = 'Thu gọn';
     }
 }
+
+// Giảm/Tăng số lượng -> Giảm/Tăng giá tiền
+
+    document.addEventListener("DOMContentLoaded", function() {
+        const inputQuantity = document.querySelector('.input-quantity');
+        const priceProduct = document.querySelector('.price-product');
+
+
+        function updateTotalPrice() {
+            const priceString = priceProduct.getAttribute('data-price');
+            const price = parseFloat(priceString.replace(/\./g, '').replace(',', '.'));
+            const quantity = parseInt(inputQuantity.value);
+            const totalPrice = price * quantity;
+            if (!isNaN(totalPrice)) {
+                priceProduct.textContent = totalPrice.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
+            } else {
+                priceProduct.textContent = "0 ₫"; // Hoặc bạn có thể đặt giá trị mặc định khác ở đây
+            }
+        }
+
+        inputQuantity.addEventListener('input', updateTotalPrice);
+
+        const decreaseBtn = document.querySelector('.decrease-btn');
+        const increaseBtn = document.querySelector('.increase-btn');
+
+        function updateButtonState() {
+            if (inputQuantity.value <= 1) {
+                decreaseBtn.classList.add('disable');
+            } else {
+                decreaseBtn.classList.remove('disable');
+            }
+        }
+
+        decreaseBtn.addEventListener('click', function() {
+            if (inputQuantity.value > 1) {
+                inputQuantity.value = parseInt(inputQuantity.value) - 1;
+                updateTotalPrice();
+            }
+            updateButtonState();
+        });
+
+        increaseBtn.addEventListener('click', function() {
+            inputQuantity.value = parseInt(inputQuantity.value) + 1;
+            updateTotalPrice();
+            updateButtonState();
+        });
+        updateButtonState();
+    });

@@ -38,10 +38,14 @@ Route::get('user/index', [UserController::class, 'index'])->name
 
 /** FRONTEND ROUTES */
 
+// Trang chủ
 Route::get('homepage', [HomepageController::class, 'data'])->name('auth.homepage');
 
+// Chi tiết sản phẩm
 Route::get('product/{id}', [ShowProductController::class, 'product'])-> name('product.show');
 
-Route::get('product/{id}',[ShowProductController::class, 'breadcrumb'])-> name('product.show');
 
+// Giỏ hàng
 Route::get('cart', [CartController::class, 'cart'])-> name('cart.show');
+
+Route::post('/add-to-cart/{id}', [CartController::class, 'addToCart'])-> name('cart.add');

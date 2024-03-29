@@ -666,9 +666,9 @@ strong{
   color: #787878;
 }
 
-.group-input button:first-child{
+/* .group-input button:first-child{
   opacity: 0.4;
-}
+} */
 
 .group-input input {
   width: 40px;
@@ -679,8 +679,9 @@ strong{
   border-radius: 4px;
 }
 
-.group-input .disable{
+.disable{
     border: 1px solid #c4c4cf4d !important;
+    opacity: 0.4;
 }
 
 .mg-t{

@@ -4,6 +4,7 @@
     <script src="{{ asset('backend/JS/homepage.js') }}"></script>
     <script src="{{ asset('backend/JS/login.js') }}"></script>
     <script src="{{ asset('backend/JS/product.js') }}"></script>
-
+    <script src="{{ asset('backend/JS/cart.js') }}"></script>
+    
     </body>
 </html>

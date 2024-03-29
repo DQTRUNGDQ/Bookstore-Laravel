@@ -26,7 +26,7 @@
               autoplaySpeed: 2000, 
               arrows: true,
               draggable:true,
-              //infinite: false,
+              infinite: false,
               prevArrow:
               "<button type='button' class='slick-prev-deal slick-arrow'><i class='fa fa-angle-left' aria-hidden='true'></i></button>",
               nextArrow:
