@@ -36,7 +36,7 @@
                                         <div class="border-cart">
                                             <div class="cart-wrapper">
                                                 <i class="fa-solid fa-cart-shopping"></i>
-                                                <span>0</span>
+                                                <span>{{ $totalQuantity }}</span>
                                             </div>
                                         </div>
                                     </a>

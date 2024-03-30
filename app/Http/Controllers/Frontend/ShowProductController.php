@@ -7,6 +7,7 @@ use App\Models\dealtoday;
 use App\Models\productdetails;
 use App\Models\similarproducts;
 use Illuminate\Support\Facades\DB;
+use Gloudemans\Shoppingcart\Facades\Cart;
 
 class ShowProductController extends Controller
 {
@@ -35,8 +36,17 @@ class ShowProductController extends Controller
             abort(404);
         }
 
+        $totalQuantity = Cart::count();
+
         
-        return view('frontend.productdetails', compact('productdetails','similarproducts','breadcrumb','products'));
+        return view('frontend.productdetails',
+            compact(
+                'productdetails',
+                'similarproducts',
+                'breadcrumb',
+                'products',
+                'totalQuantity'
+            ));
     }
 
 

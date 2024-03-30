@@ -14,7 +14,7 @@
                         <div class="main-nav-detail">
                             <div class="main-nav-left">
                                 <div class="form-nav-left">
-                                    <i class="fa-solid fa-magnifying-glass"
+                                    <i class="fa-solid fa-magnifthasátying-glass"
                                         style="color: #696969; background-color: #fff"></i>
                                     <input type="text" placeholder="Tìm kiếm theo chủ đề, tác giả, thể loại" />
                                     <button class="search-btn">Tìm kiếm</button>
@@ -35,7 +35,7 @@
                                         <div class="border-cart">
                                             <div class="cart-wrapper">
                                                 <i class="fa-solid fa-cart-shopping"></i>
-                                                <span>0</span>
+                                                <span>{{ $totalQuantity }}</span>
                                             </div>
                                         </div>
                                     </a>
@@ -254,13 +254,33 @@
             <div class="cart-content-left">
                 <div class="cart-content-heading cart-grid">
                     <label for="" class="checkbox-styled">
-                        <input type="checkbox" class="checkbox">
-                        <span class="label">Tất cả sản phẩm</span>
+                        <input type="checkbox" id="select-all-products" class="checkbox">
+                        <span class="label">Tất cả sản phẩm ({{ $totalQuantity }} sản phẩm)</span>
                     </label>
                     <span>Đơn giá</span>
                     <span>Số lượng</span>
                     <span>Thành tiền</span>
-                    <i class="fa-regular fa-trash-can"></i>
+                    <i onclick="showDeleteAllConfirm()" class="fa-regular fa-trash-can" ></i>
+
+                    <div class="overlay-confirm" id="confirmAllOverlay">
+                       <div class="confirm-box" >
+                           <div class="dialog-content">
+                                <i class="fa-solid fa-triangle-exclamation"></i>
+                                    <div class="dialog-content-text">
+                                        <div class="dialog-title">Xoá sản phẩm</div>
+                                        <div class="dialog-message">Bạn có muốn xóa sản phẩm đang chọn khỏi giỏ hàng không?</div>
+                                    </div>                        
+                            </div>
+                            <div class="dialog-control">
+                                <form action="{{ route('cart.remove.all') }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                <button type="submit" class="dialog-control-btn confirm-btn">Xác nhận</button>
+                                </form>                                                  
+                                <button onclick="cancelDelete()" class="dialog-control-btn cancel-btn">Hủy</button>
+                            </div>
+                        </div>                                                         
+                    </div>                             
                 </div>
 
                 <div>
@@ -268,7 +288,7 @@
                         <div class="styled-seller">
                             <div class="seller-group">
                                 <label for="" class="checkbox-styled">
-                                    <input type="checkbox" class="checkbox">
+                                    <input type="checkbox" id="select-seller-products" class="checkbox">
                                     <img width="15" height="15" src="{{ asset('/upload/img/cart/shop.png') }}" alt="">
                                     <a class="seller-name" href="" target="_blank">
                                         BookWorld Trading
@@ -322,7 +342,26 @@
                                                 {{ number_format($item->subtotal, 0, ',', '.') }}
                                                 <sup>₫</sup>
                                             </div>
-                                            <div class="item-action">
+                                            <div class="overlay-confirm" id="confirmOverlay">
+                                                    <div class="confirm-box" >
+                                                        <div class="dialog-content">
+                                                            <i class="fa-solid fa-triangle-exclamation"></i>
+                                                            <div class="dialog-content-text">
+                                                                <div class="dialog-title">Xoá sản phẩm</div>
+                                                                <div class="dialog-message">Bạn có muốn xóa sản phẩm đang chọn khỏi giỏ hàng không?</div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="dialog-control">
+                                                            <form action="{{ route('cart.remove', $item->rowId) }}" method="POST">
+                                                                @csrf
+                                                                @method('DELETE')
+                                                                <button type="submit" class="dialog-control-btn confirm-btn">Xác nhận</button>
+                                                            </form>                                                  
+                                                             <button onclick="cancelDelete()" class="dialog-control-btn cancel-btn">Hủy</button>
+                                                        </div>
+                                                    </div>
+                                            </div>
+                                            <div class="item-action" onclick="showDeleteConfirm()">
                                                 <i class="fa-regular fa-trash-can"></i>
                                             </div>
                                     </div>

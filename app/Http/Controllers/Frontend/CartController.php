@@ -12,8 +12,9 @@ class CartController extends Controller
 
     public function cart() {
         $cartItem = Cart::content();
+        $totalQuantity = Cart::count();
         
-        return view('frontend.cart', ['cartItems' => $cartItem]);
+        return view('frontend.cart', ['cartItems' => $cartItem, 'totalQuantity'=> $totalQuantity]);
     }
 
 
@@ -27,6 +28,7 @@ class CartController extends Controller
             return back();
         }
 
+
          // Tính toán giá tiền subtotal cho sản phẩm
         $subtotal = $product->pricediscount * $quantity;
         
@@ -37,12 +39,32 @@ class CartController extends Controller
             'price' => $product->pricediscount,
             'qty' => $quantity,
             'weight' => 0,
-            'options' => ['code' => $product->code, 'image' => $product->image, 'subtotal' => $subtotal]
+            'options' => 
+            [
+                'image' => $product->image,
+                'subtotal' => $subtotal,
+            ]
         ]);
+
+        
         
         toastr()->success('Sản phẩm đã được thêm vào giỏ hàng!');
+
         return back();
 
+    }
+
+
+    public function removeItem($rowId){
+        Cart::remove($rowId);
+        toastr()->success('Sản phẩm đã được xóa khỏi vào giỏ hàng!');
+        return back();
+    }
+
+    public function removeAll() {
+        Cart::destroy();
+        toastr()->success('Tất cả sản phẩm đã được xóa khỏi vào giỏ hàng!');
+        return back();
     }
 
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use Gloudemans\Shoppingcart\Facades\Cart;
 
 use Illuminate\Http\Request;
 use App\Models\Category;
@@ -33,11 +34,13 @@ class HomepageController extends Controller
         $brandproducts = brandofficial::all();
         $productdetails = productdetails::all();
 
+        $totalQuantity = Cart::count();
+
         return view('backend.homepage', 
         compact(
             'categories','populartools','banners',
             'bestproducts','careproducts','deals','QAs',
-            'quicktools','sgproducts','brandproducts', 'productdetails'
+            'quicktools','sgproducts','brandproducts', 'productdetails','totalQuantity'
             )
         );
     }

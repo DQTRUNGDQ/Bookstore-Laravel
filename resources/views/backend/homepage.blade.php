@@ -91,7 +91,7 @@
                                                     <i
                                                         class="fa-solid fa-cart-shopping"
                                                     ></i>
-                                                    <span>0</span>
+                                                    <span>{{ $totalQuantity }}</span>
                                                 </div>
                                             </div>
                                         </a>
