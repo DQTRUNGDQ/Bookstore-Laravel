@@ -78,24 +78,73 @@
                                         <i class="fa-solid fa-house"></i>
                                         <a href="">Trang chủ</a>
                                     </div>
-                                    <div id="accountBtn" class="account-item">
-                                        <i
-                                            class="fa-regular fa-face-smile-wink"
-                                        ></i>
-                                        <span href="">Tài khoản</span>
-                                    </div>
-                                    <div class="cart-item">
-                                        <a href="{{ route('cart.show') }}">
-                                            <div class="border-cart">
-                                                <div class="cart-wrapper">
-                                                    <i
-                                                        class="fa-solid fa-cart-shopping"
-                                                    ></i>
-                                                    <span>{{ $totalQuantity }}</span>
+
+                                    @if (Auth::check())
+                                        <div class="user-profile">
+                                            <img  src="{{ asset(Auth::user()->image) }}" width="24" height="24" alt="">
+                                            <span>Tài khoản</span>
+                                        </div>
+
+                                        <div class="user-dropdown-revamp dropdown-styled">
+                                            <a href="">
+                                                <p class="dropdown-item">
+                                                    Thông tin tài khoản
+                                                </p>
+                                            </a>
+                                            <a href="">
+                                                <p class="dropdown-item">
+                                                    Đơn hàng của tôi
+                                                </p>
+                                            </a>
+                                            <a href="">
+                                                <p class="dropdown-item">
+                                                    Trung tâm hỗ trợ
+                                                </p>
+                                            </a>
+                                            <a href="{{ route('auth.logout') }}">
+                                                <p class="dropdown-item">
+                                                    Đăng xuất
+                                                </p>
+                                            </a>
+                                        </div>
+
+                                    @else
+                                        <div id="accountBtn-login" class="account-item">
+                                            <i
+                                                class="fa-regular fa-face-smile-wink"
+                                            ></i>
+                                            <a href="{{ route('auth.homepage') }}">Tài khoản</a>
+                                        </div>
+
+                                    @endif
+
+                                    @if(Auth::check())
+                                        <div class="cart-item">
+                                            <a href="{{ route('cart.show') }}">
+                                                <div class="border-cart">
+                                                    <div class="cart-wrapper">
+                                                        <i
+                                                            class="fa-solid fa-cart-shopping"
+                                                        ></i>
+                                                        <span>{{ $totalQuantity }}</span>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </a>
-                                    </div>
+                                            </a>
+                                        </div>
+                                    @else
+                                        <div id="accountBtn-cart">
+                                            <a href="#" >
+                                                <div class="border-cart">
+                                                    <div class="cart-wrapper">
+                                                        <i
+                                                            class="fa-solid fa-cart-shopping"
+                                                        ></i>
+                                                        <span>0</span>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    @endif
                                 </div>
                             </div>
                         </div>

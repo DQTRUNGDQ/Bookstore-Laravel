@@ -173,6 +173,10 @@ main {
     align-items: center;
 }
 
+.seller-product .item-action{
+    cursor: pointer;
+}
+
 .info-styled{
     display: grid;
     row-gap: 4px;

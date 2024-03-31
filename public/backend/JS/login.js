@@ -1,4 +1,8 @@
-document.getElementById('accountBtn').addEventListener('click', function() {
+document.getElementById('accountBtn-login').addEventListener('click', function() {
+  document.getElementById('overlay').style.display = 'flex';
+});
+
+document.getElementById('accountBtn-cart').addEventListener('click', function() {
   document.getElementById('overlay').style.display = 'flex';
 });
 

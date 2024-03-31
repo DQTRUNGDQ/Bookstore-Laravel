@@ -8,6 +8,8 @@ use App\Http\Requests\AuthRequest;
 use GuzzleHttp\RedirectMiddleware;
 use Illuminate\Support\Facades\Auth;
 use GrahamCampbell\ResultType\Success;
+use Gloudemans\Shoppingcart\Facades\Cart;
+use Illuminate\Support\Facades\Session;
 
 class AuthController extends Controller
 {
@@ -44,8 +46,12 @@ class AuthController extends Controller
             'password' => $request->input('password')
         ];
         if (Auth::attempt($credentials)) {
-            return redirect()->route('dashboard.index')
+
+            $cartItems = $request->session()->get('cart');
+            
+            return redirect()->route('auth.homepage')
             ->with('success','Đăng nhập thành công');
+            
         }else{
             return redirect()->route('auth.homepage')
             ->with('error','Email hoặc Mật khẩu không chính xác');
@@ -53,8 +59,17 @@ class AuthController extends Controller
     }
 
     public function logout(Request $request){
+
         Auth::logout();
- 
+
+        $cartItems = Cart::content(); 
+    
+        if ($cartItems->isNotEmpty()) {
+            // Lưu dữ liệu giỏ hàng vào Session
+            session()->put('cart', $cartItems);
+
+        }
+
         $request->session()->invalidate();
     
         $request->session()->regenerateToken();
