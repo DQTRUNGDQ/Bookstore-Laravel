@@ -330,7 +330,7 @@
                                     @method('DELETE')
                                 <button type="submit" class="dialog-control-btn confirm-btn">Xác nhận</button>
                                 </form>                                                  
-                                <button onclick="cancelDelete()" class="dialog-control-btn cancel-btn">Hủy</button>
+                                <button onclick="cancelDeleteAll()" class="dialog-control-btn cancel-btn">Hủy</button>
                             </div>
                         </div>                                                         
                     </div>                             

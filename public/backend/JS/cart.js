@@ -53,6 +53,10 @@ function cancelDelete() {
     document.getElementById("confirmOverlay").style.display = "none";
 }
 
+function cancelDeleteAll() {
+    document.getElementById("confirmAllOverlay").style.display = "none";
+}
+
 // CHỌN TẤT CẢ
     // Xử lý checkbox "Tất cả sản phẩm"
     document.getElementById('select-all-products').addEventListener('click', function() {

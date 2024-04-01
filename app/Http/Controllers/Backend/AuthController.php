@@ -47,8 +47,10 @@ class AuthController extends Controller
         ];
         if (Auth::attempt($credentials)) {
 
-            $cartItems = $request->session()->get('cart');
-            
+            if ($request->session()->has('cart')) {
+                $cart = $request->session()->get('cart');
+                $request->session()->forget('cart');
+            }
             return redirect()->route('auth.homepage')
             ->with('success','Đăng nhập thành công');
             
@@ -61,14 +63,6 @@ class AuthController extends Controller
     public function logout(Request $request){
 
         Auth::logout();
-
-        $cartItems = Cart::content(); 
-    
-        if ($cartItems->isNotEmpty()) {
-            // Lưu dữ liệu giỏ hàng vào Session
-            session()->put('cart', $cartItems);
-
-        }
 
         $request->session()->invalidate();
     
