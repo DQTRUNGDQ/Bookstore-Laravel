@@ -29,8 +29,11 @@ Route::get('product/{id}', [AuthController::class, 'product'])->name('product.sh
 Route::get('dashboard/index', [DashboardController::class, 'index'])->name
 ('dashboard.index')->middleware('admin');
 
+// Authentication
+
 Route::get('logout', [AuthController::class, 'logout'])->name('auth.logout');
 Route::post('login', [AuthController::class, 'login'])->name('auth.login');
+Route::post('register', [AuthController::class, 'register'])->name('auth.register');
 
 /* USER */
 Route::get('user/index', [UserController::class, 'index'])->name

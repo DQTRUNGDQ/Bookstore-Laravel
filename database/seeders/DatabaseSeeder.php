@@ -16,23 +16,10 @@ class DatabaseSeeder extends Seeder
     public function run():void
     {
         DB::table('users')->insert([
-            'name' => 'TrungDepTrai',
-            'email' => 'trungthpthy@gmail.com',
-            'password' => Hash::make('password'),
-        ]);
-        DB::table('productdetails')->insert([
-            'dealtoday_id' =>  '',
-            'issuingcompany'=> '',
-            'versiontype' => '',
-            'publicationdate' => '',
-            'size' => '',
-            'translator' => '',
-            'covertype' => '',
-            'pages' => '',
-            'language' => '',
-            'publishingcompany' => '',
-            'description' => '',
-            'descriptionmore' => ''
+            'name' => 'Thần Đèn',
+            'role' => 'user',
+            'email' => 'thanden@gmail.com',
+            'password' => Hash::make('123'),
         ]);
     }
 }

@@ -298,46 +298,73 @@
                                         <h4>Tạo tài khoản</h4>
                                         <p>Vui lòng nhập thông tin</p>
                                     </div>
-                                    <form action="" method="post">
+                                    <form action="{{ route('auth.register') }}" method="POST">
+                                        @csrf
                                         <div class="input">
                                             <input
-                                                type="fullname"
-                                                name="fullname"
+                                                type="text"
+                                                name="name"
+                                                id="name"
                                                 placeholder="Họ tên"
                                                 value
                                             />
                                         </div>
+                                        @if ($errors->has('name'))
+                                            <span class="error-message">
+                                                {{ $errors->first('name') }}
+                                            </span>
+                                        @endif
                                         <div class="input">
                                             <input
                                                 type="email"
-                                                name="email"
+                                                name="email_register"
+                                                id="email_register"
                                                 placeholder="acb@email.com"
                                                 value
                                             />
                                         </div>
-                                        <div class="input">
-                                            <input
-                                                type="password"
-                                                name="password"
-                                                placeholder="Mật khẩu"
-                                            />
-                                        </div>
-                                        <div class="input">
-                                            <input
-                                                type="password"
-                                                name="password_confirm"
-                                                placeholder="Nhập lại mật khẩu"
-                                            />
-                                        </div>
+                                        <!-- Thông báo lỗi validate -->
+                                        @if ($errors->has('email_register'))
+                                            <span class="error-message">
+                                                {{ $errors->first('email_register') }}
+                                            </span>
+                                        @endif
+
                                         <div class="input">
                                             <input
                                                 type="tel"
                                                 name="phone"
+                                                id="phone"
                                                 placeholder="Số điện thoại"
                                                 maxlength="10"
+                                                required
                                             />
                                         </div>
-                                        <button type="submit">Đăng Ký</button>
+
+                                        <div class="input">
+                                            <input
+                                                type="password"
+                                                name="password_register"
+                                                id="password_register"
+                                                placeholder="Mật khẩu"
+
+                                            />
+                                        </div>
+                                        @if ($errors->has('password_register'))
+                                            <span class="error-message">
+                                                {{ $errors->first('password_register') }}
+                                            </span>
+                                        @endif
+                                        <div class="input">
+                                            <input
+                                                type="password"
+                                                id="password_confirm"
+                                                name="password_confirm"
+                                                placeholder="Nhập lại mật khẩu"
+                                                required
+                                            />
+                                        </div>
+                                        <button>Đăng Ký</button>
                                     </form>
                                 </div>
                             </div>

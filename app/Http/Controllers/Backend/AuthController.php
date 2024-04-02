@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests\AuthRequest;
 use GuzzleHttp\RedirectMiddleware;
 use Illuminate\Support\Facades\Auth;
+USE Illuminate\Support\Facades\Hash;
+USE App\Models\User;
 use GrahamCampbell\ResultType\Success;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Support\Facades\Session;
@@ -40,6 +42,30 @@ class AuthController extends Controller
        
     }
 
+    public function register(Request $request){
+        
+        $request->validate([
+            'name' => 'required|string|max:256',
+            'email_register' => 'required|string|email|unique:users,email',
+            'password_register' => 'required|string|min:8|confirmed'
+
+        ]);
+
+
+        $user = new User();
+        $user->name = $request->input('name');
+        $user->email = $request->input('email_register');
+        $user->phone = $request->input('phone');
+        $user->password = Hash::make($request->input('password_register'));
+        $user->role = 'user';
+        $user->save();
+
+        Auth::login($user);
+
+        return redirect()->route('auth.homepage')->with('success', 'Đăng ký thành công');
+
+    }
+
     public function login(AuthRequest $request){  
         $credentials = [
             'email' => $request->input('email'), 
@@ -47,12 +73,15 @@ class AuthController extends Controller
         ];
         if (Auth::attempt($credentials)) {
 
-            if ($request->session()->has('cart')) {
-                $cart = $request->session()->get('cart');
-                $request->session()->forget('cart');
+            $user = Auth::user();
+
+            if ($user->role === 'admin') {
+            return redirect()->route('dashboard.index')
+                             ->with('success', 'Đăng nhập thành công');
+            } else {
+                return redirect()->route('auth.homepage')
+                                ->with('success', 'Đăng nhập thành công');
             }
-            return redirect()->route('auth.homepage')
-            ->with('success','Đăng nhập thành công');
             
         }else{
             return redirect()->route('auth.homepage')

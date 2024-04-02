@@ -40,10 +40,10 @@
                             <th>
                                 <input type="checkbox" value ="" id="checkAll" class="input-checkbox">
                             </th>
-                            <th>Avatar</th>
+                            <th style="width: 90px">Avatar</th>
                             <th>Thông tin thành viên</th>
                             <th>Địa chỉ</th>
-                            <th>Value</th>
+                            <th>Tình trạng</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -52,30 +52,30 @@
                                 <input type="checkbox" value="" class="input-checkbox checkBoxItem" >
                             </td>
                             <td>
-                                <span class="image">
-                                    <img width="100px" height="100px" src="https://thanhnien.mediacdn.vn/uploaded/tuyenth/2020_08_19/h1_PCVA.jpg?width=500" alt="">
+                                <span class="image img-cover">
+                                    <img width="100px" height="100px" src="/public/upload/img/users/photo.png" alt="">
                                 </span>
                             </td>
                             <td>
                                 <div class="info-item name">
-                                    Họ Tên: Trung Đẹp Trai
+                                    <strong>Họ Tên</strong>: Trung Đẹp Trai
                                 </div>
                                 <div class="info-item email">
-                                    Email: trungthpthy@gmail.com
+                                    <strong>Email</strong>: trungthpthy@gmail.com
                                 </div>
                                 <div class="info-item phone">
-                                    Phone: 0796387080
+                                    <strong>Phone</strong>: 0796387080
                                 </div>
                             </td>
                             <td>
                                 <div class="address-item name">
-                                    Địa chỉ: Số 79 Tống Trân
+                                    <strong>Địa chỉ</strong>: Số 79 Tống Trân
                                 </div>
                                 <div class="address-item email">
-                                    Phường: Quang Trung
+                                    <strong>Phường</strong>: Quang Trung
                                 </div>
                                 <div class="address-item phone">
-                                    Thành phố: Hưng Yên
+                                    <strong>Thành phố</strong>: Hưng Yên
                                 </div>
                             </td>
                             <td>
