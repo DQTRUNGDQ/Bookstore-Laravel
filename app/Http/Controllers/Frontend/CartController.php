@@ -51,7 +51,6 @@ class CartController extends Controller
                 ]
             ]);
             
-        
 
             toastr()->success('Sản phẩm đã được thêm vào giỏ hàng của bạn!');
 

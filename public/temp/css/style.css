@@ -629,10 +629,10 @@ body.canvas-menu.mini-navbar nav.navbar-static-side {
   min-width: 120px;
 }
 .btn-primary.btn-outline {
-  color: #1ab394;
+  color: #1c84c6;
 }
 .btn-success.btn-outline {
-  color: #1c84c6;
+  color: #28a745;
 }
 .btn-info.btn-outline {
   color: #23c6c8;
@@ -651,8 +651,8 @@ body.canvas-menu.mini-navbar nav.navbar-static-side {
   color: #fff;
 }
 .btn-primary {
-  background-color: #1ab394;
-  border-color: #1ab394;
+  background-color: #1c84c6;
+  border-color: #1c84c6;
   color: #FFFFFF;
 }
 .btn-primary:hover,
@@ -664,8 +664,8 @@ body.canvas-menu.mini-navbar nav.navbar-static-side {
 .btn-primary:active:hover,
 .btn-primary.active:hover,
 .btn-primary.active:focus {
-  background-color: #18a689;
-  border-color: #18a689;
+  background-color: #0b5ed7;
+  border-color: #0a58ca;
   color: #FFFFFF;
 }
 .btn-primary:active,
@@ -692,8 +692,8 @@ fieldset[disabled] .btn-primary.active {
   border-color: #1dc5a3;
 }
 .btn-success {
-  background-color: #1c84c6;
-  border-color: #1c84c6;
+  background-color: #28a745;
+  border-color: #1e7e34;
   color: #FFFFFF;
 }
 .btn-success:hover,
@@ -705,8 +705,8 @@ fieldset[disabled] .btn-primary.active {
 .btn-success:active:hover,
 .btn-success.active:hover,
 .btn-success.active:focus {
-  background-color: #1a7bb9;
-  border-color: #1a7bb9;
+  background-color: #218838;
+  border-color: #218838;
   color: #FFFFFF;
 }
 .btn-success:active,
@@ -1255,12 +1255,15 @@ button.dim:active:before {
 .pagination > .active > span:hover,
 .pagination > .active > a:focus,
 .pagination > .active > span:focus {
-  background-color: #f4f4f4;
+  background: #0397d6;
   border-color: #DDDDDD;
-  color: inherit;
-  cursor: default;
+  color: #fff;
+  cursor: pointer;
   z-index: 2;
 }
+
+    
+
 .pagination > li > a,
 .pagination > li > span {
   background-color: #FFFFFF;
@@ -1887,7 +1890,7 @@ div.dt-button-info {
 .single-line {
   background-color: #FFFFFF;
   background-image: none;
-  border: 1px solid #e5e6e7;
+  border: 1px solid #ced4da;
   border-radius: 1px;
   color: inherit;
   display: block;
@@ -3758,8 +3761,8 @@ body.body-small .footer.fixed {
 .table > tfoot > tr > td {
   border-top: 1px solid #e7eaec;
   line-height: 1.42857;
-  padding: 8px;
-  vertical-align: top;
+  padding: 12px 15px;
+  vertical-align: middle;
 }
 /* PANELS */
 .panel.blank-panel {
@@ -3936,6 +3939,10 @@ code {
   margin-bottom: 0;
   padding: 15px 15px 7px;
   min-height: 48px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
 }
 .ibox-content {
   background-color: #ffffff;

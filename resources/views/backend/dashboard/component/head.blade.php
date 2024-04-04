@@ -4,15 +4,20 @@
 
     <title>BookWorldAdmin | Dashboard </title>
 
+    <link rel="shortcut icon" href="{{ asset('/upload/logo/favicon-32x32.png') }}" type="image/x-icon">
+
     <link href="temp/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link href="temp/font-awesome/css/font-awesome.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/dropzone.min.css" />
 
     <link href="temp/css/animate.css" rel="stylesheet">
 
-    @if(isset($config['css']) && is_array($config['css']))
+    @if (isset($config['css']) && is_array($config['css']))
 
-        @foreach($config['css'] as $key => $val)
-            {!! '<link rel="stylesheet" href="'.$val.'">' !!}
+        @foreach ($config['css'] as $key => $val)
+            {!! '<link rel="stylesheet" href="' . $val . '">' !!}
         @endforeach
 
     @endif

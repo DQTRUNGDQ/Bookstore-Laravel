@@ -16,13 +16,142 @@ table .image{
     height: 70px;
 }
 
+table.table td a {
+    font-weight: bold;
+    color: #566787;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
+
 .img-cover img{
-    width: 100%;
-    height: 100%;
+    width: 40px;
+    height: 40px;
     object-fit: cover;
+    border-radius: 50%;
+    margin-right: 10px;
 }
 
 table strong {
     min-width: 90px;
     display: inline-block;
+}
+
+.table{
+    width: 100%;
+    margin-bottom: 1rem;
+    color: #212529;
+}
+
+table.table td .action {
+    display: flex;
+}
+
+table.table td .action i{
+    font-size: 22px;
+    padding: 0 5px;
+}
+
+table.table td .action .settings{
+    color: #2196F3;
+}
+
+table.table td .action .delete{
+    color: #F44336;
+}
+
+.ibox-title .actions{
+    display: flex;
+}
+
+.ibox-title .actions h5{
+    margin-top: 10px;
+}
+
+.ibox-title .actions .btn{
+    min-width: 50px;
+    margin-left: 10px;
+    border: none;
+    border-radius: 2px;
+}
+
+.pagination li a {
+    border: none;
+    font-size: 13px;
+    min-width: 30px;
+    min-height: 30px;
+    color: #999;
+    margin: 0 2px;
+    border-radius: 2px;
+    text-align: center;
+}
+
+.pagination li .active a,
+.pagination li .active a.page-link{
+    background-color: #03A9F4;
+}
+
+.page-item.active .page-link {
+    z-index: 10;
+    color: #fff;
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+.clear-fix{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.hint-text{
+    font-size: 13px;
+}
+
+
+
+/* ------------------------------------------ADD USERS---------------------------------------- */
+
+.AddUser-container{
+    background: #FAFAFA;
+    padding: 30px 80px;
+    width: 1520px;
+}
+
+.card{
+    background: #fff;
+    padding: 24px;
+}
+
+.title-styled{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.title-styled .avatar-title{
+    width: 30px;
+    height: 30px;
+    margin-right: 15px;
+}
+
+.title-styled .title-numb{
+    display: flex;
+    justify-content: center;
+    border-radius: 50%;
+    color: #2a4fd7;
+    background: rgba(42, 79, 215, .2);
+    height: 100%;
+    width: 100%;
+    align-items: center;
+}
+
+.title-styled .title-text h5{
+    font-size: 12px;
+    font-weight: 700;
+    color: #000;
+}
+
+.form-add{
+    padding: 10px;
 }

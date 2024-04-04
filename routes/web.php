@@ -35,9 +35,13 @@ Route::get('logout', [AuthController::class, 'logout'])->name('auth.logout');
 Route::post('login', [AuthController::class, 'login'])->name('auth.login');
 Route::post('register', [AuthController::class, 'register'])->name('auth.register');
 
-/* USER */
+/* ADMIN */
 Route::get('user/index', [UserController::class, 'index'])->name
 ('user.index')->middleware('admin');
+
+Route::get('/admin/users/addUser', [UserController::class,'AddUser'])->name('user.add');
+
+
 
 /** FRONTEND ROUTES */
 
