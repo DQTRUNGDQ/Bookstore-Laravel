@@ -19,7 +19,7 @@
         <div class="ibox float-e-margins">
             <div class="ibox-title">
                 <div class="actions">
-                    <h5>{{config('apps.user.tableHeading')}}</h5>
+                    <h5>{{ config('apps.user.tableHeading') }}</h5>
                     <div>
                         <a href="#" class="btn btn-primary">
                             <i class="fa-solid fa-file-export"></i>
@@ -66,18 +66,19 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($users as $user)
+                        @foreach ($users as $user)
                             <tr>
                                 <td>
-                                    <input type="checkbox" value="" class="input-checkbox checkBoxItem" >
+                                    <input type="checkbox" value="" class="input-checkbox checkBoxItem">
                                 </td>
                                 <td>
                                     {{ $user->id }}
                                 </td>
                                 <td>
                                     <a href="#" class="image img-cover">
-                                        <img width="100px" height="100px" src="{{ asset($user->image) }}" alt="">
-                                        <span>{{ $user->name}}</span>
+                                        <img width="100px" height="100px" src="{{ asset($user->image) }}"
+                                            alt="">
+                                        <span>{{ $user->name }}</span>
                                     </a>
                                 </td>
                                 <td>
@@ -85,18 +86,21 @@
                                 </td>
                                 <td>
                                     <div class="info-item email">
-                                        <strong>Email:</strong>{{ $user->email}}
+                                        <strong>Email:</strong>{{ $user->email }}
                                     </div>
                                     <div class="info-item phone">
-                                        <strong>SĐT</strong>{{ $user->phone}}
+                                        <strong>SĐT</strong>{{ $user->phone }}
+                                    </div>
+                                    <div class="info-item phone">
+                                        <strong>Ngày sinh</strong>{{ $user->birthday }}
                                     </div>
                                     <div class="info-item">
-                                        <strong>Địa chỉ</strong>{{ $user->address}}
+                                        <strong>Địa chỉ</strong>{{ $user->address }}
                                     </div>
                                 </td>
                                 <td>
                                     <div class="address-item role">
-                                    {{ $user->role}}
+                                        {{ $user->role }}
                                     </div>
                                 </td>
                                 <td>
@@ -118,7 +122,7 @@
                 </table>
                 <div class="clear-fix">
                     <div class="hint-text">
-                        Hiển thị 
+                        Hiển thị
                         <b>1</b>
                         trên
                         <b>1</b>
@@ -158,9 +162,11 @@
 @include('backend.dashboard.component.script')
 
 <script>
-    $(document).ready(function(){
+    $(document).ready(function() {
         var elem = document.querySelector('.js-switch');
-        var switchery = new Switchery(elem, { color: '#1AB394' });
+        var switchery = new Switchery(elem, {
+            color: '#1AB394'
+        });
     });
 </script>
 
@@ -180,4 +186,3 @@
 <script src="temp/js/plugins/easypiechart/jquery.easypiechart.js"></script>
 <script src="temp/js/plugins/sparkline/jquery.sparkline.min.js"></script>
 <script src="temp/js/demo/sparkline-demo.js"></script>
-

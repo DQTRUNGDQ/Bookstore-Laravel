@@ -114,7 +114,7 @@ table.table td .action .delete{
 
 .AddUser-container{
     background: #FAFAFA;
-    padding: 30px 80px;
+    padding: 10px 80px;
     width: 1520px;
 }
 
@@ -154,4 +154,14 @@ table.table td .action .delete{
 
 .form-add{
     padding: 10px;
+}
+
+.footer-styled{
+    width: 1520px;
+    margin-top:50px;
+}
+
+.row-styled{
+    display: flex;
+    justify-content: space-between;
 }

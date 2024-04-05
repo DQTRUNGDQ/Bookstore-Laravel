@@ -48,7 +48,6 @@ class AuthController extends Controller
             'name' => 'required|string|max:256',
             'email_register' => 'required|string|email|unique:users,email',
             'password_register' => 'required|string|min:8|confirmed'
-
         ]);
 
 

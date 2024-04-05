@@ -29,6 +29,7 @@ Route::get('product/{id}', [AuthController::class, 'product'])->name('product.sh
 Route::get('dashboard/index', [DashboardController::class, 'index'])->name
 ('dashboard.index')->middleware('admin');
 
+
 // Authentication
 
 Route::get('logout', [AuthController::class, 'logout'])->name('auth.logout');
@@ -41,6 +42,7 @@ Route::get('user/index', [UserController::class, 'index'])->name
 
 Route::get('/admin/users/addUser', [UserController::class,'AddUser'])->name('user.add');
 
+Route::post('/admin/users/addUserToDB', [UserController::class,'AddUserToDB'])->name('user.AddToDB');
 
 
 /** FRONTEND ROUTES */

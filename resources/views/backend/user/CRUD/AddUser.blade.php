@@ -51,10 +51,15 @@
 
         <div class="p-4 border-top">
             <div class="form-add">
-                <form>
+                <form action="{{ route('user.AddToDB') }}" method="POST" enctype="multipart/form-data">
+                    @csrf
                     <div class="form-group">
                         <label>Tên người dùng</label>
                         <input id="name" name="name" type="text" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label>Mật khẩu</label>
+                        <input id="password" name="password" type="password" class="form-control">
                     </div>
                     <div class="row">
                         <div class="col-lg-2">
@@ -86,7 +91,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label class="control-label">Tỉnh thành</label>
-                                <select class="form-control select2">
+                                <select id="province" name="province" class="form-control select2">
                                     <option>Lựa chọn</option>
                                     <option value="Hà Nội">Hà Nội</option>
                                     <option value="Hồ Chí Minh">Hồ Chí Minh</option>
@@ -165,19 +170,19 @@
                         <div class="col-lg-4">
                             <div class="form-group">
                                 <label for="role">Mã tỉnh (*không bắt buộc)</label>
-                                <input id="role" name="role" type="text" class="form-control">
+                                <input id="province_id" name="province_id" type="text" class="form-control">
                             </div>
                         </div>
                         <div class="col-lg-4">
                             <div class="form-group">
                                 <label for="email">Mã huyện (*không bắt buộc)</label>
-                                <input id="email" name="email" type="email" class="form-control">
+                                <input id="district_id" name="district_id" type="text" class="form-control">
                             </div>
                         </div>
                         <div class="col-lg-4">
                             <div class="form-group">
-                                <label for="phone">Mã phường (*không bắt buộc)</label>
-                                <input id="phone" name="phone" type="tel" class="form-control">
+                                <label for="ward_id">Mã phường (*không bắt buộc)</label>
+                                <input id="ward_id" name="ward_id" type="text" class="form-control">
                             </div>
                         </div>
                     </div>
@@ -186,105 +191,58 @@
                         <label for="productdesc">Mô tả người dùng</label>
                         <textarea class="form-control" id="productdesc" rows="4"></textarea>
                     </div>
+
+                    <div class="p-4 border-top">
+                        <div class="dropzone">
+                            <div class="fallback">
+                                <input name="avatar" type="file" multiple="multiple" class="form-control border"
+                                    style="height: 100; outline: none">
+                            </div>
+                            <div class="dz-message needsclick">
+                                <div class="mb-3">
+                                    <i class="fa-solid fa-cloud-arrow-up"
+                                        style="width: 56px; height:80px; font-size:40px"></i>
+                                </div>
+                                <h4 style="font-size: 20">Kéo thả file ảnh của bạn vào đây hoặc click vào để lựa chọn.
+                                </h4>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mb-4" style="margin-top:40px">
+                        <div class="col text-right">
+                            <a href="#" class="btn btn-danger"> <i class="fa-solid fa-xmark"></i> Hủy </a>
+                            <button type="submit" class="btn btn-success"> <i class="fa-regular fa-floppy-disk"></i>
+                                Xác nhận thêm </button>
+                        </div> <!-- end col -->
+                    </div> <!-- end row-->
                 </form>
             </div>
         </div>
     </div>
 
-    <div class="card">
-        <a href="">
-            <div>
-                <div class="title-styled">
-                    <div style="display: flex; align-items:center">
-                        <div>
-                            <div class="avatar-title">
-                                <div class="title-numb">
-                                    02
-                                </div>
-                            </div>
-                        </div>
-                        <div class="title-text">
-                            <h5>Ảnh đại diện người dùng</h5>
-                            <p>Điền đầy đủ thông tin ở bên dưới</p>
-                        </div>
-                    </div>
-
-                    <i class="fa-solid fa-angle-up" style="font-size:18px"></i>
+    <div class="footer-styled">
+        <div class="container-footer">
+            <div class="row-styled">
+                <div>
+                    <script>
+                        document.write(new Date().getFullYear())
+                    </script> © TrungDevTrai2k3.
                 </div>
-            </div>
-        </a>
-
-        <div class="p-4 border-top">
-            <form action="#" class="dropzone">
-                <div class="fallback">
-                    <input name="file" type="file" multiple="multiple">
+                <div>
+                    <div class="text-sm-right d-none d-sm-block" style="margin-right: 150px">
+                        Được sáng tạo bởi <i class="fa-solid fa-heart text-danger"></i> bởi <a
+                            href="http://bookworld.com/public/homepage" target="_blank" class="text-reset">BookWorld
+                            - TrungDevTrai2k3</a>
+                    </div>
                 </div>
-                <div class="dz-message needsclick">
-                    <div class="mb-3">
-                        <i class="fa-solid fa-cloud-arrow-up" style="width: 56px; height:80px; font-size:40px"></i>
-                    </div>
-
-                    <h4>Drop files here or click to upload.</h4>
-                </div>
-            </form>
-        </div>
-    </div>
-
-    <div class="card">
-        <a href="">
-            <div>
-                <div class="title-styled">
-                    <div style="display: flex; align-items:center">
-                        <div>
-                            <div class="avatar-title">
-                                <div class="title-numb">
-                                    03
-                                </div>
-                            </div>
-                        </div>
-                        <div class="title-text">
-                            <h5>Thông tin thêm</h5>
-                            <p>Điền đầy đủ thông tin ở bên dưới</p>
-                        </div>
-                    </div>
-
-                    <i class="fa-solid fa-angle-up" style="font-size:18px"></i>
-                </div>
-            </div>
-        </a>
-
-        <div id="addproduct-metadata-collapse" class="collapse" data-parent="#addproduct-accordion">
-            <div class="p-4 border-top">
-                <form>
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label for="metatitle">Meta title</label>
-                                <input id="metatitle" name="metatitle" type="text" class="form-control">
-                            </div>
-
-                        </div>
-
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label for="metakeywords">Meta Keywords</label>
-                                <input id="metakeywords" name="metakeywords" type="text" class="form-control">
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="form-group mb-0">
-                        <label for="metadescription">Meta Description</label>
-                        <textarea class="form-control" id="metadescription" rows="4"></textarea>
-                    </div>
-                </form>
             </div>
         </div>
     </div>
 </div>
 
-</div>
+
+
 <!-- end row -->
 
-<!-- dropzone plugin -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/dropzone.min.js"></script>
