@@ -108,10 +108,10 @@
                                 </td>
                                 <td>
                                     <div class="action">
-                                        <a href="#" class="settings">
+                                        <a href="{{ route('user.edit', ['id' => $user->id]) }}" class="settings">
                                             <i class="fa-solid fa-gear"></i>
                                         </a>
-                                        <a href="#" class="delete">
+                                        <a href="{{ route('user.delete', ['id' => $user->id]) }}" class="delete">
                                             <i class="fa-solid fa-circle-xmark"></i>
                                         </a>
                                     </div>

@@ -165,3 +165,9 @@ table.table td .action .delete{
     display: flex;
     justify-content: space-between;
 }
+
+.error-message {
+    color: red;
+    font-size: 12px;
+    font-style: italic;
+}

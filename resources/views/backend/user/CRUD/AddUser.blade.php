@@ -11,7 +11,7 @@
                 <a href="{{ route('user.index') }}"><span>{{ config('apps.user.title') }}</span></a>
             </li>
             <li class="active">
-                <strong>{{ config('apps.user.subHeading') }}</strong>
+                <strong>{{ config('apps.user.subHeadingAdd') }}</strong>
             </li>
         </ol>
     </div>
@@ -56,10 +56,20 @@
                     <div class="form-group">
                         <label>Tên người dùng</label>
                         <input id="name" name="name" type="text" class="form-control">
+                        @if ($errors->has('name'))
+                            <span class="error-message">
+                                * {{ $errors->first('name') }}
+                            </span>
+                        @endif
                     </div>
                     <div class="form-group">
                         <label>Mật khẩu</label>
                         <input id="password" name="password" type="password" class="form-control">
+                        @if ($errors->has('password'))
+                            <span class="error-message">
+                                * {{ $errors->first('password') }}
+                            </span>
+                        @endif
                     </div>
                     <div class="row">
                         <div class="col-lg-2">
@@ -78,13 +88,25 @@
                             <div class="form-group">
                                 <label for="email">Email</label>
                                 <input id="email" name="email" type="email" class="form-control">
+                                @if ($errors->has('email'))
+                                    <span class="error-message">
+                                        * {{ $errors->first('email') }}
+                                    </span>
+                                @endif
                             </div>
+
                         </div>
                         <div class="col-lg-2">
                             <div class="form-group">
                                 <label for="phone">Số điện thoại</label>
                                 <input id="phone" name="phone" type="tel" class="form-control">
+                                @if ($errors->has('phone'))
+                                    <span class="error-message">
+                                        * {{ $errors->first('phone') }}
+                                    </span>
+                                @endif
                             </div>
+
                         </div>
                     </div>
                     <div class="row">
@@ -211,7 +233,8 @@
 
                     <div class="row mb-4" style="margin-top:40px">
                         <div class="col text-right">
-                            <a href="#" class="btn btn-danger"> <i class="fa-solid fa-xmark"></i> Hủy </a>
+                            <a href="{{ route('user.index') }}" class="btn btn-danger"> <i
+                                    class="fa-solid fa-xmark"></i> Hủy </a>
                             <button type="submit" class="btn btn-success"> <i class="fa-regular fa-floppy-disk"></i>
                                 Xác nhận thêm </button>
                         </div> <!-- end col -->

@@ -37,12 +37,26 @@ Route::post('login', [AuthController::class, 'login'])->name('auth.login');
 Route::post('register', [AuthController::class, 'register'])->name('auth.register');
 
 /* ADMIN */
+
+
+// Quản lý users
+
+Route::get('user/index', [UserController::class, 'index'])->name
+('user.index')->middleware('admin');
+
 Route::get('user/index', [UserController::class, 'index'])->name
 ('user.index')->middleware('admin');
 
 Route::get('/admin/users/addUser', [UserController::class,'AddUser'])->name('user.add');
 
 Route::post('/admin/users/addUserToDB', [UserController::class,'AddUserToDB'])->name('user.AddToDB');
+
+Route::get('/admin/users/editUser/{id}', [UserController::class,'EditUser'])->name('user.edit');
+
+Route::post('/admin/users/updateUserToDB/{id}', [UserController::class,'updateUserToDB'])->name('user.UpdateToDB');
+
+Route::get('/admin/users/deleteUser/{id}', [UserController::class,'DeleteUser'])->name('user.delete');
+
 
 
 /** FRONTEND ROUTES */
