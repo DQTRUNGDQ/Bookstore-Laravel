@@ -11,6 +11,7 @@ use App\Http\Controllers\Frontend\CartController;
 
 use App\Http\Controllers\Frontend\HomepageController;
 use App\hTTP\Controllers\Frontend\ShowProductController;
+use App\Http\Controllers\Frontend\BlogController;
 
 
 Route::get('/', function(){
@@ -66,6 +67,9 @@ Route::get('homepage', [HomepageController::class, 'data'])->name('auth.homepage
 
 // Chi tiết sản phẩm
 Route::get('product/{id}', [ShowProductController::class, 'product'])-> name('product.show');
+
+// Trang Blog
+Route::get('blog', [BlogController::class, 'data'])->name('blog.show');
 
 
 // Giỏ hàng
