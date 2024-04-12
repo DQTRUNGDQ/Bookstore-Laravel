@@ -33,6 +33,11 @@
                 <ul class="menu-right">
                     <li class="menu-item">
                         <a href="">
+                            <span></span>
+                        </a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="">
                             <span>BẢN TIN</span>
                         </a>
                     </li>
@@ -61,11 +66,6 @@
                                 </li>
                             </ul>
                         </div>
-                    </li>
-                    <li class="menu-item">
-                        <a href="">
-                            <span></span>
-                        </a>
                     </li>
                 </ul>
             </div>
@@ -121,10 +121,73 @@
                         </footer>
                     </article>
                 </div>
-                <div class="sidebar"></div>
+                <div class="sidebar-wrap">
+                    <section class="widget-item widget-text">
+                        <div class="widget-wrap">
+                            <p>
+                                <a href="">
+                                    <img src="../../../public/upload/img/blog/admin.JPG" alt="" width="219"
+                                        height="327">
+                                </a>
+                                BookWorld Blog là “bầu trời xanh quang đãng, yên bình” của Quốc Trung—Founder của
+                                BookWorld đang sinh sống và làm việc tại Việt Nam. Đọc thêm về
+                                <a class="links-styled" href="">Trung & Blog</a>
+                            </p>
+                        </div>
+                    </section>
+
+                    <section class="widget-item widget-search">
+                        <div class="widget-wrap">
+                            <h4 class="widget-title">Tìm kiếm</h4>
+                            <form action="" class="search-form">
+                                <input type="search" class="search-form-input" placeholder="Tìm kiếm ở Website này">
+                            </form>
+                        </div>
+                    </section>
+
+                    <section class="widget-item widget-sm">
+                        <div class="widget-wrap">
+                            <div class="widget-title">Kết nối</div>
+                            <div class="sm-row">
+                                <div style="margin-left:5px">
+                                    <a href="">
+                                        <img src="../../../public/upload/img/blog/bookworld.png" alt=""
+                                            width="40" height="40">
+                                    </a>
+                                </div>
+                                <div style="margin-left:5px">
+                                    <a href="">
+                                        <img src="../../../public/upload/img/blog/email.png" alt=""
+                                            width="40" height="40">
+                                    </a>
+                                </div>
+                                <div style="margin-left:5px">
+                                    <a href="">
+                                        <img src="../../../public/upload/img/blog/facebook.png" alt=""
+                                            width="40" height="40">
+                                    </a>
+                                </div>
+                                <div style="margin-left:5px">
+                                    <a href="">
+                                        <img src="../../../public/upload/img/blog/instagram.png" alt=""
+                                            width="40" height="40">
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                </div>
             </div>
         </div>
     </div>
+    <footer class="site-footer">
+        <div class="wrap">
+            <p>
+                Copyright © 2024 BookWorld
+            </p>
+        </div>
+    </footer>
 
 </body>
 

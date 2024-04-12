@@ -1116,7 +1116,7 @@ sup {
 .btn-close{
     position: absolute;
     right: 22.5%;
-    top:4%;
+    top:6%;
     width: 42px;
     height: 42px;
     background: #fff;
@@ -1273,7 +1273,7 @@ input::placeholder{
 .btn-back{
     position: absolute;
     left: 24%;
-    top:8%;
+    top:9%;
     width: 42px;
     height: 42px;
     background: none;
