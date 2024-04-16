@@ -82,7 +82,7 @@ main {
     display: flex;
     flex-direction: column;
     width: 400px;
-    height: 660px;
+    height: 700px;
     background: white;
     position: sticky;
     top: 12px;
@@ -92,7 +92,7 @@ main {
 }
 
 .main-image img {
-  width: 348px; 
+  width: 348px;
   height: 348px;
 }
 
@@ -656,7 +656,7 @@ strong{
   padding: 6px;
   transition: 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;
   border-radius: 4px;
-  background: #fff;    
+  background: #fff;
   border: 1px solid #a6a6b0;
 }
 

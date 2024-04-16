@@ -38,7 +38,7 @@ class ShowProductController extends Controller
 
         $totalQuantity = Cart::count();
 
-        
+
         return view('frontend.productdetails',
             compact(
                 'productdetails',

@@ -130,15 +130,28 @@
                             <a href="">phổ biến</a>
                             <a href="">bán chạy</a>
                         </div>
-                        <div class="location-ship">
-                            <div class="delivery-zone">
-                                <i class="fa-solid fa-location-dot"></i>
-                                <h4>Giao đến:</h4>
-                                <div class="address">
-                                    Bạn muốn giao tới đâu?
+
+                        @if (Auth::check())
+                            <div class="location-ship">
+                                <div class="delivery-zone">
+                                    <i class="fa-solid fa-location-dot"></i>
+                                    <h4>Giao đến:</h4>
+                                    <div class="address">
+                                        {{ Auth::user()->address }}
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        @else
+                            <div class="location-ship">
+                                <div class="delivery-zone">
+                                    <i class="fa-solid fa-location-dot"></i>
+                                    <h4>Giao đến:</h4>
+                                    <div class="address">
+                                        Bạn muốn giao tới đâu?
+                                    </div>
+                                </div>
+                            </div>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -164,8 +177,8 @@
                                 <form method="post" action="{{ route('auth.login') }}">
                                     @csrf
                                     <div class="input">
-                                        <input type="text" name="email" id="email" placeholder="acb@email.com"
-                                            value="{{ old('email') }}" />
+                                        <input type="text" name="email" id="email"
+                                            placeholder="acb@email.com" value="{{ old('email') }}" />
                                     </div>
                                     <!-- Thông báo lỗi validate -->
                                     @if ($errors->has('email'))
@@ -290,11 +303,12 @@
                         </div>
                     </div>
                 </div>
+
                 <div class="sidebar">
                     <div class="sidebar-detail">
                         <div class="sb-listitem">Danh mục</div>
                         <?php foreach ($categories as $category): ?>
-                        <a href="" class="sb-item">
+                        <a href="{{ route('category.products', ['id' => $category->id]) }}" class="sb-item">
                             <div class="sb-item-icon">
                                 <img src="<?= $category['image'] ?>" alt="" width="32" height="32" />
                             </div>

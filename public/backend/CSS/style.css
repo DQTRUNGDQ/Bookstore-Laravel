@@ -325,8 +325,9 @@ main {
 }
 
 .location-ship{
-    max-width: 348px;
+    max-width: 380px;
     margin-top: 5px;
+    padding-left: 5px;
 }
 
 .delivery-zone{
@@ -347,6 +348,8 @@ main {
     font-weight: 400;
     padding-right: 4px;
     line-height: 150%;
+    white-space: nowrap;
+    display: block;
 }
 
 .address {
@@ -1032,17 +1035,9 @@ sup {
 .block{
     display: flex;
     flex-direction: column;
-    width: 268px;
     margin-right: 12px;
 }
 
-.block h4{
-    font-size: 16px;
-    color:#38383d;
-    font-weight: 500;
-    margin-bottom: 12px;
-    line-height: 24px;
-}
 
 .small-text{
     color: #808089;
@@ -1403,4 +1398,248 @@ input::placeholder{
     margin-left: 0px;
     font-size: 11px;
     color: rgb(120, 120, 120);
+}
+
+
+/* ----------------------------------------CATEGORIES DETAIL---------------------------------------------------------------- */
+.side-bar-cate{
+    background: #fff;
+    width: 200px;
+    border-radius: 4px;
+}
+
+.block{
+    padding: 0 16px 12px;
+}
+
+.title-cate{
+    margin: 0;
+    line-height: 20px;
+    color: #000;
+    font-size: 14px;
+    padding: 12px 0;
+    font-weight: 500;
+}
+
+.block .list .item{
+    font-size: 12px;
+    font-weight: 400;
+    color: #38383d;
+    padding: 0 0 12px;
+    display: flex;
+    align-items: center;
+}
+
+
+.service-filter-styled label{
+    display: flex;
+    align-items: center;
+    font-size: 12px;
+    text-transform: capitalize;
+    color: #38383d;
+    margin-bottom: 12px;
+}
+
+.service-filter-styled{
+        padding: 0 16px 12px;
+}
+
+label .box{
+    margin: 0 12px 0 0;
+}
+
+.block:nth-child(n+2) {
+    border-top: 1px solid #f7f7f7;
+}
+
+.service-wrap img{
+    max-height: 10px;
+    width: auto;
+}
+
+.rating-list a{
+    display: flex;
+    align-items: center;
+}
+
+.rating-list a:hover{
+    opacity: 0.95;
+}
+
+.rating-list .text{
+    margin-left: 3px;
+    color: rgb(36, 36, 36);
+    font-size: 13px;
+    font-weight: 400;
+}
+
+.stars-wrapper i{
+    font-size: 11px;
+    color: #FEDF5C;
+}
+
+.stars-wrapper #rating-nb{
+    color: #B8B8B8;
+}
+
+.fast-price-filter .item{
+    cursor: pointer;
+}
+
+.fast-price-filter .item > span {
+    background: #eeeeee;
+    font-size: 12px;
+    padding: 4px 12px;
+    line-height: 16px;
+    display: inline-block;
+    position: relative;
+    color: rgb(56, 56, 61);
+    border-radius: 12px;
+    margin-bottom: 4px;
+}
+
+.block .price-small-text {
+    color: rgb(128, 128, 137);
+    font-size: 12px;
+    padding-bottom: 8px;
+    margin-top: 4px;
+}
+
+.block .input-group{
+    display: flex;
+    align-items: center;
+}
+
+.block .input-group input {
+
+    width: 77px;
+    height: 30px;
+    padding: 0px 8px;
+    background: #ffffff;
+    border-radius: 4px;
+    text-align: left;
+    border: 1px solid #b8b8b8;
+    outline: 0px;
+    font-size: 13px;
+
+}
+
+.block .input-group span{
+    width: 7px;
+    height: 1px;
+    display: inline-block;
+    background: #9a9a9a;
+    margin: 0px 4px;
+    vertical-align: middle;
+}
+
+.block button {
+    background: white;
+    border: 1px solid #55c57a;
+    font-size: 12px;
+    color: #55c57a;
+    padding: 5px 15px;
+    width: 168px;
+    margin-top: 8px;
+    border-radius: 4px;
+}
+
+.list label{
+    display: flex;
+    align-items: center;
+    font-size: 12px;
+    text-transform: capitalize;
+    color: #38383d;
+    margin-bottom: 12px;
+}
+
+.block .toggler {
+    font-size: 12px;
+    font-weight: 500;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    line-height: 16px;
+    color: #55c57a;
+    cursor: pointer;
+}
+
+
+.bw-ads-widget .blur-block{
+    background-image: url(./../../../public/upload/img/BrandOfficial/brand/nhanvan.jpg);
+    background-size: cover;
+    width: 200px;
+    height: 200px;
+    background-position: center center;
+    filter: blur(50px);
+    margin-top: 50px;
+    position: relative;
+}
+
+.bw-ads-widget img{
+    display: block;
+    width: 122px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 4px;
+    border: 1px solid rgb(235, 235, 240);
+    z-index: 10;
+}
+
+.bw-ads-widget .bottom-styled{
+    padding: 16px;
+    position: relative;
+    z-index: 2;
+    background-color: white;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.bottom-styled .brand-title-styled{
+    font-size: 18px;
+    line-height: 27px;
+    font-weight: 500;
+    color: #38383d;
+    overflow: hidden;
+}
+
+.bottom-styled .sponsoredText{
+    font-size: 12px;
+    line-height: 18px;
+    color: #808089;
+    flex-shrink: 0;
+}
+
+.bottom-styled .brand-name{
+    font-size: 12px;
+    line-height: 18px;
+    color: #27272a;
+    overflow: hidden;
+}
+
+.bottom-styled .discount-text{
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 500;
+    color: #55c57a;
+    text-align: center;
+}
+
+.bottom-styled .brand-view-more{
+    margin: 10px;
+    padding: 5.5px 12px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #55c57a;
+    color: white;
+    border-radius: 4px;
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 500;
 }

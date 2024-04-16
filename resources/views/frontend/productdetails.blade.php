@@ -6,7 +6,7 @@
             <div class="header-container-dt">
                 <div class="logo-header">
                     <a href="{{ route('auth.homepage') }}">
-                        <img src="{{asset('./upload/logo/logo.png')}}" alt="" width="180" height="40" />
+                        <img src="{{ asset('./upload/logo/logo.png') }}" alt="" width="180" height="40" />
                         <span>Uy tín 100%</span>
                     </a>
                 </div>
@@ -23,78 +23,71 @@
                             </div>
 
                             <div class="main-nav-right">
-                                    <div class="homepage-item">
-                                        <i class="fa-solid fa-house"></i>
-                                        <a href="">Trang chủ</a>
+                                <div class="homepage-item">
+                                    <i class="fa-solid fa-house"></i>
+                                    <a href="">Trang chủ</a>
+                                </div>
+
+                                @if (Auth::check())
+                                    <div class="user-profile">
+                                        <img src="{{ asset(Auth::user()->image) }}" width="24" height="24"
+                                            alt="">
+                                        <span>Tài khoản</span>
                                     </div>
 
-                                    @if (Auth::check())
-                                        <div class="user-profile">
-                                            <img  src="{{ asset(Auth::user()->image) }}" width="24" height="24" alt="">
-                                            <span>Tài khoản</span>
-                                        </div>
+                                    <div class="user-dropdown-revamp dropdown-styled">
+                                        <a href="">
+                                            <p class="dropdown-item">
+                                                Thông tin tài khoản
+                                            </p>
+                                        </a>
+                                        <a href="">
+                                            <p class="dropdown-item">
+                                                Đơn hàng của tôi
+                                            </p>
+                                        </a>
+                                        <a href="">
+                                            <p class="dropdown-item">
+                                                Trung tâm hỗ trợ
+                                            </p>
+                                        </a>
+                                        <a href="{{ route('auth.logout') }}">
+                                            <p class="dropdown-item">
+                                                Đăng xuất
+                                            </p>
+                                        </a>
+                                    </div>
+                                @else
+                                    <div id="accountBtn-login" class="account-item">
+                                        <i class="fa-regular fa-face-smile-wink"></i>
+                                        <a href="{{ route('auth.homepage') }}">Tài khoản</a>
+                                    </div>
+                                @endif
 
-                                        <div class="user-dropdown-revamp dropdown-styled">
-                                            <a href="">
-                                                <p class="dropdown-item">
-                                                    Thông tin tài khoản
-                                                </p>
-                                            </a>
-                                            <a href="">
-                                                <p class="dropdown-item">
-                                                    Đơn hàng của tôi
-                                                </p>
-                                            </a>
-                                            <a href="">
-                                                <p class="dropdown-item">
-                                                    Trung tâm hỗ trợ
-                                                </p>
-                                            </a>
-                                            <a href="{{ route('auth.logout') }}">
-                                                <p class="dropdown-item">
-                                                    Đăng xuất
-                                                </p>
-                                            </a>
-                                        </div>
-
-                                    @else
-                                        <div id="accountBtn-login" class="account-item">
-                                            <i
-                                                class="fa-regular fa-face-smile-wink"
-                                            ></i>
-                                            <a href="{{ route('auth.homepage') }}">Tài khoản</a>
-                                        </div>
-
-                                    @endif
-
-                                    @if(Auth::check())
-                                        <div class="cart-item">
-                                            <a href="{{ route('cart.show') }}">
-                                                <div class="border-cart">
-                                                    <div class="cart-wrapper">
-                                                        <i
-                                                            class="fa-solid fa-cart-shopping"
-                                                        ></i>
-                                                        <span>{{ $totalQuantity }}</span>
-                                                    </div>
+                                @if (Auth::check())
+                                    <div class="cart-item">
+                                        <a href="{{ route('cart.show') }}">
+                                            <div class="border-cart">
+                                                <div class="cart-wrapper">
+                                                    <i class="fa-solid fa-cart-shopping"></i>
+                                                    <span>{{ $totalQuantity }}</span>
                                                 </div>
-                                            </a>
-                                        </div>
-                                    @else
-                                        <div id="accountBtn-cart">
-                                            <a href="#" >
-                                                <div class="border-cart">
-                                                    <div class="cart-wrapper">
-                                                        <i
-                                                            class="fa-solid fa-cart-shopping"
-                                                        ></i>
-                                                        <span>0</span>
-                                                    </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                @else
+                                    <div id="accountBtn-cart">
+                                        <a href="#">
+                                            <div class="border-cart">
+                                                <div class="cart-wrapper">
+                                                    <i class="fa-solid fa-cart-shopping"></i>
+                                                    <span>0</span>
                                                 </div>
-                                            </a>
-                                        </div>
-                                    @endif
-                            </div>    
+                                            </div>
+                                        </a>
+                                    </div>
+                                @endif
+                            </div>
                         </div>
                     </div>
 
@@ -108,13 +101,27 @@
                             <a href="">phổ biến</a>
                             <a href="">bán chạy</a>
                         </div>
-                        <div class="location-ship">
-                            <div class="delivery-zone">
-                                <i class="fa-solid fa-location-dot"></i>
-                                <h4>Giao đến:</h4>
-                                <div class="address">Bạn muốn giao tới đâu?</div>
+                        @if (Auth::check())
+                            <div class="location-ship">
+                                <div class="delivery-zone">
+                                    <i class="fa-solid fa-location-dot"></i>
+                                    <h4>Giao đến:</h4>
+                                    <div class="address">
+                                        {{ Auth::user()->address }}
+                                    </div>
+                                </div>
                             </div>
-                        </div>
+                        @else
+                            <div class="location-ship">
+                                <div class="delivery-zone">
+                                    <i class="fa-solid fa-location-dot"></i>
+                                    <h4>Giao đến:</h4>
+                                    <div class="address">
+                                        Bạn muốn giao tới đâu?
+                                    </div>
+                                </div>
+                            </div>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -123,180 +130,121 @@
     <main>
         <div class="main-container-dt">
             <div id="overlay" class="overlay">
-                        <div id="loginModal" class="modal">
-                            <button class="btn-close" onclick="closeModal()">
-                                <i class="fa-solid fa-xmark"></i>
-                            </button>
-                            <div class="login-container">
-                                <div class="login-with-email">
-                                    <div class="heading">
-                                        <h4>Đăng nhập bằng email</h4>
-                                        <p>
-                                            Nhập email và mật khẩu của tài khoản
-                                            BookWorld
-                                        </p>
-                                    </div>
-                                    <form
-                                        method="post"
-                                        action="{{ route('auth.login') }}"
-                                    >
-                                        @csrf
-                                        <div class="input">
-                                            <input
-                                                type="text"
-                                                name="email"
-                                                id="email"
-                                                placeholder="acb@email.com"
-                                                value="{{ old('email') }}"
-                                            />
-                                        </div>
-                                        <!-- Thông báo lỗi validate -->
-                                        @if ($errors->has('email'))
-                                        <span class="error-message">
-                                            * {{ $errors->first('email') }}
-                                        </span>
-                                        @endif
-                                        <div class="input">
-                                            <input
-                                                type="password"
-                                                name="password"
-                                                id="password"
-                                                placeholder="Mật khẩu"
-                                            />
-                                            <span class="show-pass">Hiện</span>
-                                        </div>
-                                        <!-- Thông báo lỗi validate -->
-                                        @if ($errors->has('password'))
-                                        <span class="error-message">
-                                            * {{ $errors->first('password') }}
-                                        </span>
-                                        @endif
-                                        <button>Đăng nhập</button>
-                                    </form>
-                                    <p class="forgot-pass">Quên mật khẩu</p>
-                                    <p class="create-account">
-                                        Chưa có tài khoản?
-                                        <span id="createAccountBtn"
-                                            >Tạo tài khoản</span
-                                        >
-                                    </p>
-
-                                    <div class="social-login">
-                                        <div class="social-heading">
-                                            <span>Hoặc tiếp tục bằng</span>
-                                        </div>
-                                        <ul class="social-items">
-                                            <li class="social-item">
-                                                <img
-                                                    width="58px"
-                                                    src="./upload/img/Login/fb.png"
-                                                    alt=""
-                                                />
-                                            </li>
-                                            <li class="social-item">
-                                                <img
-                                                    width="58px"
-                                                    src="./upload/img/Login/gg.png"
-                                                    alt=""
-                                                />
-                                            </li>
-                                        </ul>
-                                        <p class="note">
-                                            Bằng việc tiếp tục, bạn đã đọc và
-                                            đồng ý với
-                                            <a href="">điều khoản sử dụng</a> và
-                                            <a href=""
-                                                >Chính sách bảo mật thông tin cá
-                                                nhân</a
-                                            >
-                                            của BookWorld
-                                        </p>
-                                    </div>
-                                </div>
+                <div id="loginModal" class="modal">
+                    <button class="btn-close" onclick="closeModal()">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                    <div class="login-container">
+                        <div class="login-with-email">
+                            <div class="heading">
+                                <h4>Đăng nhập bằng email</h4>
+                                <p>
+                                    Nhập email và mật khẩu của tài khoản
+                                    BookWorld
+                                </p>
                             </div>
-                            <div class="login-right">
-                                <img
-                                    width="203"
-                                    src="./upload/img/Login/loginright.png"
-                                    alt=""
-                                />
-                                <div class="content-lgr">
-                                    <h4>Mua sắm tại BookWorld</h4>
-                                    <span>Siêu ưu đãi mỗi ngày</span>
+                            <form method="post" action="{{ route('auth.login') }}">
+                                @csrf
+                                <div class="input">
+                                    <input type="text" name="email" id="email" placeholder="acb@email.com"
+                                        value="{{ old('email') }}" />
                                 </div>
+                                <!-- Thông báo lỗi validate -->
+                                @if ($errors->has('email'))
+                                    <span class="error-message">
+                                        * {{ $errors->first('email') }}
+                                    </span>
+                                @endif
+                                <div class="input">
+                                    <input type="password" name="password" id="password" placeholder="Mật khẩu" />
+                                    <span class="show-pass">Hiện</span>
+                                </div>
+                                <!-- Thông báo lỗi validate -->
+                                @if ($errors->has('password'))
+                                    <span class="error-message">
+                                        * {{ $errors->first('password') }}
+                                    </span>
+                                @endif
+                                <button>Đăng nhập</button>
+                            </form>
+                            <p class="forgot-pass">Quên mật khẩu</p>
+                            <p class="create-account">
+                                Chưa có tài khoản?
+                                <span id="createAccountBtn">Tạo tài khoản</span>
+                            </p>
+
+                            <div class="social-login">
+                                <div class="social-heading">
+                                    <span>Hoặc tiếp tục bằng</span>
+                                </div>
+                                <ul class="social-items">
+                                    <li class="social-item">
+                                        <img width="58px" src="./upload/img/Login/fb.png" alt="" />
+                                    </li>
+                                    <li class="social-item">
+                                        <img width="58px" src="./upload/img/Login/gg.png" alt="" />
+                                    </li>
+                                </ul>
+                                <p class="note">
+                                    Bằng việc tiếp tục, bạn đã đọc và
+                                    đồng ý với
+                                    <a href="">điều khoản sử dụng</a> và
+                                    <a href="">Chính sách bảo mật thông tin cá
+                                        nhân</a>
+                                    của BookWorld
+                                </p>
                             </div>
                         </div>
+                    </div>
+                    <div class="login-right">
+                        <img width="203" src="./upload/img/Login/loginright.png" alt="" />
+                        <div class="content-lgr">
+                            <h4>Mua sắm tại BookWorld</h4>
+                            <span>Siêu ưu đãi mỗi ngày</span>
+                        </div>
+                    </div>
+                </div>
 
-                        <div
-                            id="registerModal"
-                            class="modal"
-                            style="display: none"
-                        >
-                            <button class="btn-close" onclick="closeModal()">
-                                <i class="fa-solid fa-xmark"></i>
-                            </button>
-                            <button class="btn-back" onclick="showLogin()">
-                                <i class="fa-solid fa-chevron-left"></i>
-                            </button>
-                            <div class="register-container">
-                                <div class="register">
-                                    <div class="heading">
-                                        <h4>Tạo tài khoản</h4>
-                                        <p>Vui lòng nhập thông tin</p>
-                                    </div>
-                                    <form action="" method="post">
-                                        <div class="input">
-                                            <input
-                                                type="fullname"
-                                                name="fullname"
-                                                placeholder="Họ tên"
-                                                value
-                                            />
-                                        </div>
-                                        <div class="input">
-                                            <input
-                                                type="email"
-                                                name="email"
-                                                placeholder="acb@email.com"
-                                                value
-                                            />
-                                        </div>
-                                        <div class="input">
-                                            <input
-                                                type="password"
-                                                name="password"
-                                                placeholder="Mật khẩu"
-                                            />
-                                        </div>
-                                        <div class="input">
-                                            <input
-                                                type="password"
-                                                name="password_confirm"
-                                                placeholder="Nhập lại mật khẩu"
-                                            />
-                                        </div>
-                                        <div class="input">
-                                            <input
-                                                type="tel"
-                                                name="phone"
-                                                placeholder="Số điện thoại"
-                                                maxlength="10"
-                                            />
-                                        </div>
-                                        <button type="submit">Đăng Ký</button>
-                                    </form>
+                <div id="registerModal" class="modal" style="display: none">
+                    <button class="btn-close" onclick="closeModal()">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                    <button class="btn-back" onclick="showLogin()">
+                        <i class="fa-solid fa-chevron-left"></i>
+                    </button>
+                    <div class="register-container">
+                        <div class="register">
+                            <div class="heading">
+                                <h4>Tạo tài khoản</h4>
+                                <p>Vui lòng nhập thông tin</p>
+                            </div>
+                            <form action="" method="post">
+                                <div class="input">
+                                    <input type="fullname" name="fullname" placeholder="Họ tên" value />
                                 </div>
-                            </div>
-                            <div class="login-right-rg">
-                                <img
-                                    width="203"
-                                    src="./upload/img/Login/loginright.png"
-                                    alt=""
-                                />
-                                <div class="content-lgr">
-                                    <h4>Mua sắm tại BookWorld</h4>
-                                    <span>Siêu ưu đãi mỗi ngày</span>
-                            </div>
+                                <div class="input">
+                                    <input type="email" name="email" placeholder="acb@email.com" value />
+                                </div>
+                                <div class="input">
+                                    <input type="password" name="password" placeholder="Mật khẩu" />
+                                </div>
+                                <div class="input">
+                                    <input type="password" name="password_confirm" placeholder="Nhập lại mật khẩu" />
+                                </div>
+                                <div class="input">
+                                    <input type="tel" name="phone" placeholder="Số điện thoại"
+                                        maxlength="10" />
+                                </div>
+                                <button type="submit">Đăng Ký</button>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="login-right-rg">
+                        <img width="203" src="./upload/img/Login/loginright.png" alt="" />
+                        <div class="content-lgr">
+                            <h4>Mua sắm tại BookWorld</h4>
+                            <span>Siêu ưu đãi mỗi ngày</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -323,15 +271,15 @@
                     <div class="item-left">
                         <div class="wrapper">
                             <div
-                                style="display:flex;flex-direction:column;width:400px;height:700px;background:white;position:sticky;top:12px;gap:16px;padding:16px 0px 12px 0px; margin-bottom:20px">
+                                style="display:flex;flex-direction:column;width:400px;height:800px;background:white;position:sticky;top:12px;gap:16px;padding:16px 0px 12px 0px; margin-bottom:20px">
                                 <div class="gallery">
                                     <div class="main-image">
                                         <img id="mainImg" src=" {{ asset($productdetails->image) }}"
                                             alt="Main Image">
                                     </div>
                                     <div class="thumbnails">
-                                        <img class="thumbnail selected" src="{{ asset($productdetails->thumbnail1) }}"
-                                            alt="Thumbnail 1">
+                                        <img class="thumbnail selected"
+                                            src="{{ asset($productdetails->thumbnail1) }}" alt="Thumbnail 1">
                                         <img class="thumbnail" src="{{ asset($productdetails->thumbnail2) }}"
                                             alt="Thumbnail 2">
                                         <img class="thumbnail" src="{{ asset($productdetails->thumbnail3) }}"
@@ -347,17 +295,20 @@
                                     </div>
                                     <div class=des-content>
                                         <div class="des-highlight">
-                                            <img width="16px" height="16px" src="{{ asset('./upload/img/Productdetails/highlight.png') }}"
+                                            <img width="16px" height="16px"
+                                                src="{{ asset('./upload/img/Productdetails/highlight.png') }}"
                                                 alt="">
                                             {{ $productdetails->feature1 }}
                                         </div>
                                         <div class="des-highlight">
-                                            <img width="16px" height="16px" src="{{ asset('./upload/img/Productdetails/highlight.png') }}"
+                                            <img width="16px" height="16px"
+                                                src="{{ asset('./upload/img/Productdetails/highlight.png') }}"
                                                 alt="">
                                             {{ $productdetails->feature2 }}
                                         </div>
                                         <div class="des-highlight">
-                                            <img width="16px" height="16px" src="{{ asset('./upload/img/Productdetails/highlight.png') }}"
+                                            <img width="16px" height="16px"
+                                                src="{{ asset('./upload/img/Productdetails/highlight.png') }}"
                                                 alt="">
                                             {{ $productdetails->feature3 }}
                                         </div>
@@ -371,7 +322,8 @@
                                         <div style="width:552px; height: 124px;">
                                             <div class="header-title">
                                                 <div class="brandAuthor">
-                                                    <img width="89" height="20" src="{{ asset('./upload/img/Productdetails/official.png') }}"
+                                                    <img width="89" height="20"
+                                                        src="{{ asset('./upload/img/Productdetails/official.png') }}"
                                                         alt="">
                                                     <h6>
                                                         Tác giả:
@@ -395,11 +347,12 @@
                                                                 <i class="fa-solid fa-star"></i>
                                                                 <i class="fa-solid fa-star"></i>
                                                             </div>
-                                                            <div class="number">({{ $productdetails->quantity }})</div>
+                                                            <div class="number">({{ $productdetails->quantity }})
+                                                            </div>
                                                             <div class="separator"></div>
                                                         </div>
                                                         <div class="quantity-sold">
-                                                            Đã bán {{ $productdetails->sold}}+
+                                                            Đã bán {{ $productdetails->sold }}+
                                                         </div>
                                                     </div>
                                                 </div>
@@ -407,13 +360,16 @@
                                             <div class="product-title">
                                                 <div class="styled-price">
                                                     <div class="product-price">
-                                                        <div class="price-current">{{ number_format($productdetails->pricediscount, 0, ',', '.') }}
+                                                        <div class="price-current">
+                                                            {{ number_format($productdetails->pricediscount, 0, ',', '.') }}
                                                             <sup>₫</sup>
                                                         </div>
-                                                        <div class="price-discount">-{{ $productdetails->discount }}%</div>
+                                                        <div class="price-discount">-{{ $productdetails->discount }}%
+                                                        </div>
                                                         <div class="price-shock">
                                                             <img width="72" height="22"
-                                                                src="{{ asset('./upload/img/Productdetails/priceshock.png') }}" alt="">
+                                                                src="{{ asset('./upload/img/Productdetails/priceshock.png') }}"
+                                                                alt="">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -426,7 +382,8 @@
                                             Thông tin vận chuyển
                                         </div>
                                         <div class="widget-content-styled">
-                                            <div style="display: flex; align-items: center; justify-content: space-between;cursor: pointer;gap:
+                                            <div
+                                                style="display: flex; align-items: center; justify-content: space-between;cursor: pointer;gap:
                                                 4px;font-size: 14px;font-weight: 400;line-height: 150%;">
                                                 <div class="current-location">
                                                     Giao đến TX. Mỹ Hào, P. Nhân Hòa, Hưng Yên
@@ -438,7 +395,8 @@
                                         <div class="widget-content-styled">
                                             <div class="shipping-info">
                                                 <div class="shipping-info-header">
-                                                    <img width="32" height="16" src="{{asset('./upload/img/Productdetails/shipping.png')}}"
+                                                    <img width="32" height="16"
+                                                        src="{{ asset('./upload/img/Productdetails/shipping.png') }}"
                                                         alt="">
                                                     <div class="shipping-info-text">Giao Thứ Sáu</div>
                                                 </div>
@@ -472,21 +430,23 @@
                                             <div class="wrapper-combo">
                                                 <div class="wrapper-rule">
                                                     <div class="rule-item">
-                                                        <img width="16" height="16" src="{{ asset('/upload/img/Productdetails/rule.png') }}"
+                                                        <img width="16" height="16"
+                                                            src="{{ asset('/upload/img/Productdetails/rule.png') }}"
                                                             alt="">
                                                         <span>Mua 3 giảm 5%</span>
                                                     </div>
 
                                                 </div>
                                                 <div class="wrapper-item">
-                                                    @foreach($similarproducts as $similarproduct)
-                                                        @if($similarproduct->dealtoday_id == $productdetails->dealtoday_id)
+                                                    @foreach ($similarproducts as $similarproduct)
+                                                        @if ($similarproduct->dealtoday_id == $productdetails->dealtoday_id)
                                                             <img style="display: block; height: 76px; width: auto; object-fit: contain; cursor: pointer; opacity: 1;"
-                                                                src="{{ asset($similarproduct->imgbook) }}" alt="">
+                                                                src="{{ asset($similarproduct->imgbook) }}"
+                                                                alt="">
                                                         @endif
                                                     @endforeach
                                                 </div>
-                                                    
+
                                             </div>
                                         </div>
                                     </div>
@@ -505,21 +465,27 @@
                                                                     <div class="styled-item">
                                                                         <div class="thumbnails-styled">
                                                                             <img width="130" height="130"
-                                                                                src="{{asset('./upload/img/productdetails/sanphamtuongtu/comboosho.jpg')}}"
+                                                                                src="{{ asset('./upload/img/productdetails/sanphamtuongtu/comboosho.jpg') }}"
                                                                                 alt="">
                                                                         </div>
                                                                         <div class="content-styled">
                                                                             <div class="info">
                                                                                 <div class="name-info">
-                                                                                    <h3> Combo Sách Osho - Đàn Ông + Đàn Bà +
+                                                                                    <h3> Combo Sách Osho - Đàn Ông + Đàn
+                                                                                        Bà +
                                                                                         Ươm Mầm</h3>
                                                                                     <div class="review-star"
                                                                                         style="margin-top:5px">
-                                                                                        <i class="fa-solid fa-star"></i>
-                                                                                        <i class="fa-solid fa-star"></i>
-                                                                                        <i class="fa-solid fa-star"></i>
-                                                                                        <i class="fa-solid fa-star"></i>
-                                                                                        <i class="fa-solid fa-star"></i>
+                                                                                        <i
+                                                                                            class="fa-solid fa-star"></i>
+                                                                                        <i
+                                                                                            class="fa-solid fa-star"></i>
+                                                                                        <i
+                                                                                            class="fa-solid fa-star"></i>
+                                                                                        <i
+                                                                                            class="fa-solid fa-star"></i>
+                                                                                        <i
+                                                                                            class="fa-solid fa-star"></i>
                                                                                     </div>
                                                                                 </div>
                                                                                 <div class="product-discount">
@@ -540,13 +506,14 @@
                                                                     <div class="styled-item">
                                                                         <div class="thumbnails-styled">
                                                                             <img width="130" height="130"
-                                                                                src="{{asset('./upload/img/productdetails/sanphamtuongtu/yeunhungdieukhonghoanhao.jpg')}}"
+                                                                                src="{{ asset('./upload/img/productdetails/sanphamtuongtu/yeunhungdieukhonghoanhao.jpg') }}"
                                                                                 alt="">
                                                                         </div>
                                                                         <div class="content-styled">
                                                                             <div class="info">
                                                                                 <div class="name-info">
-                                                                                    <h3> Yêu Những Điều Không Hoàn Hảo</h3>
+                                                                                    <h3> Yêu Những Điều Không Hoàn Hảo
+                                                                                    </h3>
                                                                                     <div class="review-star"></div>
                                                                                 </div>
                                                                                 <div class="product-discount">
@@ -567,13 +534,14 @@
                                                                     <div class="styled-item">
                                                                         <div class="thumbnails-styled">
                                                                             <img width="130" height="130"
-                                                                                src="{{asset('./upload/img/productdetails/sanphamtuongtu/neubiettramnalahuuhan.jp')}}g"
+                                                                                src="{{ asset('./upload/img/productdetails/sanphamtuongtu/neubiettramnalahuuhan.jp') }}g"
                                                                                 alt="">
                                                                         </div>
                                                                         <div class="content-styled">
                                                                             <div class="info">
                                                                                 <div class="name-info">
-                                                                                    <h3> Nếu Biết Trăm Năm Là Hữu Hạn</h3>
+                                                                                    <h3> Nếu Biết Trăm Năm Là Hữu Hạn
+                                                                                    </h3>
                                                                                     <div class="review-star"></div>
                                                                                 </div>
                                                                                 <div class="product-discount">
@@ -594,7 +562,7 @@
                                                                     <div class="styled-item">
                                                                         <div class="thumbnails-styled">
                                                                             <img width="130" height="130"
-                                                                                src="{{asset('./upload/img/productdetails/sanphamtuongtu/deardarling.jpg')}}"
+                                                                                src="{{ asset('./upload/img/productdetails/sanphamtuongtu/deardarling.jpg') }}"
                                                                                 alt="">
                                                                         </div>
                                                                         <div class="content-styled">
@@ -621,7 +589,7 @@
                                                                     <div class="styled-item">
                                                                         <div class="thumbnails-styled">
                                                                             <img width="130" height="130"
-                                                                                src="{{asset('./upload/img/productdetails/sanphamtuongtu/damtreodaiduongden.png')}}"
+                                                                                src="{{ asset('./upload/img/productdetails/sanphamtuongtu/damtreodaiduongden.png') }}"
                                                                                 alt="">
                                                                         </div>
                                                                         <div class="content-styled">
@@ -648,15 +616,18 @@
                                                                     <div class="styled-item">
                                                                         <div class="thumbnails-styled">
                                                                             <img width="130" height="130"
-                                                                                src="{{asset('./upload/img/productdetails/sanphamtuongtu/kedienbentraithientaibenphai.jpg')}}"
+                                                                                src="{{ asset('./upload/img/productdetails/sanphamtuongtu/kedienbentraithientaibenphai.jpg') }}"
                                                                                 alt="">
                                                                         </div>
                                                                         <div class="content-styled">
                                                                             <div class="info">
                                                                                 <div class="name-info">
-                                                                                    <h3> Tác Phẩm Kinh Điển: Thiên Tài Bên Trái,
-                                                                                        Kẻ Điên Bên Phải / Sách Văn Học Hay
-                                                                                        (Tặng Kèm Bookmark Thiết Kế Bookmark
+                                                                                    <h3> Tác Phẩm Kinh Điển: Thiên Tài
+                                                                                        Bên Trái,
+                                                                                        Kẻ Điên Bên Phải / Sách Văn Học
+                                                                                        Hay
+                                                                                        (Tặng Kèm Bookmark Thiết Kế
+                                                                                        Bookmark
                                                                                         Happy Life)</h3>
                                                                                     <div class="review-star"></div>
                                                                                 </div>
@@ -678,14 +649,16 @@
                                                                     <div class="styled-item">
                                                                         <div class="thumbnails-styled">
                                                                             <img width="130" height="130"
-                                                                                src="{{asset('./upload/img/productdetails/sanphamtuongtu/chungtaroisehptheocachkhacnhau.jpg')}}"
+                                                                                src="{{ asset('./upload/img/productdetails/sanphamtuongtu/chungtaroisehptheocachkhacnhau.jpg') }}"
                                                                                 alt="">
                                                                         </div>
                                                                         <div class="content-styled">
                                                                             <div class="info">
                                                                                 <div class="name-info">
-                                                                                    <h3> Chúng Ta Rồi Sẽ Hạnh Phúc, Theo Những
-                                                                                        Cách Khác Nhau [Tặng Kèm: 01 Bookmark]
+                                                                                    <h3> Chúng Ta Rồi Sẽ Hạnh Phúc, Theo
+                                                                                        Những
+                                                                                        Cách Khác Nhau [Tặng Kèm: 01
+                                                                                        Bookmark]
                                                                                     </h3>
                                                                                     <div class="review-star"></div>
                                                                                 </div>
@@ -707,13 +680,14 @@
                                                                     <div class="styled-item">
                                                                         <div class="thumbnails-styled">
                                                                             <img width="130" height="130"
-                                                                                src="{{asset('./upload/img/productdetails/sanphamtuongtu/buocchamlaigiuathegianvoiva.jpg')}}"
+                                                                                src="{{ asset('./upload/img/productdetails/sanphamtuongtu/buocchamlaigiuathegianvoiva.jpg') }}"
                                                                                 alt="">
                                                                         </div>
                                                                         <div class="content-styled">
                                                                             <div class="info">
                                                                                 <div class="name-info">
-                                                                                    <h3> Bước Chậm Lại Giữa Thế Gian Vội Vã (Tái
+                                                                                    <h3> Bước Chậm Lại Giữa Thế Gian Vội
+                                                                                        Vã (Tái
                                                                                         Bản)</h3>
                                                                                     <div class="review-star"></div>
                                                                                 </div>
@@ -739,21 +713,27 @@
                                                                     <div class="styled-item">
                                                                         <div class="thumbnails-styled">
                                                                             <img width="130" height="130"
-                                                                                src="{{asset('./upload/img/productdetails/sanphamtuongtu/comboosho.jpg')}}"
+                                                                                src="{{ asset('./upload/img/productdetails/sanphamtuongtu/comboosho.jpg') }}"
                                                                                 alt="">
                                                                         </div>
                                                                         <div class="content-styled">
                                                                             <div class="info">
                                                                                 <div class="name-info">
-                                                                                    <h3> Combo Sách Osho - Đàn Ông + Đàn Bà +
+                                                                                    <h3> Combo Sách Osho - Đàn Ông + Đàn
+                                                                                        Bà +
                                                                                         Ươm Mầm</h3>
                                                                                     <div class="review-star"
                                                                                         style="margin-top:5px">
-                                                                                        <i class="fa-solid fa-star"></i>
-                                                                                        <i class="fa-solid fa-star"></i>
-                                                                                        <i class="fa-solid fa-star"></i>
-                                                                                        <i class="fa-solid fa-star"></i>
-                                                                                        <i class="fa-solid fa-star"></i>
+                                                                                        <i
+                                                                                            class="fa-solid fa-star"></i>
+                                                                                        <i
+                                                                                            class="fa-solid fa-star"></i>
+                                                                                        <i
+                                                                                            class="fa-solid fa-star"></i>
+                                                                                        <i
+                                                                                            class="fa-solid fa-star"></i>
+                                                                                        <i
+                                                                                            class="fa-solid fa-star"></i>
                                                                                     </div>
                                                                                 </div>
                                                                                 <div class="product-discount">
@@ -774,13 +754,14 @@
                                                                     <div class="styled-item">
                                                                         <div class="thumbnails-styled">
                                                                             <img width="130" height="130"
-                                                                                src="{{asset('./upload/img/productdetails/sanphamtuongtu/yeunhungdieukhonghoanhao.jpg')}}"
+                                                                                src="{{ asset('./upload/img/productdetails/sanphamtuongtu/yeunhungdieukhonghoanhao.jpg') }}"
                                                                                 alt="">
                                                                         </div>
                                                                         <div class="content-styled">
                                                                             <div class="info">
                                                                                 <div class="name-info">
-                                                                                    <h3> Yêu Những Điều Không Hoàn Hảo</h3>
+                                                                                    <h3> Yêu Những Điều Không Hoàn Hảo
+                                                                                    </h3>
                                                                                     <div class="review-star"></div>
                                                                                 </div>
                                                                                 <div class="product-discount">
@@ -801,13 +782,14 @@
                                                                     <div class="styled-item">
                                                                         <div class="thumbnails-styled">
                                                                             <img width="130" height="130"
-                                                                                src="{{asset('./upload/img/productdetails/sanphamtuongtu/neubiettramnalahuuhan.jp')}}g"
+                                                                                src="{{ asset('./upload/img/productdetails/sanphamtuongtu/neubiettramnalahuuhan.jp') }}g"
                                                                                 alt="">
                                                                         </div>
                                                                         <div class="content-styled">
                                                                             <div class="info">
                                                                                 <div class="name-info">
-                                                                                    <h3> Nếu Biết Trăm Năm Là Hữu Hạn</h3>
+                                                                                    <h3> Nếu Biết Trăm Năm Là Hữu Hạn
+                                                                                    </h3>
                                                                                     <div class="review-star"></div>
                                                                                 </div>
                                                                                 <div class="product-discount">
@@ -828,7 +810,7 @@
                                                                     <div class="styled-item">
                                                                         <div class="thumbnails-styled">
                                                                             <img width="130" height="130"
-                                                                                src="{{asset('./upload/img/productdetails/sanphamtuongtu/deardarling.jpg')}}"
+                                                                                src="{{ asset('./upload/img/productdetails/sanphamtuongtu/deardarling.jpg') }}"
                                                                                 alt="">
                                                                         </div>
                                                                         <div class="content-styled">
@@ -855,7 +837,7 @@
                                                                     <div class="styled-item">
                                                                         <div class="thumbnails-styled">
                                                                             <img width="130" height="130"
-                                                                                src="{{asset('./upload/img/productdetails/sanphamtuongtu/damtreodaiduongden.png')}}"
+                                                                                src="{{ asset('./upload/img/productdetails/sanphamtuongtu/damtreodaiduongden.png') }}"
                                                                                 alt="">
                                                                         </div>
                                                                         <div class="content-styled">
@@ -882,15 +864,18 @@
                                                                     <div class="styled-item">
                                                                         <div class="thumbnails-styled">
                                                                             <img width="130" height="130"
-                                                                                src="{{asset('./upload/img/productdetails/sanphamtuongtu/kedienbentraithientaibenphai.jpg')}}"
+                                                                                src="{{ asset('./upload/img/productdetails/sanphamtuongtu/kedienbentraithientaibenphai.jpg') }}"
                                                                                 alt="">
                                                                         </div>
                                                                         <div class="content-styled">
                                                                             <div class="info">
                                                                                 <div class="name-info">
-                                                                                    <h3> Tác Phẩm Kinh Điển: Thiên Tài Bên Trái,
-                                                                                        Kẻ Điên Bên Phải / Sách Văn Học Hay
-                                                                                        (Tặng Kèm Bookmark Thiết Kế Bookmark
+                                                                                    <h3> Tác Phẩm Kinh Điển: Thiên Tài
+                                                                                        Bên Trái,
+                                                                                        Kẻ Điên Bên Phải / Sách Văn Học
+                                                                                        Hay
+                                                                                        (Tặng Kèm Bookmark Thiết Kế
+                                                                                        Bookmark
                                                                                         Happy Life)</h3>
                                                                                     <div class="review-star"></div>
                                                                                 </div>
@@ -912,14 +897,16 @@
                                                                     <div class="styled-item">
                                                                         <div class="thumbnails-styled">
                                                                             <img width="130" height="130"
-                                                                                src="{{asset('./upload/img/productdetails/sanphamtuongtu/chungtaroisehptheocachkhacnhau.jpg')}}"
+                                                                                src="{{ asset('./upload/img/productdetails/sanphamtuongtu/chungtaroisehptheocachkhacnhau.jpg') }}"
                                                                                 alt="">
                                                                         </div>
                                                                         <div class="content-styled">
                                                                             <div class="info">
                                                                                 <div class="name-info">
-                                                                                    <h3> Chúng Ta Rồi Sẽ Hạnh Phúc, Theo Những
-                                                                                        Cách Khác Nhau [Tặng Kèm: 01 Bookmark]
+                                                                                    <h3> Chúng Ta Rồi Sẽ Hạnh Phúc, Theo
+                                                                                        Những
+                                                                                        Cách Khác Nhau [Tặng Kèm: 01
+                                                                                        Bookmark]
                                                                                     </h3>
                                                                                     <div class="review-star"></div>
                                                                                 </div>
@@ -941,13 +928,14 @@
                                                                     <div class="styled-item">
                                                                         <div class="thumbnails-styled">
                                                                             <img width="130" height="130"
-                                                                                src="{{asset('./upload/img/productdetails/sanphamtuongtu/buocchamlaigiuathegianvoiva.jpg')}}"
+                                                                                src="{{ asset('./upload/img/productdetails/sanphamtuongtu/buocchamlaigiuathegianvoiva.jpg') }}"
                                                                                 alt="">
                                                                         </div>
                                                                         <div class="content-styled">
                                                                             <div class="info">
                                                                                 <div class="name-info">
-                                                                                    <h3> Bước Chậm Lại Giữa Thế Gian Vội Vã (Tái
+                                                                                    <h3> Bước Chậm Lại Giữa Thế Gian Vội
+                                                                                        Vã (Tái
                                                                                         Bản)</h3>
                                                                                     <div class="review-star"></div>
                                                                                 </div>
@@ -977,7 +965,9 @@
                                         </div>
                                         <div class="widget-seller">
                                             <a href="">
-                                                <img width="40" height="40" src="{{ asset('./upload/logo/favicon-32x32-white.pn') }}g" alt=""
+                                                <img width="40" height="40"
+                                                    src="{{ asset('./upload/logo/favicon-32x32-white.pn') }}g"
+                                                    alt=""
                                                     style="border-radius: 50%;opacity: 1;background-color:#55c57a; padding:5px 10px">
                                             </a>
                                             <div style="display:flex; flex-direction:column; gap: 8px">
@@ -985,7 +975,8 @@
                                                     <div class="seller-name-styled">
                                                         <a href="">
                                                             <span>BookWorld Trading</span>
-                                                            <img width="72" height="20" src="{{asset('./upload/img/auth.png')}}"
+                                                            <img width="72" height="20"
+                                                                src="{{ asset('./upload/img/auth.png') }}"
                                                                 alt="chinhhang">
 
 
@@ -993,12 +984,15 @@
                                                     </div>
                                                     <div class="seller-action">
                                                         <div class="action follow">
-                                                            <img width="16" height="16" src="{{asset('./upload/img/follow.png')}}"
+                                                            <img width="16" height="16"
+                                                                src="{{ asset('./upload/img/follow.png') }}"
                                                                 alt="theodoi">
                                                             <span>Theo Dõi</span>
                                                         </div>
                                                         <div class="button-chat">
-                                                            <img width="16" height="16" src="{{asset('./upload/img/chat.png')}}" alt="chat">
+                                                            <img width="16" height="16"
+                                                                src="{{ asset('./upload/img/chat.png') }}"
+                                                                alt="chat">
                                                             <span>Chat</span>
                                                         </div>
                                                     </div>
@@ -1006,7 +1000,9 @@
                                                 <div class="seller-detail-info">
                                                     <div class="item-review">
                                                         <div class="title">
-                                                            <img width="16" height="16" src="{{asset('./upload/img/staricon.png')}}" alt="">
+                                                            <img width="16" height="16"
+                                                                src="{{ asset('./upload/img/staricon.png') }}"
+                                                                alt="">
                                                             <span>4.8</span>
                                                         </div>
                                                         <div class="sub-title">(5.5tr+ đánh giá)</div>
@@ -1025,18 +1021,21 @@
                                         <div class="widget-title-styled"
                                             style="display: flex; align-items: center; justify-content: space-between; cursor: pointer;">
                                             <div>An tâm mua sắm</div>
-                                            <img width="20" height="20" src="{{asset('./upload/img/angleright.png')}}" alt="">
+                                            <img width="20" height="20"
+                                                src="{{ asset('./upload/img/angleright.png') }}" alt="">
                                         </div>
                                         <div style="display:flex; flex-direction:column; margin-top:10px">
                                             <div class="styled">
-                                                <img width="20" height="20" src="{{asset('./upload/img/box.png')}}" alt="hoantien">
+                                                <img width="20" height="20"
+                                                    src="{{ asset('./upload/img/box.png') }}" alt="hoantien">
                                                 <span>
                                                     <b>Được mở hộp kiểm tra</b>
                                                     khi nhận hàng
                                                 </span>
                                             </div>
                                             <div class="styled">
-                                                <img width="20" height="20" src="{{asset('./upload/img/compensationmoney.png')}}"
+                                                <img width="20" height="20"
+                                                    src="{{ asset('./upload/img/compensationmoney.png') }}"
                                                     alt="doitrahang">
                                                 <span>
                                                     <b>Được hoàn tiền 100%</b>
@@ -1044,7 +1043,8 @@
                                                 </span>
                                             </div>
                                             <div class="styled">
-                                                <img width="20" height="20" src="{{asset('./upload/img/compensation.png')}}"
+                                                <img width="20" height="20"
+                                                    src="{{ asset('./upload/img/compensation.png') }}"
                                                     alt="kiemtrahang">
                                                 <span>
                                                     <b>Đổi trả miễn phí tại nhà trong 30 ngày</b>
@@ -1063,7 +1063,8 @@
                                                     <span style="width: 300px; color: rgb(128, 128, 137);">
                                                         Phiên bản sách
                                                     </span>
-                                                    <span style="width: 249px;">{{ $productdetails->versiontype }}</span>
+                                                    <span
+                                                        style="width: 249px;">{{ $productdetails->versiontype }}</span>
                                                 </div>
                                             </div>
                                             <div class="styled">
@@ -1071,7 +1072,8 @@
                                                     <span style="width: 300px; color: rgb(128, 128, 137);">
                                                         Công ty phát hành
                                                     </span>
-                                                    <span style="width: 249px;">{{ $productdetails->issuingcompany }}</span>
+                                                    <span
+                                                        style="width: 249px;">{{ $productdetails->issuingcompany }}</span>
                                                 </div>
                                             </div>
                                             <div class="styled">
@@ -1079,7 +1081,8 @@
                                                     <span style="width: 300px; color: rgb(128, 128, 137);">
                                                         Ngày xuất bản
                                                     </span>
-                                                    <span style="width: 249px;">{{ $productdetails->publicationdate }}</span>
+                                                    <span
+                                                        style="width: 249px;">{{ $productdetails->publicationdate }}</span>
                                                 </div>
                                             </div>
                                             <div class="styled">
@@ -1095,7 +1098,8 @@
                                                     <span style="width: 300px; color: rgb(128, 128, 137);">
                                                         Dịch Giả
                                                     </span>
-                                                    <span style="width: 249px;">{{ $productdetails->translator }}</span>
+                                                    <span
+                                                        style="width: 249px;">{{ $productdetails->translator }}</span>
                                                 </div>
                                             </div>
                                             <div class="styled">
@@ -1103,7 +1107,8 @@
                                                     <span style="width: 300px; color: rgb(128, 128, 137);">
                                                         Loại bìa
                                                     </span>
-                                                    <span style="width: 249px;">{{ $productdetails->covertype }}</span>
+                                                    <span
+                                                        style="width: 249px;">{{ $productdetails->covertype }}</span>
                                                 </div>
                                             </div>
                                             <div class="styled">
@@ -1146,10 +1151,13 @@
                                             </p>
                                             <p>&nbsp;</p>
                                             <p class="hidden" id="additional-content">
-                                                Giá sản phẩm trên BookWorld đã bao gồm thuế theo luật hiện hành. Bên cạnh đó,
+                                                Giá sản phẩm trên BookWorld đã bao gồm thuế theo luật hiện hành. Bên
+                                                cạnh đó,
                                                 tuỳ vào
-                                                loại sản phẩm, hình thức và địa chỉ giao hàng mà có thể phát sinh thêm chi phí
-                                                khác như phí vận chuyển, phụ phí hàng cồng kềnh, thuế nhập khẩu (đối với đơn
+                                                loại sản phẩm, hình thức và địa chỉ giao hàng mà có thể phát sinh thêm
+                                                chi phí
+                                                khác như phí vận chuyển, phụ phí hàng cồng kềnh, thuế nhập khẩu (đối với
+                                                đơn
                                                 hàng giao từ nước ngoài có giá trị trên 1 triệu đồng).....
                                             </p>
 
@@ -1172,7 +1180,8 @@
                             <div class="widget-container-styled">
                                 <div class="widget-seller styled">
                                     <a href="">
-                                        <img width="40" height="40" src="{{ asset('./upload/logo/favicon-32x32-white.png')}}" alt=""
+                                        <img width="40" height="40"
+                                            src="{{ asset('./upload/logo/favicon-32x32-white.png') }}" alt=""
                                             style="border-radius: 50%;opacity: 1;background-color:#55c57a; padding:5px 10px">
                                     </a>
                                     <div style="display:flex; flex-direction:column; gap: 8px">
@@ -1180,7 +1189,8 @@
                                             <div class="seller-name-styled">
                                                 <a href="">
                                                     <span>BookWorld Trading</span>
-                                                    <img width="72" height="20" src="{{ asset('./upload/img/auth.pn') }}g" alt="chinhhang">
+                                                    <img width="72" height="20"
+                                                        src="{{ asset('./upload/img/auth.pn') }}g" alt="chinhhang">
 
 
                                                 </a>
@@ -1189,7 +1199,9 @@
                                         <div class="seller-detail-info">
                                             <div class="item-review">
                                                 <div class="title">
-                                                    <img width="16" height="16" src="{{ asset('./upload/img/staricon.png')}}" alt="">
+                                                    <img width="16" height="16"
+                                                        src="{{ asset('./upload/img/staricon.png') }}"
+                                                        alt="">
                                                     <span>4.8</span>
                                                 </div>
                                                 <div class="sub-title" style="color:#808089">(5.5tr+ đánh giá)</div>
@@ -1208,7 +1220,7 @@
                                                     <i class="fa-solid fa-minus"></i>
 
                                                 </button>
-                                                <input  type="text" value="1" class="input-quantity">
+                                                <input type="text" value="1" class="input-quantity">
                                                 <button class="increase-btn">
                                                     <i class="fa-solid fa-plus"></i>
                                                 </button>
@@ -1217,7 +1229,7 @@
                                     </div>
                                     <div class="price-container-styled mg-t">
                                         <div class="price-label-styled">Tạm tính</div>
-                                        <div class="price-product" data-price="{{ $productdetails->pricediscount }}"> 
+                                        <div class="price-product" data-price="{{ $productdetails->pricediscount }}">
                                             {{ number_format($productdetails->pricediscount, 0, ',', '.') }}
                                             <sup>
                                                 ₫
@@ -1229,13 +1241,16 @@
                                             Mua ngay
                                         </button>
 
-                                        <form id="addToCartForm" action="{{ url('/add-to-cart/'.$productdetails->dealtoday_id) }}" method="post">
+                                        <form id="addToCartForm"
+                                            action="{{ url('/add-to-cart/' . $productdetails->dealtoday_id) }}"
+                                            method="post">
                                             @csrf
-                                            <button type="submit" class="add-to-cart-btn cart-styled" id="add-to-cart-btn">
-                                                    Thêm vào giỏ
-                                            </button> 
+                                            <button type="submit" class="add-to-cart-btn cart-styled"
+                                                id="add-to-cart-btn">
+                                                Thêm vào giỏ
+                                            </button>
                                         </form>
-                                         
+
                                         <button class="buy-second-btn cart-styled">
                                             Mua trước trả sau
                                         </button>
@@ -1257,4 +1272,4 @@
 
     </main>
 
-@include('frontend.component.footer')
+    @include('frontend.component.footer')
