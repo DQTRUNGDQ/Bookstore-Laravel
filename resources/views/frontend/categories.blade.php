@@ -464,9 +464,268 @@
                 </div>
             </div>
 
-
             <div class="Cate-view-right">
+                <div class="inner">
+                    <div class="search-summary">
+                        <div class="title-book">
+                            <h2>Sách văn học</h2>
+                        </div>
+                        <div class="brand-famous">
+                            <div class="content">
+                                <div class="fabrand-slider">
+                                    <a href="" class="brand-container-styled">
+                                        <div class="logo-styled-container">
+                                            <div class="blur-block-logo">
+                                                <img width="123" height="123"
+                                                    src="../../../public/upload/img/category/brand/firstnews.jpg"
+                                                    alt="">
+                                            </div>
 
+                                        </div>
+
+                                        <div class="rightinfo-styled">
+                                            <div>
+                                                <div style="font-size: 20px; line-height: 30px; margin-bottom: 4px;">
+                                                    Muôn Kiếp Nhân Sinh</div>
+                                                <div style="display: flex; align-items: center;">
+                                                    <div class="sponsoredText">Tài trợ bởi</div>
+                                                    <div class="brand-name">First News</div>
+                                                    <div style="display: flex; align-items:center">
+                                                        <div class="rating-text">
+                                                            5/5
+                                                        </div>
+                                                        <p class="stars-wrapper">
+                                                            <i style="font-size: 14px; color:#FFC300"
+                                                                class="fa-solid fa-star"></i>
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <div>
+                                                    <div class="product-special">
+                                                        <div class="product-row" style="width: 208px">
+                                                            <div style="width: 208px; height: 81px;">
+                                                                <img width="64" height="64"
+                                                                    src="../../../public/upload/img/category/book/FN/1.jpg"
+                                                                    alt="">
+
+                                                            </div>
+                                                            <div style="width: 208px; height: 81px;">
+                                                                <img width="64" height="64"
+                                                                    src="../../../public/upload/img/category/book/FN/1.jpg"
+                                                                    alt="">
+
+                                                            </div>
+                                                            <div style="width: 208px; height: 81px;">
+                                                                <img width="64" height="64"
+                                                                    src="../../../public/upload/img/category/book/FN/1.jpg"
+                                                                    alt="">
+
+                                                            </div>
+                                                            <div style="width: 208px; height: 81px;">
+                                                                <img width="64" height="64"
+                                                                    src="../../../public/upload/img/category/book/FN/1.jpg"
+                                                                    alt="">
+
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+
+                                    <a href="" class="brand-container-styled">
+                                        <div class="logo-styled-container">
+                                            <div class="blur-block-logo">
+                                                <img width="123" height="123"
+                                                    src="../../../public/upload/img/category/brand/firstnews.jpg"
+                                                    alt="">
+                                            </div>
+
+                                        </div>
+
+                                        <div class="rightinfo-styled">
+                                            <div>
+                                                <div style="font-size: 20px; line-height: 30px; margin-bottom: 4px;">
+                                                    Muôn Kiếp Nhân Sinh</div>
+                                                <div style="display: flex; align-items: center;">
+                                                    <div class="sponsoredText">Tài trợ bởi</div>
+                                                    <div class="brand-name">First News</div>
+                                                    <div style="display: flex; align-items:center">
+                                                        <div class="rating-text">
+                                                            5/5
+                                                        </div>
+                                                        <p class="stars-wrapper">
+                                                            <i style="font-size: 14px; color:#FFC300"
+                                                                class="fa-solid fa-star"></i>
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <div>
+                                                    <div class="product-special">
+                                                        <div class="product-row" style="width: 208px">
+                                                            <div style="width: 208px; height: 81px;">
+                                                                <img width="64" height="64"
+                                                                    src="../../../public/upload/img/category/book/FN/1.jpg"
+                                                                    alt="">
+
+                                                            </div>
+                                                            <div style="width: 208px; height: 81px;">
+                                                                <img width="64" height="64"
+                                                                    src="../../../public/upload/img/category/book/FN/1.jpg"
+                                                                    alt="">
+
+                                                            </div>
+                                                            <div style="width: 208px; height: 81px;">
+                                                                <img width="64" height="64"
+                                                                    src="../../../public/upload/img/category/book/FN/1.jpg"
+                                                                    alt="">
+
+                                                            </div>
+                                                            <div style="width: 208px; height: 81px;">
+                                                                <img width="64" height="64"
+                                                                    src="../../../public/upload/img/category/book/FN/1.jpg"
+                                                                    alt="">
+
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+
+                                    <a href="" class="brand-container-styled">
+                                        <div class="logo-styled-container">
+                                            <div class="blur-block-logo">
+                                                <img width="123" height="123"
+                                                    src="../../../public/upload/img/category/brand/firstnews.jpg"
+                                                    alt="">
+                                            </div>
+
+                                        </div>
+
+                                        <div class="rightinfo-styled">
+                                            <div>
+                                                <div style="font-size: 20px; line-height: 30px; margin-bottom: 4px;">
+                                                    Muôn Kiếp Nhân Sinh</div>
+                                                <div style="display: flex; align-items: center;">
+                                                    <div class="sponsoredText">Tài trợ bởi</div>
+                                                    <div class="brand-name">First News</div>
+                                                    <div style="display: flex; align-items:center">
+                                                        <div class="rating-text">
+                                                            5/5
+                                                        </div>
+                                                        <p class="stars-wrapper">
+                                                            <i style="font-size: 14px; color:#FFC300"
+                                                                class="fa-solid fa-star"></i>
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <div>
+                                                    <div class="product-special">
+                                                        <div class="product-row" style="width: 208px">
+                                                            <div style="width: 208px; height: 81px;">
+                                                                <img width="64" height="64"
+                                                                    src="../../../public/upload/img/category/book/FN/1.jpg"
+                                                                    alt="">
+
+                                                            </div>
+                                                            <div style="width: 208px; height: 81px;">
+                                                                <img width="64" height="64"
+                                                                    src="../../../public/upload/img/category/book/FN/1.jpg"
+                                                                    alt="">
+
+                                                            </div>
+                                                            <div style="width: 208px; height: 81px;">
+                                                                <img width="64" height="64"
+                                                                    src="../../../public/upload/img/category/book/FN/1.jpg"
+                                                                    alt="">
+
+                                                            </div>
+                                                            <div style="width: 208px; height: 81px;">
+                                                                <img width="64" height="64"
+                                                                    src="../../../public/upload/img/category/book/FN/1.jpg"
+                                                                    alt="">
+
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+
+                                    <a href="" class="brand-container-styled">
+                                        <div class="logo-styled-container">
+                                            <div class="blur-block-logo">
+                                                <img width="123" height="123"
+                                                    src="../../../public/upload/img/category/brand/firstnews.jpg"
+                                                    alt="">
+                                            </div>
+
+                                        </div>
+
+                                        <div class="rightinfo-styled">
+                                            <div>
+                                                <div style="font-size: 20px; line-height: 30px; margin-bottom: 4px;">
+                                                    Muôn Kiếp Nhân Sinh</div>
+                                                <div style="display: flex; align-items: center;">
+                                                    <div class="sponsoredText">Tài trợ bởi</div>
+                                                    <div class="brand-name">First News</div>
+                                                    <div style="display: flex; align-items:center">
+                                                        <div class="rating-text">
+                                                            5/5
+                                                        </div>
+                                                        <p class="stars-wrapper">
+                                                            <i style="font-size: 14px; color:#FFC300"
+                                                                class="fa-solid fa-star"></i>
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <div>
+                                                    <div class="product-special">
+                                                        <div class="product-row" style="width: 208px">
+                                                            <div style="width: 208px; height: 81px;">
+                                                                <img width="64" height="64"
+                                                                    src="../../../public/upload/img/category/book/FN/1.jpg"
+                                                                    alt="">
+
+                                                            </div>
+                                                            <div style="width: 208px; height: 81px;">
+                                                                <img width="64" height="64"
+                                                                    src="../../../public/upload/img/category/book/FN/1.jpg"
+                                                                    alt="">
+
+                                                            </div>
+                                                            <div style="width: 208px; height: 81px;">
+                                                                <img width="64" height="64"
+                                                                    src="../../../public/upload/img/category/book/FN/1.jpg"
+                                                                    alt="">
+
+                                                            </div>
+                                                            <div style="width: 208px; height: 81px;">
+                                                                <img width="64" height="64"
+                                                                    src="../../../public/upload/img/category/book/FN/1.jpg"
+                                                                    alt="">
+
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="sorter-root"></div>
+                    </div>
+                </div>
             </div>
         </div>
 </main>

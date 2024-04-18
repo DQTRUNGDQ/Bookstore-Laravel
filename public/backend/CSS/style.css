@@ -791,6 +791,8 @@ sup {
 
 /* -------------------------------------------------------------BRANDS OFFICIAL---------------------------------------------------------------- */
 
+
+
 .brand-official{
     cursor: pointer;
     margin-top: 10px;
@@ -1402,6 +1404,19 @@ input::placeholder{
 
 
 /* ----------------------------------------CATEGORIES DETAIL---------------------------------------------------------------- */
+
+/*SIDEBAR*/
+
+.Cate-products-container{
+    display: flex;
+    width: 1270px;
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+
 .side-bar-cate{
     background: #fff;
     width: 200px;
@@ -1642,4 +1657,128 @@ label .box{
     font-size: 14px;
     line-height: 20px;
     font-weight: 500;
+}
+
+
+/*CONTENT-RIGHT*/
+
+.Cate-view-right{
+    width: 1032px;
+    border-radius: 0px 4px 4px 0px;
+    margin-left: 10px;
+}
+
+.search-summary{
+    padding: 0px;
+    background-color: rgb(255, 255, 255);
+}
+
+.search-summary .title-book{
+    padding: 12px 0px 0px 16px;
+}
+
+.search-summary .title-book h2{
+    display: inline;
+    font-weight: 400;
+    color: rgb(56, 56, 61);
+    font-size: 20px !important;
+    text-transform: none;
+}
+
+.fabrand-slider{
+    width: 1032px;
+    margin: 0 auto;
+    padding: 10px 20px;
+}
+
+.slick-arrow-brand{
+    position: absolute;
+    top: 30%;
+    transform: translateY(-50%);
+    border: none;
+    border-radius: 100%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    line-height: 1;
+    z-index: 2;
+    transition: all 0.2s linear;
+    display: none;
+    cursor: pointer;
+}
+
+.fabrand-slider a{
+    margin-right: 30px;
+}
+
+.brand-container-styled{
+    display: flex;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.logo-styled-container .blur-block-logo{
+    background: linear-gradient(136deg, #d9eaf2 -1%, #E7F3F5 85%);
+    width: 170px;
+    height: 170px;
+    padding: 0 25px;
+    display: flex;
+    align-items: center;
+}
+
+.logo-styled-container img {
+    width: 123px;
+    height: 123px;
+    position: absolute;
+    border-radius: 4px;
+    z-index: 100;
+
+}
+
+.rightinfo-styled{
+    display: flex;
+    flex-direction: column;
+    padding: 16px;
+    z-index: 2;
+}
+
+.rightinfo-styled .sponsoredText{
+    font-size: 14px;
+    line-height: 20px;
+    color: rgb(128, 128, 137);
+    margin-right: 5px;
+}
+
+.rightinfo-styled .brand-name{
+    font-size: 14px;
+    line-height: 20px;
+    color: #27272a;
+    margin-right: 5px;
+}
+
+.rightinfo-styled .rating-text{
+    font-size: 14px;
+    line-height: 20px;
+    color: rgb(128, 128, 137);
+    margin-right: 5px;
+}
+
+.product-special{
+    display: flex;
+    justify-content: space-between;
+    width: 292px;
+    height: 81px;
+}
+
+.product-special .product-row{
+    display: flex;
+    align-items: center;
+    overflow-y: auto;
+}
+
+.product-special .product-row img {
+    border-radius: 4px;
+    border: 1px solid rgb(235, 235, 240);
 }

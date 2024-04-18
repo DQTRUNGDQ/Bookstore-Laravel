@@ -11,15 +11,17 @@ use Illuminate\Support\Facades\File;
 
 class UserController extends Controller
 {
-    public function __construct(){
-        
+    public function __construct()
+    {
     }
 
-    public function AddUser(){
+    public function AddUser()
+    {
         return view('backend.user.crud.adduser');
     }
 
-    public function AddUsertoDB(Request $request){
+    public function AddUsertoDB(Request $request)
+    {
 
         $request->validate([
             'name' => 'required|string|max:256',
@@ -27,7 +29,7 @@ class UserController extends Controller
             'password' => 'required|string|min:8',
             'phone' => ['nullable', 'string', 'regex:/^0\d{9,10}$/', Rule::unique('users')->ignore($request->user)],
         ]);
-    
+
 
         $user = new User();
         $user->name = $request->input('name');
@@ -60,16 +62,18 @@ class UserController extends Controller
         return view('backend.user.crud.adduser')->with('success', 'Người dùng đã được thêm thành công.');
     }
 
-    public function EditUser($id){
+    public function EditUser($id)
+    {
         $user = User::find($id);
 
         return view('backend.user.crud.edituser', compact('user'));
     }
 
-    public function updateUserToDB(Request $request, $id){
-        
+    public function updateUserToDB(Request $request, $id)
+    {
+
         $user = User::find($id);
-        
+
         $user->name = $request->input('name');
         $user->password = Hash::make($request->input('password'));
         $user->email = $request->input('email');
@@ -88,10 +92,10 @@ class UserController extends Controller
             //Có file đính kèm trong form Update thì sẽ tìm file ảnh cũ và xóa nó đi
 
             $oldimage = 'upload/img/users/' . $user->image;
-            if(File::exists($oldimage)){
+            if (File::exists($oldimage)) {
                 File::delete(($oldimage));
             };
-        
+
             $file = $request->file('avatar');
             $extension = $file->getClientOriginalName(); //Lấy tên mở rộng
             $filename = $extension;
@@ -103,32 +107,32 @@ class UserController extends Controller
         $user->update();
 
         return redirect()->back()->with('success', 'Người dùng đã được cập nhật thành công.');
-        
     }
 
-    public function DeleteUser($id){
+    public function DeleteUser($id)
+    {
         $user = User::find($id);
 
         $avatar = $user->image;
 
-        if(File::exists($avatar)){
+        if (File::exists($avatar)) {
             File::delete(($avatar));
         };
 
         $user->delete();
 
         return redirect()->back()->with('success', 'Người dùng đã được xóa vĩnh viễn thành công.');
-
     }
 
 
 
-    public function index(){
+    public function index()
+    {
         $config = $this->config();
         $template  = 'backend.user.index';
 
         $users = User::all();
-        
+
         return view('backend.dashboard.layout', compact(
             'template',
             'config',
@@ -137,7 +141,8 @@ class UserController extends Controller
     }
 
 
-    private function config(){
+    private function config()
+    {
         return [
             'js' => [
                 'temp/js/plugins/switchery/switchery.js'
@@ -148,5 +153,4 @@ class UserController extends Controller
             ]
         ];
     }
-
 }
