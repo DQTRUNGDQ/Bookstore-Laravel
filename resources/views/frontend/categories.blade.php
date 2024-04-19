@@ -723,7 +723,84 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="sorter-root"></div>
+                        <div class="sorter-root">
+                            <div class="sorter-bottom">
+                                <div class="search-sort-container">
+                                    <div class="sort-list">
+                                        <a href="" class="active">
+                                            Phổ Biến
+                                        </a>
+                                        <a href="" class>
+                                            Bán Chạy
+                                        </a>
+                                        <a href="" class>
+                                            Hàng Mới
+                                        </a>
+                                        <a href="" class>
+                                            Giá Thấp Đến Cao
+                                        </a>
+                                        <a href="" class>
+                                            Giá Cao Đến Thấp
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="search-navigate-container">
+                                    <div class="paging">
+                                        <span class="current">1</span>
+                                        /
+                                        <span class="last">50</span>
+                                    </div>
+                                    <div class="list-row">
+                                        <img src="../../../public/upload/img/leftarrow.png" alt="left"
+                                            class="disable">
+                                        <img src="../../../public/upload/img/rightarrow.png" alt="right"
+                                            class="false">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="filter-items">
+                                <p class="item sticky">
+                                    <img src="../../../public/upload/img/now.png" height="20" width="40"
+                                        alt="">
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="product-list-container">
+                        <div class>
+                            <div>
+                                <a href="" class="product-links-styled">
+                                    <div class="thumbnail-styled">
+                                        <div class="image-wrapper">
+                                            <img src="../../../public/upload/img/category/brand/firstnews.jpg"
+                                                alt="">
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="info">
+                                            <div class="badges-styled"></div>
+                                            <div class="name-product-styled">
+                                                <div class="name">
+                                                    <h3>Sách Excel Ứng Dụng Văn Phòng ĐÀO TẠO TIN HỌC Từ Cơ Bản Đến Nâng
+                                                        Cao Có Kèm Video Khóa Học</h3>
+                                                </div>
+                                                <div class="rating-list"></div>
+                                            </div>
+                                        </div>
+                                        <div></div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <div class></div>
+                        <div class></div>
+                        <div class></div>
+                        <div class></div>
+                        <div class></div>
+                        <div class></div>
+                        <div class></div>
+                        <div class="bw-ads"></div>
                     </div>
                 </div>
             </div>

@@ -1782,3 +1782,132 @@ label .box{
     border-radius: 4px;
     border: 1px solid rgb(235, 235, 240);
 }
+
+.sorter-bottom{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid rgb(242, 242, 242);
+    padding: 12px 0px 0px;
+    width: 1032px;
+    height: 60.8px;
+}
+
+.sorter-bottom .sort-list{
+    display: flex;
+    width: 586px;
+}
+
+.sort-list a {
+    text-transform: capitalize;
+    cursor: pointer;
+    font-weight: 400;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 20px;
+    letter-spacing: normal;
+    color: rgb(36, 36, 36);
+    display: inline-block;
+    font-size: 14px;
+    padding: 12px 16px;
+    border: none;
+}
+
+.sort-list a.active {
+    color: #55c57a;
+    font-weight: 500;
+    position: relative;
+}
+
+.sort-list a.active::after {
+    content: "";
+    display: block;
+    position: absolute;
+    border-bottom: 4px solid #55c57a;
+    border-radius: 2px;
+    width: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.search-navigate-container{
+    display: flex;
+    height: 36px;
+    margin: 4px 16px 8px 0px;
+    align-items: center;
+    margin-left: 300px;
+}
+
+.search-navigate-container .paging{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.search-navigate-container span {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    color: rgb(56, 56, 61);
+}
+
+.search-navigate-container .current{
+     color: #55c57a;
+}
+
+.list-row {
+    gap: 0px;
+    margin-left: 12px;
+    display: flex;
+    align-items: center;
+}
+
+.list-row img {
+    width: 36px;
+    height: 36px;
+    cursor: pointer;
+}
+
+.list-arrow img.disabled {
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+.list-row img:last-child {
+    transform: rotate(180deg);
+}
+
+.search-summary .filter-items{
+    padding: 12px 0px 12px 16px;
+    margin-bottom: 8px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.search-summary .filter-items .item.sticky{
+    background: rgb(238, 238, 238);
+    cursor: pointer;
+    border-color: transparent;
+}
+
+.search-summary .filter-items .item {
+    background: rgb(240, 248, 255);
+    color: rgb(11, 116, 229);
+    border: 1px solid rgb(26, 148, 255);
+    font-size: 13px;
+    padding: 10px 12px;
+    line-height: 20px;
+    position: relative;
+    border-radius: 100px;
+    display: flex;
+    margin-right: 10px;
+    margin-bottom: 0px;
+    height: 32px;
+    align-items: center;
+}
+
+.search-summary .filter-items .item.sticky img {
+    max-width: 100%;
+    max-height: 12px;
+    width: auto;
+}

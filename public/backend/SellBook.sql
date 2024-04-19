@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Mar 28, 2024 at 07:47 AM
+-- Generation Time: Apr 19, 2024 at 10:47 AM
 -- Server version: 10.8.4-MariaDB
 -- PHP Version: 8.1.9
 
@@ -170,6 +170,21 @@ INSERT INTO `careproduct` (`id`, `image`, `name`, `price`, `imgstatus`, `timedel
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `carts`
+--
+
+CREATE TABLE `carts` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `identifier` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `instance` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `content` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `category`
 --
 
@@ -232,7 +247,7 @@ CREATE TABLE `dealtoday` (
   `quantity` int(11) NOT NULL,
   `sold` int(11) NOT NULL,
   `discount` int(11) NOT NULL,
-  `pricediscount` decimal(10,0) NOT NULL,
+  `pricediscount` float NOT NULL,
   `status` varchar(100) NOT NULL,
   `percentsold` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -242,18 +257,18 @@ CREATE TABLE `dealtoday` (
 --
 
 INSERT INTO `dealtoday` (`dealtoday_id`, `name`, `image`, `category`, `subcategory`, `thumbnail1`, `thumbnail2`, `thumbnail3`, `thumbnail4`, `author`, `feature1`, `feature2`, `feature3`, `quantity`, `sold`, `discount`, `pricediscount`, `status`, `percentsold`) VALUES
-(1, '', './upload/img/Productsdeal/thientaibentraikedienbenphai.jpg', '', '', '', '', '', '', '', '', '', '', 0, 0, 31, '124000', 'Vừa mở bán', 50),
-(2, '', './upload/img/Productsdeal/caycamngotcuatoi.jpg', '', '', '', '', '', '', '', '', '', '', 0, 0, 32, '73100', 'Vừa mở bán', 100),
-(3, '', './upload/img/Productsdeal/chuthuathoichien.jpg', '', '', '', '', '', '', '', '', '', '', 0, 0, 10, '30000', 'Vừa mở bán', 50),
-(14, '', './upload/img/Productsdeal/chunghiakhacky.jpg', '', '', '', '', '', '', '', '', '', '', 0, 0, 30, '106000', 'Vừa mở bán', 70),
-(15, '', './upload/img/Productsdeal/giaithichnguphaptienganh.jpg', '', '', '', '', '', '', '', '', '', '', 0, 0, 33, '147900', 'Vừa mở bán', 150),
-(16, '', './upload/img/Productsdeal/hieuvetraitim.jpg', '', '', '', '', '', '', '', '', '', '', 0, 0, 17, '130500', 'Vừa mở bán', 70),
-(17, '', './upload/img/Productsdeal/khongphailasoicungdunglacuu.jpg', '', '', '', '', '', '', '', '', '', '', 0, 0, 29, '91200', 'Vừa mở bán', 100),
-(18, 'Luật Tâm Thức - Giải Mã Ma Trận Vũ Trụ', './upload/img/Productsdeal/luattamthuc.jpg', 'Sách kiến thức tổng hợp', 'Lĩnh vực khác', './upload/img/Productsdeal/luattamthuc.jpg', '/upload/img/Productdetails/sach/Luattamthuc/xemtruoc.jpg', '/upload/img/Productdetails/sach/Luattamthuc/xemtruoc1.jpg', '/upload/img/Productdetails/sach/Luattamthuc/xemtruoc2.jpg', 'Ngô Sa Thạch', 'Giải thích quy luật tự nhiên và nguồn gốc vũ trụ một cách đơn giản và liên quan chặt chẽ tới khoa học hiện đại.', 'Giải thích hiện tượng tâm linh như quy hồi tiền kiếp và tiên đoán sự kiện.', 'Cung cấp cách thay đổi cuộc sống bằng cách thay đổi tâm thức và hiểu đúng về quy luật vũ trụ.', 6640, 5000, 23, '226000', 'Vừa mở bán', 50),
-(19, 'Nhà Giả Kim (Tái Bản 2020)', './upload/img/Productsdeal/nhagiakim.jpg', 'Sách văn học', 'Tác phẩm kinh điển', '/upload/img/Productdetails/sach/Nhagiakim/covertruoc.jpg', '/upload/img/Productdetails/sach/Nhagiakim/xemtruoc.jpg', '/upload/img/Productdetails/sach/Nhagiakim/xemtruoc1.jpg', '/upload/img/Productdetails/sach/Nhagiakim/xemtruoc2.jpg', 'Paulo Coelho', 'Câu chuyện cổ tích giản dị, giàu chất thơ và nhân ái.', 'Thấm đẫm những minh triết huyền bí của phương Đông.\r\n\r\n', 'Có khả năng thay đổi cuộc sống người đọc.', 5850, 5000, 23, '60600', 'Vừa mở bán', 160),
-(20, '', './upload/img/Productsdeal/nonggianlabannang.jpg', '', '', '', '', '', '', '', '', '', '', 0, 0, 29, '63200', 'Vừa mở bán', 90),
-(21, '', './upload/img/Productsdeal/tuoithodudoi.jpg', '', '', '', '', '', '', '', '', '', '', 0, 0, 40, '48000', 'Vừa mở bán', 60),
-(22, '', './upload/img/Productsdeal/vithanquyetdinh.jpg', '', '', '', '', '', '', '', '', '', '', 0, 0, 28, '57000', 'Vừa mở bán', 50);
+(1, '', './upload/img/Productsdeal/thientaibentraikedienbenphai.jpg', '', '', '', '', '', '', '', '', '', '', 0, 0, 31, 124000, 'Vừa mở bán', 50),
+(2, '', './upload/img/Productsdeal/caycamngotcuatoi.jpg', '', '', '', '', '', '', '', '', '', '', 0, 0, 32, 73100, 'Vừa mở bán', 100),
+(3, '', './upload/img/Productsdeal/chuthuathoichien.jpg', '', '', '', '', '', '', '', '', '', '', 0, 0, 10, 30000, 'Vừa mở bán', 50),
+(14, '', './upload/img/Productsdeal/chunghiakhacky.jpg', '', '', '', '', '', '', '', '', '', '', 0, 0, 30, 106000, 'Vừa mở bán', 70),
+(15, '', './upload/img/Productsdeal/giaithichnguphaptienganh.jpg', '', '', '', '', '', '', '', '', '', '', 0, 0, 33, 147900, 'Vừa mở bán', 150),
+(16, '', './upload/img/Productsdeal/hieuvetraitim.jpg', '', '', '', '', '', '', '', '', '', '', 0, 0, 17, 130500, 'Vừa mở bán', 70),
+(17, '', './upload/img/Productsdeal/khongphailasoicungdunglacuu.jpg', '', '', '', '', '', '', '', '', '', '', 0, 0, 29, 91200, 'Vừa mở bán', 100),
+(18, 'Luật Tâm Thức - Giải Mã Ma Trận Vũ Trụ', './upload/img/Productsdeal/luattamthuc.jpg', 'Sách kiến thức tổng hợp', 'Lĩnh vực khác', './upload/img/Productsdeal/luattamthuc.jpg', '/upload/img/Productdetails/sach/Luattamthuc/xemtruoc.jpg', '/upload/img/Productdetails/sach/Luattamthuc/xemtruoc1.jpg', '/upload/img/Productdetails/sach/Luattamthuc/xemtruoc2.jpg', 'Ngô Sa Thạch', 'Giải thích quy luật tự nhiên và nguồn gốc vũ trụ một cách đơn giản và liên quan chặt chẽ tới khoa học hiện đại.', 'Giải thích hiện tượng tâm linh như quy hồi tiền kiếp và tiên đoán sự kiện.', 'Cung cấp cách thay đổi cuộc sống bằng cách thay đổi tâm thức và hiểu đúng về quy luật vũ trụ.', 6640, 5000, 23, 226000, 'Vừa mở bán', 50),
+(19, 'Nhà Giả Kim (Tái Bản 2020)', './upload/img/Productsdeal/nhagiakim.jpg', 'Sách văn học', 'Tác phẩm kinh điển', '/upload/img/Productdetails/sach/Nhagiakim/covertruoc.jpg', '/upload/img/Productdetails/sach/Nhagiakim/xemtruoc.jpg', '/upload/img/Productdetails/sach/Nhagiakim/xemtruoc1.jpg', '/upload/img/Productdetails/sach/Nhagiakim/xemtruoc2.jpg', 'Paulo Coelho', 'Câu chuyện cổ tích giản dị, giàu chất thơ và nhân ái.', 'Thấm đẫm những minh triết huyền bí của phương Đông.\r\n\r\n', 'Có khả năng thay đổi cuộc sống người đọc.', 5850, 5000, 23, 60600, 'Vừa mở bán', 160),
+(20, '', './upload/img/Productsdeal/nonggianlabannang.jpg', '', '', '', '', '', '', '', '', '', '', 0, 0, 29, 63200, 'Vừa mở bán', 90),
+(21, '', './upload/img/Productsdeal/tuoithodudoi.jpg', '', '', '', '', '', '', '', '', '', '', 0, 0, 40, 48000, 'Vừa mở bán', 60),
+(22, '', './upload/img/Productsdeal/vithanquyetdinh.jpg', '', '', '', '', '', '', '', '', '', '', 0, 0, 28, 57000, 'Vừa mở bán', 50);
 
 -- --------------------------------------------------------
 
@@ -279,6 +294,22 @@ INSERT INTO `event` (`id`, `TitleEvent`, `TimeEvent`, `Description`, `More`) VAL
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `failed_jobs`
+--
+
+CREATE TABLE `failed_jobs` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `uuid` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `connection` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `queue` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `exception` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `failed_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `migrations`
 --
 
@@ -293,7 +324,41 @@ CREATE TABLE `migrations` (
 --
 
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
-(13, '2014_10_12_000000_create_users_table', 1);
+(13, '2014_10_12_000000_create_users_table', 1),
+(14, '2014_10_12_100000_create_password_resets_table', 2),
+(15, '2019_08_19_000000_create_failed_jobs_table', 2),
+(16, '2019_12_14_000001_create_personal_access_tokens_table', 2),
+(18, '2024_03_31_153807_create_carts_table', 3);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `password_resets`
+--
+
+CREATE TABLE `password_resets` (
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `personal_access_tokens`
+--
+
+CREATE TABLE `personal_access_tokens` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `tokenable_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `tokenable_id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `token` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `abilities` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `last_used_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -322,7 +387,7 @@ INSERT INTO `populartool` (`id`, `image`, `title`) VALUES
 --
 
 CREATE TABLE `productdetails` (
-  `id` bigint(20) UNSIGNED NOT NULL,
+  `productdt_id` bigint(20) UNSIGNED NOT NULL,
   `dealtoday_id` bigint(20) UNSIGNED NOT NULL,
   `issuingcompany` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `versiontype` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -342,9 +407,36 @@ CREATE TABLE `productdetails` (
 -- Dumping data for table `productdetails`
 --
 
-INSERT INTO `productdetails` (`id`, `dealtoday_id`, `issuingcompany`, `versiontype`, `publicationdate`, `size`, `translator`, `covertype`, `pages`, `language`, `publishingcompany`, `titledescription`, `description`, `descriptionmore`) VALUES
+INSERT INTO `productdetails` (`productdt_id`, `dealtoday_id`, `issuingcompany`, `versiontype`, `publicationdate`, `size`, `translator`, `covertype`, `pages`, `language`, `publishingcompany`, `titledescription`, `description`, `descriptionmore`) VALUES
 (1, 19, 'Nhã Nam', 'Phiên bản thường', '2020-04-01 00:00:00', '13 x 20.5 cm', 'Lê Chu Cầu', 'Bìa mềm', '228', 'Tiếng Việt', 'Nhà Xuất Bản Hà Nội', 'Sơ lược về tác phẩm', 'Tất cả những trải nghiệm trong chuyến phiêu du theo đuổi vận mệnh của mình đã giúp Santiago thấu hiểu được ý nghĩa sâu xa nhất của hạnh phúc, hòa hợp với vũ trụ và con người.\r\n\r\nTiểu thuyết Nhà giả kim của Paulo Coelho như một câu chuyện cổ tích giản dị, nhân ái, giàu chất thơ, thấm đẫm những minh triết huyền bí của phương Đông. Trong lần xuất bản đầu tiên tại Brazil vào năm 1988, sách chỉ bán được 900 bản. Nhưng, với số phận đặc biệt của cuốn sách dành cho toàn nhân loại, vượt ra ngoài biên giới quốc gia, Nhà giả kim đã làm rung động hàng triệu tâm hồn, trở thành một trong những cuốn sách bán chạy nhất mọi thời đại, và có thể làm thay đổi cuộc đời người đọc.', '“Nhưng nhà luyện kim đan không quan tâm mấy đến những điều ấy. Ông đã từng thấy nhiều người đến rồi đi, trong khi ốc đảo và sa mạc vẫn là ốc đảo và sa mạc. Ông đã thấy vua chúa và kẻ ăn xin đi qua biển cát này, cái biển cát thường xuyên thay hình đổi dạng vì gió thổi nhưng vẫn mãi mãi là biển cát mà ông đã biết từ thuở nhỏ. Tuy vậy, tự đáy lòng mình, ông không thể không cảm thấy vui trước hạnh phúc của mỗi người lữ khách, sau bao ngày chỉ có cát vàng với trời xanh nay được thấy chà là xanh tươi hiện ra trước mắt. ‘Có thể Thượng đế tạo ra sa mạc chỉ để cho con người biết quý trọng cây chà là,’ ông nghĩ.”\r\n\r\n- Trích Nhà giả kim\r\n\r\nNhận định\r\n\r\n“Sau Garcia Márquez, đây là nhà văn Mỹ Latinh được đọc nhiều nhất thế giới.”\r\n\r\n- The Economist, London, Anh\r\n\r\n“Santiago có khả năng cảm nhận bằng trái tim như Hoàng tử bé của Saint-Exupéry.”\r\n\r\n- Frankfurter Allgemeine Zeitung, Đức'),
 (2, 18, 'Skybooks', 'Phiên bản đặc biệt', '2021-05-01 00:00:00', '18 x 23.5 cm', '\r\n', 'Bìa mềm', '408', 'Tiếng Việt', 'Nhà Xuất Bản Dân Trí', '', 'Dịch bệnh, thiên tai, chiến tranh… có phải là lời cảnh cáo của tự nhiên đến con người?\r\n\r\n“Biến đổi khí hậu” là một nước đi chính trị hay chỉ là sự thay đổi của Trái Đất theo chu kỳ?\r\n\r\nUFO, người ngoài hành tinh có thật không?\r\n\r\nTại sao Kinh dịch lại tiên đoán được các sự kiện?\r\n\r\nMỗi con người có số mệnh định sẵn không? Chúng ta sẽ đi về đâu sau khi chết?\r\n…', 'Liệu tất cả chỉ là ngẫu nhiên, hay có một sự sắp đặt tài tình của vũ trụ?\r\n\r\n“Luật Tâm Thức - giải mã ma trận vũ trụ” sẽ giải đáp tất cả những khía cạnh mà có thể bạn không nhận thức được chúng tồn tại, và có thể khám phá những vùng đất mình chưa từng biết đến.\r\n\r\nNhững góc nhìn trong “Luật Tâm Thức” bắt nguồn từ tất cả những kiến thức cổ xưa nhất của loài người… nhưng được tác giả Ngô Sa Thạch giải thích bằng một góc nhìn gần gũi, đặc biệt, qua đó bạn sẽ hiểu được:\r\n\r\nNguồn gốc của vũ trụ, những quy luật tự nhiên chi phối sự hình thành của mọi vật, trí tuệ cổ xưa khi thông hiểu và ứng dụng các quy luật tự nhiên.\r\n\r\nNăng lượng và tần số rung động, giải thích những hiện tượng tâm linh như quy hồi tiền kiếp, tiên đoán sự kiện, du hành thời gian,\r\n\r\nCon người: tổ hợp thân - tâm - trí, nghiệp quả, sứ mệnh trong các kiếp, sự tiến hóa của tâm thức.\r\n\r\nThay đổi cuộc sống bằng cách thay đổi tâm thức, hiểu đúng về các quy luật vũ trụ để thu hút năng lượng cải thiện cuộc sống của mình và cả vũ trụ.\r\nCuốn sách này sẽ giúp bạn thấy rằng những kiến thức của người xưa không hề cao siêu huyền bí mà vô cùng đơn giản và liên quan chặt chẽ tới khoa học hiện đại.\r\n\r\nViệc của bạn chỉ là đọc với một tâm trí cởi mở để thức tỉnh, vượt qua những rào cản của tâm trí, những niềm tin cố hữu của mình.\r\n\r\nNếu con người cứ đóng khung tư duy của mình trong hai trường phái duy vật và duy tâm, chúng ta sẽ mãi mãi không bao giờ có thể giải đáp được những vấn đề lớn lao của nhân loại. Khi đó, chúng ta cũng sẽ không bao giờ hiểu được bản chất của những câu chuyện về tâm linh, cũng như những vấn đề chưa lý giải được của khoa học.\r\n\r\nSự thiếu hiểu biết này, sẽ dẫn tới những con người mù quáng khi có một số trải nghiệm “tâm linh”, sa đà vào mê tín. Ngược lại, chính nó cũng hình thành một nhóm người mù quáng tin vào khoa học, duy vật, dẫn tới sự hủy hoại nghiêm trọng tới sự sống trên cả hành tinh này.\r\n\r\nHiểu về luật tâm thức, nâng cao tâm thức là quá trình mỗi linh hồn trải nghiệm và vượt qua những bài học cuộc đời.');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `products`
+--
+
+CREATE TABLE `products` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `category_id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `price` decimal(8,2) NOT NULL,
+  `rating` int(11) NOT NULL DEFAULT 0,
+  `sold` int(11) NOT NULL DEFAULT 0,
+  `discount_percent` decimal(5,2) DEFAULT NULL,
+  `delivery_time` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `products`
+--
+
+INSERT INTO `products` (`id`, `category_id`, `name`, `description`, `price`, `rating`, `sold`, `discount_percent`, `delivery_time`, `created_at`, `updated_at`) VALUES
+(1, 1, 'test', 'test', '95000.00', 0, 0, NULL, '', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -390,9 +482,10 @@ CREATE TABLE `quicktoolswidget` (
 INSERT INTO `quicktoolswidget` (`id`, `image`, `title`) VALUES
 (1, './upload/img/quicklinkswidget/banchay.png', 'Sản phẩm bán chạy nhất của chúng tôi'),
 (2, './upload/img/quicklinkswidget/giamgia.png', 'Ưu đãi'),
-(3, './upload/img/quicklinkswidget/sanphammoi.png', 'Sách mới nhất'),
-(4, './upload/img/quicklinkswidget/nhasach.png', 'Nhà sách BookWorld'),
-(5, './upload/img/quicklinkswidget/maydocsach.jpg', 'Máy đọc sách');
+(3, './upload/img/quicklinkswidget/blog.png', 'Blog '),
+(4, './upload/img/quicklinkswidget/sanphammoi.png', 'Sách mới nhất'),
+(5, './upload/img/quicklinkswidget/nhasach.png', 'Nhà sách BookWorld'),
+(6, './upload/img/quicklinkswidget/maydocsach.jpg', 'Máy đọc sách');
 
 -- --------------------------------------------------------
 
@@ -456,14 +549,17 @@ INSERT INTO `sugestionproduct` (`id`, `tab`, `image`, `name`, `price`, `imgstatu
 
 CREATE TABLE `users` (
   `id` bigint(20) UNSIGNED NOT NULL,
+  `role` varchar(256) COLLATE utf8mb4_unicode_ci NOT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `phone` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `province` varchar(256) COLLATE utf8mb4_unicode_ci NOT NULL,
   `province_id` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `district_id` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `ward_id` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `address` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `birthday` datetime DEFAULT NULL,
+  `address` varchar(1000) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `birthday` varchar(256) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `status` varchar(256) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `description` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `user_agent` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `ip` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -479,8 +575,12 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `phone`, `province_id`, `district_id`, `ward_id`, `address`, `birthday`, `image`, `description`, `user_agent`, `ip`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'TrungDepTrai', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'trungthpthy@gmail.com', NULL, '$2y$10$9dbOqYk.v/Ccl6dvPqh8QupRG9ID82FToyKoG/f6au8LegKqH4BNO', NULL, NULL, NULL);
+INSERT INTO `users` (`id`, `role`, `name`, `phone`, `province`, `province_id`, `district_id`, `ward_id`, `address`, `birthday`, `image`, `status`, `description`, `user_agent`, `ip`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
+(1, 'admin', 'TrungDepTrai', NULL, 'Lựa chọn', NULL, NULL, NULL, 'số 79 Tống Trân, Quang Trung,TP Hưng Yên, Hưng Yên', '06/11/2003', 'upload/img/users/photo.png', '', NULL, NULL, NULL, 'trungthpthy@gmail.com', NULL, '$2y$10$f.d.VH8/lqdM4qUo4XoVCe.7Cm.1EqrCpg1bCYy3y33t9DAaRerHK', NULL, NULL, '2024-04-06 06:51:48'),
+(3, 'user', 'Thần Đèn', NULL, 'Lựa chọn', NULL, NULL, NULL, 'Bãi Sậy, Bối Khê, Ân Thi, Hưng Yên', '04/11/2003', 'upload/img/users/thanden.jpg', '', NULL, NULL, NULL, 'thanden@gmail.com', NULL, '$2y$10$uc5N5r/zPxfdLXBqn5//pOONbRkUXTywJI8/Bz/H.jflGDlJx3.Ie', NULL, NULL, '2024-04-06 06:58:14'),
+(4, 'user', 'Heo Con', '0788023724', 'Lựa chọn', NULL, NULL, NULL, 'Vân Trì, Dân Tiến, Khoái Châu, Hưng Yên', '05/03/2003', 'upload/img/users/heocon.jpg', '', NULL, NULL, NULL, 'heocon@gmail.com', NULL, '$2y$10$R8uvENf2dGR3E8ntILmkg.WF7ZFWQYRH8aMS6dtt60WySJldjS8J.', NULL, '2024-04-02 06:49:12', '2024-04-06 06:54:58'),
+(5, 'user', 'Tít Con', NULL, 'Lựa chọn', NULL, NULL, NULL, 'Tân Trường, Cẩm Giàng, Hải Dương', '23/05/2003', 'upload/img/users/titcon.jpg', NULL, NULL, NULL, NULL, 'titcon@gmail.com', NULL, '$2y$10$io56vDdBU/si0QA7fCTR.O3U7LU7KweYye/8WG/G5KNJ4NzyXNEky', NULL, '2024-04-04 13:08:26', '2024-04-06 06:55:13'),
+(9, 'user', 'Gia Đình Trường Con', '0788023724', 'Lựa chọn', NULL, NULL, NULL, NULL, '05/03/2003', 'upload/img/users/shrekfamily.jpg', NULL, NULL, NULL, NULL, 'shrekfamily@gmail.com', NULL, '$2y$10$pAPN3eBabAk4bi4hPjTkLuq9c7aQEiTTr/csauDbjSXmWKF9.1ixW', NULL, '2024-04-05 10:30:47', '2024-04-15 06:54:24');
 
 --
 -- Indexes for dumped tables
@@ -511,6 +611,12 @@ ALTER TABLE `careproduct`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `carts`
+--
+ALTER TABLE `carts`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `category`
 --
 ALTER TABLE `category`
@@ -523,10 +629,31 @@ ALTER TABLE `dealtoday`
   ADD PRIMARY KEY (`dealtoday_id`);
 
 --
+-- Indexes for table `failed_jobs`
+--
+ALTER TABLE `failed_jobs`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `failed_jobs_uuid_unique` (`uuid`);
+
+--
 -- Indexes for table `migrations`
 --
 ALTER TABLE `migrations`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `password_resets`
+--
+ALTER TABLE `password_resets`
+  ADD KEY `password_resets_email_index` (`email`);
+
+--
+-- Indexes for table `personal_access_tokens`
+--
+ALTER TABLE `personal_access_tokens`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `personal_access_tokens_token_unique` (`token`),
+  ADD KEY `personal_access_tokens_tokenable_type_tokenable_id_index` (`tokenable_type`,`tokenable_id`);
 
 --
 -- Indexes for table `populartool`
@@ -538,6 +665,12 @@ ALTER TABLE `populartool`
 -- Indexes for table `productdetails`
 --
 ALTER TABLE `productdetails`
+  ADD PRIMARY KEY (`productdt_id`);
+
+--
+-- Indexes for table `products`
+--
+ALTER TABLE `products`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -582,16 +715,46 @@ ALTER TABLE `banner`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
+-- AUTO_INCREMENT for table `carts`
+--
+ALTER TABLE `carts`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+
+--
+-- AUTO_INCREMENT for table `failed_jobs`
+--
+ALTER TABLE `failed_jobs`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+
+--
+-- AUTO_INCREMENT for table `personal_access_tokens`
+--
+ALTER TABLE `personal_access_tokens`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `productdetails`
 --
 ALTER TABLE `productdetails`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `productdt_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `products`
+--
+ALTER TABLE `products`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `quicktoolswidget`
+--
+ALTER TABLE `quicktoolswidget`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `similarproducts`
@@ -603,7 +766,7 @@ ALTER TABLE `similarproducts`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
