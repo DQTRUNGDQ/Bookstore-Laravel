@@ -69,8 +69,10 @@ Route::get('homepage', [HomepageController::class, 'data'])->name('auth.homepage
 // Chi tiết sản phẩm
 Route::get('product/{id}', [ShowProductController::class, 'product'])-> name('product.show');
 
+
 // Chi tiết danh mục
 Route::get('category/{id}', [CategoryController::class, 'products'])-> name('category.products');
+
 
 // Trang Blog
 Route::get('blog', [BlogController::class, 'data'])->name('blog.show');

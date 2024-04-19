@@ -263,11 +263,9 @@
                     <div class="block">
                         <h4 class="title-cate">Danh Mục Sản Phẩm</h4>
                         <div class="list collapsed">
-                            <a href="" class="item">Du ký</a>
-                            <a href="" class="item">Tác phẩm kinh điển</a>
-                            <a href="" class="item">Tiểu thuyết</a>
-                            <a href="" class="item">Thơ</a>
-                            <a href="" class="item">Truyện cười</a>
+                            @foreach ($categoryDetails as $categoryDetail)
+                                <a href="" class="item">{{ $categoryDetail->title_details }}</a>
+                            @endforeach
                         </div>
                     </div>
 
@@ -766,45 +764,68 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="product-list-container">
-                        <div class>
-                            <div>
-                                <a href="" class="product-links-styled">
-                                    <div class="thumbnail-styled">
-                                        <div class="image-wrapper">
-                                            <img src="../../../public/upload/img/category/brand/firstnews.jpg"
-                                                alt="">
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div class="info">
-                                            <div class="badges-styled"></div>
-                                            <div class="name-product-styled">
-                                                <div class="name">
-                                                    <h3>Sách Excel Ứng Dụng Văn Phòng ĐÀO TẠO TIN HỌC Từ Cơ Bản Đến Nâng
-                                                        Cao Có Kèm Video Khóa Học</h3>
+                        @foreach ($product as $Product)
+                            <div class>
+                                <div>
+                                    <a href="{{ route('product.show', ['id' => $Product['id']]) }}"
+                                        class="product-links-styled">
+                                        <div class="item-styled">
+                                            <div class="thumbnail-styled">
+                                                <div class="image-wrapper">
+                                                    <img src="{{ asset($Product->image) }}" alt=""
+                                                        width="200" height="200">
                                                 </div>
-                                                <div class="rating-list"></div>
+                                            </div>
+                                            <div
+                                                style="height: 188px; min-height: 188px; display: flex; flex-direction: column;">
+                                                <div class="info">
+                                                    <div class="badges-styled">
+                                                        <img src="../../../public/upload/img/official.png"
+                                                            width="89" height="20" alt="">
+                                                        <p class="ads-badge">Tài trợ</p>
+                                                    </div>
+                                                    <div class="name-product-styled">
+                                                        <div class="name">
+                                                            <h3>{{ $Product->name }}</h3>
+                                                        </div>
+                                                        <div class="rating-list">
+                                                            <p class="stars-wrapper">
+                                                                <i class="fa-solid fa-star"></i>
+                                                                <i class="fa-solid fa-star"></i>
+                                                                <i class="fa-solid fa-star"></i>
+                                                                <i class="fa-solid fa-star"></i>
+                                                                <i class="fa-solid fa-star"></i>
+                                                            </p>
+                                                            <span class="quantity">Đã bán {{ $Product->sold }}</span>
+                                                        </div>
+                                                    </div>
+                                                    <div style="margin:15px 0">
+                                                        <div class="price-dc">
+                                                            <div class="price-styled">
+                                                                {{ number_format($Product->price, 0, ',', '.') }}
+                                                                <sup>₫</sup>
+                                                            </div>
+                                                            <div class="discount-styled">
+                                                                -{{ $Product->discount_percent }}%</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div style="margin-left: 5px">
+                                                    <div class="style-deliveryInfo">
+                                                        <span>{{ $Product->delivery_time }}</span>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
-                                        <div></div>
-                                    </div>
-                                </a>
+                                    </a>
+                                </div>
                             </div>
-                        </div>
-                        <div class></div>
-                        <div class></div>
-                        <div class></div>
-                        <div class></div>
-                        <div class></div>
-                        <div class></div>
-                        <div class></div>
-                        <div class="bw-ads"></div>
+                        @endforeach
                     </div>
+
                 </div>
             </div>
-        </div>
 </main>
 
 @include('frontend.component.footer')

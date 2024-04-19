@@ -8,10 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class productdetails extends Model
 {
 
-    protected $table = 'productdetails';
+    protected $table = 'product_details';
     use HasFactory;
     protected $fillable = [
-        'dealtoday_id',
+        'products_id',
         'issuingcompany',
         'versiontype',
         'publicationdate',

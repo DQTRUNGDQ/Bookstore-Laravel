@@ -361,10 +361,11 @@
                                                 <div class="styled-price">
                                                     <div class="product-price">
                                                         <div class="price-current">
-                                                            {{ number_format($productdetails->pricediscount, 0, ',', '.') }}
+                                                            {{ number_format($productdetails->price, 0, ',', '.') }}
                                                             <sup>₫</sup>
                                                         </div>
-                                                        <div class="price-discount">-{{ $productdetails->discount }}%
+                                                        <div class="price-discount">
+                                                            -{{ $productdetails->discount_percent }}%
                                                         </div>
                                                         <div class="price-shock">
                                                             <img width="72" height="22"
@@ -437,7 +438,7 @@
                                                     </div>
 
                                                 </div>
-                                                <div class="wrapper-item">
+                                                {{-- <div class="wrapper-item">
                                                     @foreach ($similarproducts as $similarproduct)
                                                         @if ($similarproduct->dealtoday_id == $productdetails->dealtoday_id)
                                                             <img style="display: block; height: 76px; width: auto; object-fit: contain; cursor: pointer; opacity: 1;"
@@ -445,7 +446,7 @@
                                                                 alt="">
                                                         @endif
                                                     @endforeach
-                                                </div>
+                                                </div> --}}
 
                                             </div>
                                         </div>
@@ -1229,8 +1230,8 @@
                                     </div>
                                     <div class="price-container-styled mg-t">
                                         <div class="price-label-styled">Tạm tính</div>
-                                        <div class="price-product" data-price="{{ $productdetails->pricediscount }}">
-                                            {{ number_format($productdetails->pricediscount, 0, ',', '.') }}
+                                        <div class="price-product" data-price="{{ $productdetails->price }}">
+                                            {{ number_format($productdetails->price, 0, ',', '.') }}
                                             <sup>
                                                 ₫
                                             </sup>
@@ -1242,7 +1243,7 @@
                                         </button>
 
                                         <form id="addToCartForm"
-                                            action="{{ url('/add-to-cart/' . $productdetails->dealtoday_id) }}"
+                                            action="{{ url('/add-to-cart/' . $productdetails->product_id) }}"
                                             method="post">
                                             @csrf
                                             <button type="submit" class="add-to-cart-btn cart-styled"
