@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Apr 19, 2024 at 10:47 AM
+-- Generation Time: Apr 20, 2024 at 07:34 AM
 -- Server version: 10.8.4-MariaDB
 -- PHP Version: 8.1.9
 
@@ -175,12 +175,24 @@ INSERT INTO `careproduct` (`id`, `image`, `name`, `price`, `imgstatus`, `timedel
 
 CREATE TABLE `carts` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `identifier` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `instance` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `content` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `user_id` bigint(20) UNSIGNED NOT NULL,
+  `product_id` bigint(20) UNSIGNED NOT NULL,
+  `product_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `price` int(11) NOT NULL,
+  `subtotal` int(11) NOT NULL,
+  `image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `quantity` int(11) NOT NULL DEFAULT 1,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `carts`
+--
+
+INSERT INTO `carts` (`id`, `user_id`, `product_id`, `product_name`, `price`, `subtotal`, `image`, `quantity`, `created_at`, `updated_at`) VALUES
+(8, 4, 1, 'Một người phụ nữ (Nobel Prize in Literature 2022)', 59300, 237200, './upload/img/products/vanhoc/1.jpg', 4, '2024-04-20 01:17:18', '2024-04-20 01:23:00'),
+(9, 3, 2, 'Xứ Cát', 174000, 174000, './upload/img/products/vanhoc/2.jpg', 1, '2024-04-20 01:29:22', '2024-04-20 01:29:22');
 
 -- --------------------------------------------------------
 
@@ -223,6 +235,47 @@ INSERT INTO `category` (`id`, `image`, `title`, `Published_at`) VALUES
 (21, './upload/img/category/tamly.jpg', 'Sách Tâm lý - Giới tính', '2024-03-10 16:43:54'),
 (22, './upload/img/category/giadinh.jpg', 'Sách Thường Thức - Gia Đình', '2024-03-10 16:43:54'),
 (23, './upload/img/category/thethao.jpg', 'Thể Dục - Thể Thao', '2024-03-10 16:43:54');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `category_details`
+--
+
+CREATE TABLE `category_details` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `category_id` bigint(20) UNSIGNED NOT NULL,
+  `title_details` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `category_details`
+--
+
+INSERT INTO `category_details` (`id`, `category_id`, `title_details`, `created_at`, `updated_at`) VALUES
+(1, 1, 'Du ký', NULL, NULL),
+(2, 1, 'Light novel', NULL, NULL),
+(3, 1, 'Phê Bình - Lý Luận Văn Học', NULL, NULL),
+(4, 1, 'Phóng sự - Ký sự - Bút ký', NULL, NULL),
+(5, 1, 'Tác phẩm kinh điển', NULL, NULL),
+(6, 1, 'Thơ', NULL, NULL),
+(7, 1, 'Tiểu sử - Hồi ký', NULL, NULL),
+(8, 1, 'Tiểu Thuyết', NULL, NULL),
+(9, 1, 'Tranh Truyện', NULL, NULL),
+(10, 1, 'Truyện cổ tích - Ngụ ngôn', NULL, NULL),
+(11, 1, 'Truyện cười', NULL, NULL),
+(12, 1, 'Truyện dài', NULL, NULL),
+(13, 1, 'Truyện đam mỹ', NULL, NULL),
+(14, 1, 'Truyện Giả tưởng - Huyền Bí - Phiêu Lưu', NULL, NULL),
+(15, 1, 'Truyện kiếm hiệp', NULL, NULL),
+(16, 1, 'Truyện kinh dị', NULL, NULL),
+(17, 1, 'Truyện ngắn - Tản văn - Tạp Văn', NULL, NULL),
+(18, 1, 'Truyện ngôn tình', NULL, NULL),
+(19, 1, 'Truyện trinh thám', NULL, NULL),
+(20, 1, 'Ca Dao - Tục Ngữ - Thành ngữ\r\n', NULL, NULL),
+(21, 1, 'Sách ảnh', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -328,7 +381,9 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (14, '2014_10_12_100000_create_password_resets_table', 2),
 (15, '2019_08_19_000000_create_failed_jobs_table', 2),
 (16, '2019_12_14_000001_create_personal_access_tokens_table', 2),
-(18, '2024_03_31_153807_create_carts_table', 3);
+(18, '2024_03_31_153807_create_carts_table', 3),
+(19, '2024_04_19_150901_create_product_details_table', 4),
+(20, '2024_04_20_031050_create_carts_table', 5);
 
 -- --------------------------------------------------------
 
@@ -383,47 +438,28 @@ INSERT INTO `populartool` (`id`, `image`, `title`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `productdetails`
---
-
-CREATE TABLE `productdetails` (
-  `productdt_id` bigint(20) UNSIGNED NOT NULL,
-  `dealtoday_id` bigint(20) UNSIGNED NOT NULL,
-  `issuingcompany` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `versiontype` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `publicationdate` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `size` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `translator` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `covertype` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `pages` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `language` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `publishingcompany` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `titledescription` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `description` varchar(5000) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `descriptionmore` varchar(5000) COLLATE utf8mb4_unicode_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `productdetails`
---
-
-INSERT INTO `productdetails` (`productdt_id`, `dealtoday_id`, `issuingcompany`, `versiontype`, `publicationdate`, `size`, `translator`, `covertype`, `pages`, `language`, `publishingcompany`, `titledescription`, `description`, `descriptionmore`) VALUES
-(1, 19, 'Nhã Nam', 'Phiên bản thường', '2020-04-01 00:00:00', '13 x 20.5 cm', 'Lê Chu Cầu', 'Bìa mềm', '228', 'Tiếng Việt', 'Nhà Xuất Bản Hà Nội', 'Sơ lược về tác phẩm', 'Tất cả những trải nghiệm trong chuyến phiêu du theo đuổi vận mệnh của mình đã giúp Santiago thấu hiểu được ý nghĩa sâu xa nhất của hạnh phúc, hòa hợp với vũ trụ và con người.\r\n\r\nTiểu thuyết Nhà giả kim của Paulo Coelho như một câu chuyện cổ tích giản dị, nhân ái, giàu chất thơ, thấm đẫm những minh triết huyền bí của phương Đông. Trong lần xuất bản đầu tiên tại Brazil vào năm 1988, sách chỉ bán được 900 bản. Nhưng, với số phận đặc biệt của cuốn sách dành cho toàn nhân loại, vượt ra ngoài biên giới quốc gia, Nhà giả kim đã làm rung động hàng triệu tâm hồn, trở thành một trong những cuốn sách bán chạy nhất mọi thời đại, và có thể làm thay đổi cuộc đời người đọc.', '“Nhưng nhà luyện kim đan không quan tâm mấy đến những điều ấy. Ông đã từng thấy nhiều người đến rồi đi, trong khi ốc đảo và sa mạc vẫn là ốc đảo và sa mạc. Ông đã thấy vua chúa và kẻ ăn xin đi qua biển cát này, cái biển cát thường xuyên thay hình đổi dạng vì gió thổi nhưng vẫn mãi mãi là biển cát mà ông đã biết từ thuở nhỏ. Tuy vậy, tự đáy lòng mình, ông không thể không cảm thấy vui trước hạnh phúc của mỗi người lữ khách, sau bao ngày chỉ có cát vàng với trời xanh nay được thấy chà là xanh tươi hiện ra trước mắt. ‘Có thể Thượng đế tạo ra sa mạc chỉ để cho con người biết quý trọng cây chà là,’ ông nghĩ.”\r\n\r\n- Trích Nhà giả kim\r\n\r\nNhận định\r\n\r\n“Sau Garcia Márquez, đây là nhà văn Mỹ Latinh được đọc nhiều nhất thế giới.”\r\n\r\n- The Economist, London, Anh\r\n\r\n“Santiago có khả năng cảm nhận bằng trái tim như Hoàng tử bé của Saint-Exupéry.”\r\n\r\n- Frankfurter Allgemeine Zeitung, Đức'),
-(2, 18, 'Skybooks', 'Phiên bản đặc biệt', '2021-05-01 00:00:00', '18 x 23.5 cm', '\r\n', 'Bìa mềm', '408', 'Tiếng Việt', 'Nhà Xuất Bản Dân Trí', '', 'Dịch bệnh, thiên tai, chiến tranh… có phải là lời cảnh cáo của tự nhiên đến con người?\r\n\r\n“Biến đổi khí hậu” là một nước đi chính trị hay chỉ là sự thay đổi của Trái Đất theo chu kỳ?\r\n\r\nUFO, người ngoài hành tinh có thật không?\r\n\r\nTại sao Kinh dịch lại tiên đoán được các sự kiện?\r\n\r\nMỗi con người có số mệnh định sẵn không? Chúng ta sẽ đi về đâu sau khi chết?\r\n…', 'Liệu tất cả chỉ là ngẫu nhiên, hay có một sự sắp đặt tài tình của vũ trụ?\r\n\r\n“Luật Tâm Thức - giải mã ma trận vũ trụ” sẽ giải đáp tất cả những khía cạnh mà có thể bạn không nhận thức được chúng tồn tại, và có thể khám phá những vùng đất mình chưa từng biết đến.\r\n\r\nNhững góc nhìn trong “Luật Tâm Thức” bắt nguồn từ tất cả những kiến thức cổ xưa nhất của loài người… nhưng được tác giả Ngô Sa Thạch giải thích bằng một góc nhìn gần gũi, đặc biệt, qua đó bạn sẽ hiểu được:\r\n\r\nNguồn gốc của vũ trụ, những quy luật tự nhiên chi phối sự hình thành của mọi vật, trí tuệ cổ xưa khi thông hiểu và ứng dụng các quy luật tự nhiên.\r\n\r\nNăng lượng và tần số rung động, giải thích những hiện tượng tâm linh như quy hồi tiền kiếp, tiên đoán sự kiện, du hành thời gian,\r\n\r\nCon người: tổ hợp thân - tâm - trí, nghiệp quả, sứ mệnh trong các kiếp, sự tiến hóa của tâm thức.\r\n\r\nThay đổi cuộc sống bằng cách thay đổi tâm thức, hiểu đúng về các quy luật vũ trụ để thu hút năng lượng cải thiện cuộc sống của mình và cả vũ trụ.\r\nCuốn sách này sẽ giúp bạn thấy rằng những kiến thức của người xưa không hề cao siêu huyền bí mà vô cùng đơn giản và liên quan chặt chẽ tới khoa học hiện đại.\r\n\r\nViệc của bạn chỉ là đọc với một tâm trí cởi mở để thức tỉnh, vượt qua những rào cản của tâm trí, những niềm tin cố hữu của mình.\r\n\r\nNếu con người cứ đóng khung tư duy của mình trong hai trường phái duy vật và duy tâm, chúng ta sẽ mãi mãi không bao giờ có thể giải đáp được những vấn đề lớn lao của nhân loại. Khi đó, chúng ta cũng sẽ không bao giờ hiểu được bản chất của những câu chuyện về tâm linh, cũng như những vấn đề chưa lý giải được của khoa học.\r\n\r\nSự thiếu hiểu biết này, sẽ dẫn tới những con người mù quáng khi có một số trải nghiệm “tâm linh”, sa đà vào mê tín. Ngược lại, chính nó cũng hình thành một nhóm người mù quáng tin vào khoa học, duy vật, dẫn tới sự hủy hoại nghiêm trọng tới sự sống trên cả hành tinh này.\r\n\r\nHiểu về luật tâm thức, nâng cao tâm thức là quá trình mỗi linh hồn trải nghiệm và vượt qua những bài học cuộc đời.');
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `products`
 --
 
 CREATE TABLE `products` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `category_id` bigint(20) UNSIGNED NOT NULL,
+  `image` varchar(256) COLLATE utf8mb4_unicode_ci NOT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `description` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `price` decimal(8,2) NOT NULL,
+  `author` varchar(256) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `category` varchar(256) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `subcategory` varchar(256) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `thumbnail1` varchar(256) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `thumbnail2` varchar(256) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `thumbnail3` varchar(256) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `thumbnail4` varchar(256) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `feature1` varchar(256) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `feature2` varchar(256) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `feature3` varchar(256) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `price` int(11) NOT NULL,
   `rating` int(11) NOT NULL DEFAULT 0,
+  `quantity` int(11) NOT NULL,
   `sold` int(11) NOT NULL DEFAULT 0,
   `discount_percent` decimal(5,2) DEFAULT NULL,
   `delivery_time` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -435,8 +471,60 @@ CREATE TABLE `products` (
 -- Dumping data for table `products`
 --
 
-INSERT INTO `products` (`id`, `category_id`, `name`, `description`, `price`, `rating`, `sold`, `discount_percent`, `delivery_time`, `created_at`, `updated_at`) VALUES
-(1, 1, 'test', 'test', '95000.00', 0, 0, NULL, '', NULL, NULL);
+INSERT INTO `products` (`id`, `category_id`, `image`, `name`, `author`, `category`, `subcategory`, `thumbnail1`, `thumbnail2`, `thumbnail3`, `thumbnail4`, `feature1`, `feature2`, `feature3`, `description`, `price`, `rating`, `quantity`, `sold`, `discount_percent`, `delivery_time`, `created_at`, `updated_at`) VALUES
+(1, 1, './upload/img/products/vanhoc/1.jpg', 'Một người phụ nữ (Nobel Prize in Literature 2022)', 'Annie Ernaux', 'Sách văn học', 'Truyện ngắn - Tản văn - Tạp Văn\r\n', '/upload/img/Products/vanhoc/Thumbnail/1/1.jpg', '/upload/img/Products/vanhoc/Thumbnail/1/2.jpg', '/upload/img/Products/vanhoc/Thumbnail/1/3.jpg', '/upload/img/Products/vanhoc/Thumbnail/1/4.jpg', 'Nhân văn và cảm xúc sâu sắc.', 'Ngôn ngữ thân thiện và gần gũi.', 'Tác giả được trao giải Nobel Văn chương 2022.', NULL, 59300, 5, 1217, 497, '25.00', 'Giao thứ 2, 22/04', NULL, NULL),
+(2, 1, './upload/img/products/vanhoc/2.jpg', 'Xứ Cát', 'Frank Herbert', 'Sách văn ', 'Truyện Giả tưởng - Huyền Bí - Phiêu Lưu\r\n', '/upload/img/Products/vanhoc/Thumbnail/2/1.jpg', '/upload/img/Products/vanhoc/Thumbnail/2/2.jpg', '/upload/img/Products/vanhoc/Thumbnail/2/3.jpg', '/upload/img/Products/vanhoc/Thumbnail/2/4.jpg', 'Cốt truyện đa dạng và phức tạp, hấp dẫn và căng thẳng.\r\n', '\r\nXây dựng tâm lý nhân vật tinh tế, độc đáo và thú vị.\r\n', 'Kiến thức khổng lồ về không gian và con người được tận dụng một cách hấp dẫn.', NULL, 174000, 1, 0, 5000, '30.00', 'Giao Thứ 2, 22/04', NULL, NULL),
+(3, 1, './upload/img/products/vanhoc/3.jpg', 'Utopia - Địa đàng trần gian (Tái Bản 2020)', 'Thomas More', 'Sách văn học', 'Truyện ngắn - Tản văn - Tạp Văn\r\n', 'Sách văn học', 'Sách văn học', 'Sách văn học', 'Sách văn học', 'Sách văn học', 'Sách văn học', 'Sách văn học', NULL, 45100, 5, 0, 1000, '25.00', 'Giao thứ 3, 23/04', NULL, NULL),
+(4, 1, './upload/img/products/vanhoc/4.jpg', 'Hoa Vẫn Nở Mỗi Ngày', 'Valérie Perrin', 'Sách văn học', 'Truyện ngắn - Tản văn - Tạp Văn\r\n', 'Sách văn học', 'Sách văn học', 'Sách văn học', 'Sách văn học', 'Sách văn học', 'Sách văn học', 'Sách văn học', NULL, 203650, 5, 0, 400, '0.00', 'Giao thứ 3, 23/04', NULL, NULL),
+(5, 1, '/upload/img/products/vanhoc/5.jpg', 'Nỗi nhục (Nobel Prize in Literature 2022)', 'Annie Ernaux', 'Sách văn học', 'Truyện ngắn - Tản văn - Tạp Văn\r\n', 'Sách văn học', 'Sách văn học', 'Sách văn học', 'Sách văn học', 'Sách văn học', 'Sách văn học', 'Sách văn học', NULL, 59300, 5, 0, 500, '25.00', '', NULL, NULL),
+(6, 1, './upload/img/products/vanhoc/6.jpg', 'Cây Cam Ngọt Của Tôi', 'José Mauro de Vasconcelos', 'Sách văn học', 'Sách văn học', 'Sách văn học', 'Sách văn học', 'Sách văn học', 'Sách văn học', 'Sách văn học', 'Sách văn học', 'Sách văn học', NULL, 75400, 5, 13265, 5000, NULL, 'Giao thứ 3, 23/04', NULL, NULL),
+(7, 1, './upload/img/products/vanhoc/7.jpg', 'Thiên Tài Bên Trái, Kẻ Điên Bên Phải (Tái Bản)', 'Sách văn học', 'Sách văn học', 'Sách văn học', 'Sách văn học', 'Sách văn học', 'Sách văn học', 'Sách văn học', 'Sách văn học', 'Sách văn học', 'Sách văn học', NULL, 116000, 5, 0, 5000, NULL, 'Giao thứ 3, 23/04', NULL, NULL),
+(8, 1, './upload/img/products/vanhoc/8.jpg', 'Nhà Giả Kim (Tái Bản 2020)', 'Sách văn học', 'Sách văn học', 'Sách văn học', 'Sách văn học', 'Sách văn học', 'Sách văn học', 'Sách văn học', 'Sách văn học', 'Sách văn học', 'Sách văn học', NULL, 55100, 5, 0, 5000, NULL, 'Giao thứ 3, 23/04', NULL, NULL),
+(9, 1, './upload/img/products/vanhoc/9.jpg', 'Dear, Darling', 'Sách văn học', 'Sách văn học', 'Sách văn học', 'Sách văn học', 'Sách văn học', 'Sách văn học', 'Sách văn học', 'Sách văn học', 'Sách văn học', 'Sách văn học', NULL, 59600, 5, 0, 5000, NULL, 'Giao thứ 3, 23/04', NULL, NULL),
+(10, 1, './upload/img/products/vanhoc/10.jpg', 'Xa Ngoài Kia Nơi Loài Tôm Hát - Where The Crawdads Sing', 'Sách văn học', 'Sách văn học', 'Sách văn học', 'Sách văn học', 'Sách văn học', 'Sách văn học', 'Sách văn học', 'Sách văn học', 'Sách văn học', 'Sách văn học', NULL, 104000, 5, 10, 4000, '37.00', 'Giao thứ 3, 23/04', NULL, NULL),
+(11, 1, './upload/img/products/vanhoc/11.jpg', 'Một chỗ trong đời', 'Sách văn học', 'Sách văn học', 'Sách văn học', 'Sách văn học', 'Sách văn học', 'Sách văn học', 'Sách văn học', 'Sách văn học', 'Sách văn học', 'Sách văn học', NULL, 51800, 5, 10, 1000, '25.00', 'Giao thứ 3, 23/04', NULL, NULL),
+(12, 1, './upload/img/products/vanhoc/12.jpg', 'Hội Chứng E', 'Sách văn học', 'Sách văn học', 'Sách văn học', 'Sách văn học', 'Sách văn học', 'Sách văn học', 'Sách văn học', 'Sách văn học', 'Sách văn học', 'Sách văn học', NULL, 126000, 5, 0, 1000, '30.00', 'Giao thứ 3, 23/04', NULL, NULL),
+(13, 1, './upload/img/products/vanhoc/13.jpg', 'Những Giấc Mơ Ở Hiệu Sách Morisaki', 'Sách văn học', 'Sách văn học', 'Sách văn học', 'Sách văn học', 'Sách văn học', 'Sách văn học', 'Sách văn học', 'Sách văn học', 'Sách văn học', 'Sách văn học', NULL, 126000, 5, 0, 2000, '30.00', 'Giao thứ 3, 23/04', NULL, NULL),
+(14, 1, './upload/img/products/vanhoc/14.jpg', 'Tam Thể 1 (Tái Bản)', 'Sách văn học', 'Sách văn học', 'Sách văn học', 'Sách văn học', 'Sách văn học', 'Sách văn học', 'Sách văn học', 'Sách văn học', 'Sách văn học', 'Sách văn học', NULL, 105000, 5, 0, 1500, '30.00', 'Giao thứ 3, 23/04', NULL, NULL),
+(15, 1, './upload/img/products/vanhoc/15.jpg', 'Điều Đẹp Nhất Có Khi Là Buông Tay (Tặng Kèm Bookmark)', 'Sách văn học', 'Sách văn học', 'Sách văn học', 'Sách văn học', 'Sách văn học', 'Sách văn học', 'Sách văn học', 'Sách văn học', 'Sách văn học', 'Sách văn học', NULL, 49000, 5, 0, 5000, '32.00', 'Giao thứ 3, 23/04', NULL, NULL),
+(16, 1, './upload/img/products/vanhoc/16.jpg', 'Một Thoáng Ta Rực Rỡ Ở Nhân Gian', 'Sách văn học', 'Sách văn học', 'Sách văn học', 'Sách văn học', 'Sách văn học', 'Sách văn học', 'Sách văn học', 'Sách văn học', 'Sách văn học', 'Sách văn học', NULL, 94300, 5, 0, 5000, '30.00', 'Giao thứ 3, 23/04', NULL, NULL),
+(17, 1, './upload/img/products/vanhoc/17.jpg', 'Yêu Những Điều Không Hoàn Hảo', 'Sách văn học', 'Sách văn học', 'Sách văn học', 'Sách văn học', 'Sách văn học', 'Sách văn học', 'Sách văn học', 'Sách văn học', 'Sách văn học', 'Sách văn học', NULL, 89000, 5, 10, 100, NULL, 'Giao thứ 3, 23/04', NULL, NULL),
+(18, 1, './upload/img/products/vanhoc/18.jpg', 'Đại Dương Đen - Những Câu Chuyện Từ Thế Giới Của Trầm Cảm', 'Sách văn học', 'Sách văn học', 'Sách văn học', 'Sách văn học', 'Sách văn học', 'Sách văn học', 'Sách văn học', 'Sách văn học', 'Sách văn học', 'Sách văn học', NULL, 56100, 5, 0, 500, NULL, 'Giao thứ 3, 23/04', NULL, NULL),
+(19, 1, './upload/img/products/vanhoc/19.jpg', 'Thư Viện Nửa Đêm', 'Sách văn học', 'Sách văn học', 'Sách văn học', 'Sách văn học', 'Sách văn học', 'Sách văn học', 'Sách văn học', 'Sách văn học', 'Sách văn học', 'Sách văn học', NULL, 56100, 5, 0, 500, NULL, 'Giao thứ 3, 23/04', NULL, NULL),
+(20, 1, './upload/img/products/vanhoc/20.jpg', 'Tiểu Thuyết - Gió Lạnh Đầu Mùa (Thạch Lam) - SBOOKS', 'Sách văn học', 'Sách văn học', 'Sách văn học', 'Sách văn học', 'Sách văn học', 'Sách văn học', 'Sách văn học', 'Sách văn học', 'Sách văn học', 'Sách văn học', NULL, 56100, 5, 0, 500, NULL, 'Giao thứ 3, 23/04', NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `product_details`
+--
+
+CREATE TABLE `product_details` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `product_id` bigint(20) UNSIGNED NOT NULL,
+  `issuingcompany` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `versiontype` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `publicationdate` date NOT NULL,
+  `size` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `translator` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `covertype` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `pages` int(11) NOT NULL,
+  `language` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `publishingcompany` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `titledescription` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `descriptionmore` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `product_details`
+--
+
+INSERT INTO `product_details` (`id`, `product_id`, `issuingcompany`, `versiontype`, `publicationdate`, `size`, `translator`, `covertype`, `pages`, `language`, `publishingcompany`, `titledescription`, `description`, `descriptionmore`, `created_at`, `updated_at`) VALUES
+(1, 1, 'Nhã Nam', 'Phiên bản thường', '2023-04-01', '14 x 20.5 cm', 'Thu Phương', 'Bìa mềm', 109, 'Tiếng Việt', 'Nhà Xuất Bản Phụ Nữ', 'Mô tả sản phẩm', '“Tôi sẽ không còn nghe thấy giọng nói của bà nữa. […] Tôi đã đánh mất sợi dây nối cuối cùng với thế giới xuất thân của mình.”\r\nẤy là cảm giác của Annie Ernaux khi thực sự nhận ra mẹ mình không còn trên cõi đời. Và bà gắng đi tìm lại những gương mặt khác nhau của người mẹ ấy, một người phụ nữ vốn rất khỏe, xông xáo, cởi mở, qua đời ngày 7 tháng Tư năm 1986, sau một thời gian mắc bệnh Alzeimer. Qua sự tái hiện cuộc đời một nữ công nhân, rồi chủ hàng thực phẩm luôn lo âu về địa vị và học hỏi không ngừng, Annie Ernaux cũng cho ta thấy sự tiến triển cũng như tính hai mặt của những tình cảm mà một người con gái dành cho mẹ: tình yêu, lòng thù ghét, sự âu yếm, cảm giác tội lỗi và cuối cùng là sự gắn bó máu thịt với người đàn bà già cả đã sa sút trí tuệ. Cùng với đó phảng phất những thăng trầm của nước Pháp suốt thế kỷ 20, giống như lời tổng thống Pháp Emmanuel Macron đã phát biểu khi Annie Ernaux trở thành chủ nhân giải Nobel Văn chương 2022:\r\n\r\n“Suốt 50 năm qua, Annie Ernaux viết cuốn tiểu thuyết về ký ức tập thể và riêng tư của đất nước chúng ta. Tiếng nói của bà là tiếng nói của tự do của người phụ nữ và của những điều đã bị lãng quên trong thế kỷ qua.”', 'Annie Ernaux sinh năm 1940 tại Lillebonne, lớn lên tại Yvetot, đều thuộc tỉnh Seine-Maritime, vùng Normandie, tây bắc nước Pháp. Bà học ngành Văn học hiện đại ở đại học Rouen, sau đó làm giáo viên văn ở Annecy, Pontoise rồi Trung tâm giáo dục từ xa quốc gia. Bà là tiến sĩ danh dự của đại học Cergy-Pontoise.\r\n\r\nNăm 1974, bà xuất bản tác phẩm đầu tay Les armoires vides (Những ngăn kéo rỗng) kể về lần phá thai chui của bản thân vào năm 1964. Năm 1983, bà xuất bản Một chỗ trong đời, kể về cuộc đời của cha mình, và cuốn sách đã đoạt giải Renaudot. Năm 2008, bà xuất bản Les années (Những năm tháng), tác phẩm được coi là hoàn chỉnh cả về nội dung lẫn hình thức của thể loại hồi ức tập thể.\r\n\r\nTrong suốt sự nghiệp, Annie Ernaux đã được trao rất nhiều giải thưởng: giải Renaudot (1984), giải thưởng về ngôn ngữ Pháp, giải François Mauriac (2008), giải Marguerite Youcenar (2017)… và đặc biệt, giải Nobel Văn chương (2022) vì “với lòng can đảm cùng sự nhạy bén bên trong, bà đã khám phá ra những cội rễ, những cách biệt và những câu thúc tập thể của hồi ức cá nhân”.\r\n\r\nBà hiện sống ở Cergy, vùng Île-de-France.\r\n\r\n\r\nCác tác phẩm của Annie Ernaux xuất bản tại Nhã Nam:\r\n\r\n- Một chỗ trong đời\r\n\r\n- Hồi ức thiếu nữ\r\n\r\n- Nỗi nhục\r\n\r\n- Cơn cuồng si\r\n\r\n- Một người phụ nữ\r\n\r\n- Những năm tháng (sắp xuất bản)\r\n\r\nGiá sản phẩm trên Tiki đã bao gồm thuế theo luật hiện hành. Bên cạnh đó, tuỳ vào loại sản phẩm, hình thức và địa chỉ giao hàng mà có thể phát sinh thêm chi phí khác như phí vận chuyển, phụ phí hàng cồng kềnh, thuế nhập khẩu (đối với đơn hàng giao từ nước ngoài có giá trị trên 1 triệu đồng).....', NULL, NULL),
+(2, 2, '\r\nNhã Nam', '\r\nPhiên bản thường', '2021-12-01', '17 x 25 cm', '\r\nTrần Tiễn Cao Đăng', 'Bìa mềm', 714, 'Tiếng Việt', 'Nhà Xuất Bản Hội Nhà Văn', 'Sơ lược về tác phẩm', 'Một thời điểm rất xa trong tương lai…\r\n\r\nTừ đời này sang đời khác, người Fremen trên hành tinh sa mạc lưu truyền lời tiên tri về một đấng cứu tinh sẽ dẫn dắt họ giành lấy tự do đích thực…\r\n\r\nTừ thế hệ này sang thế hệ khác, những nữ phù thủy Bene Gesserit mỏi mòn chờ đợi sự xuất hiện của một B.G. nam giới duy nhất, người có thể vượt qua mọi giới hạn không gian - thời gian…\r\n\r\nLà Lisal al-Gaib của người Fremen, là Kwisatz Haderach của học viện Bene Gesserit, chàng công tước trẻ tuổi Paul Atreides đã làm tất cả những gì có thể để thay đổi định mệnh đó. Cha bị giết chết, mẹ bị cho là kẻ phản bội, gia tộc bị tàn sát, bản thân bị săn đuổi đến đường cùng, Paul đơn độc dấn thân vào một cuộc phiêu lưu sinh tử, không hề biết rằng mỗi hành động của mình sẽ góp phần quyết định vận mệnh của cả thiên hà. Sa mạc Arrakis khắc nghiệt tưởng như sẽ là nơi chôn vùi vĩnh viễn vinh quang của gia tộc Atreides, nhưng hóa ra lại thành điểm khởi đầu cho một huyền thoại mới…', 'Là một trong những cuốn tiểu thuyết khoa học giả tưởng bán chạy nhất mọi thời đại, Xứ Cát không chỉ là lựa chọn đối với những tín đồ của Chúa nhẫn, Chiến tranh giữa các vì sao… mà còn chinh phục độc giả đủ mọi lứa tuổi, mọi tầng lớp và sở thích bởi sự đa dạng và phức tạp của con người và không gian trong truyện, bởi sự tinh tế trong xây dựng tâm lý, bởi sự hấp dẫn, căng thẳng và bất ngờ của cốt truyện, bởi sự độc đáo và thú vị của khối lượng kiến thức khổng lồ cũng như bởi sự hấp dẫn trong những tư tưởng về tôn giáo, về tự do, về tình yêu, về sự sống và cái chết…\r\n\r\nNhận định\r\n\r\nĐộc nhất vô nhị… Không gì có thể sánh nổi, ngoại trừ Chúa nhẫn.\r\nArthur C. Clarke\r\n\r\nCó lẽ khó khăn lớn nhất khi đọc quyển sách này chính là phải đặt nó xuống.\r\n\r\nClassic Sci-Fi\r\n\r\n“Bức tranh toàn cảnh về một xã hội ngoài hành tinh hoàn thiện và chi tiết hơn bất kỳ tác giả nào trong lĩnh vực này từng dựng được… Một câu chuyện lôi cuốn vừa bởi hành động vừa bởi tầm nhìn triết học.”\r\n\r\nWashington Post Book World\r\n\r\nGiá sản phẩm trên Tiki đã bao gồm thuế theo luật hiện hành. Bên cạnh đó, tuỳ vào loại sản phẩm, hình thức và địa chỉ giao hàng mà có thể phát sinh thêm chi phí khác như phí vận chuyển, phụ phí hàng cồng kềnh, thuế nhập khẩu (đối với đơn hàng giao từ nước ngoài có giá trị trên 1 triệu đồng).....', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -614,12 +702,20 @@ ALTER TABLE `careproduct`
 -- Indexes for table `carts`
 --
 ALTER TABLE `carts`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `carts_user_id_foreign` (`user_id`),
+  ADD KEY `carts_product_id_foreign` (`product_id`);
 
 --
 -- Indexes for table `category`
 --
 ALTER TABLE `category`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `category_details`
+--
+ALTER TABLE `category_details`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -662,16 +758,17 @@ ALTER TABLE `populartool`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `productdetails`
---
-ALTER TABLE `productdetails`
-  ADD PRIMARY KEY (`productdt_id`);
-
---
 -- Indexes for table `products`
 --
 ALTER TABLE `products`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `product_details`
+--
+ALTER TABLE `product_details`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `product_details_product_id_foreign` (`product_id`);
 
 --
 -- Indexes for table `qa`
@@ -718,7 +815,13 @@ ALTER TABLE `banner`
 -- AUTO_INCREMENT for table `carts`
 --
 ALTER TABLE `carts`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT for table `category_details`
+--
+ALTER TABLE `category_details`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -730,7 +833,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -739,16 +842,16 @@ ALTER TABLE `personal_access_tokens`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `productdetails`
---
-ALTER TABLE `productdetails`
-  MODIFY `productdt_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+
+--
+-- AUTO_INCREMENT for table `product_details`
+--
+ALTER TABLE `product_details`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `quicktoolswidget`
@@ -767,6 +870,23 @@ ALTER TABLE `similarproducts`
 --
 ALTER TABLE `users`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `carts`
+--
+ALTER TABLE `carts`
+  ADD CONSTRAINT `carts_product_id_foreign` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `carts_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
+
+--
+-- Constraints for table `product_details`
+--
+ALTER TABLE `product_details`
+  ADD CONSTRAINT `product_details_product_id_foreign` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

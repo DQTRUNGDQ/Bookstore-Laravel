@@ -3,8 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
-use Gloudemans\Shoppingcart\Facades\Cart;
-
+// use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\banner;
@@ -17,11 +16,13 @@ use App\Models\bestproduct;
 use App\Models\brandofficial;
 use App\Models\careproduct;
 use App\Models\productdetails;
+use Illuminate\Support\Facades\Auth;
+use App\Models\Cart;
 
 class HomepageController extends Controller
 {
     public function data(){
-        
+
         $categories = Category::all();
         $populartools = populartool::all();
         $banners = banner::all();
@@ -34,9 +35,20 @@ class HomepageController extends Controller
         $brandproducts = brandofficial::all();
         $productdetails = productdetails::all();
 
-        $totalQuantity = Cart::count();
 
-        return view('backend.homepage', 
+        // HIỂN THỊ TỔNG SỐ SẢN PHẨM TRONG GIỎ HÀNG LÊN TRANG CHỦ
+
+        // $totalQuantity = Cart::count();
+
+        $userId = Auth::id();
+        $cartItems = Cart::where('user_id', $userId)->get();
+        $totalQuantity = 0;
+
+        foreach ($cartItems as $item) {
+                $totalQuantity += $item->quantity;
+        }
+
+        return view('backend.homepage',
         compact(
             'categories','populartools','banners',
             'bestproducts','careproducts','deals','QAs',

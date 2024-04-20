@@ -7,7 +7,9 @@ use App\Models\Products;
 use App\Models\productdetails;
 use App\Models\similarproducts;
 use Illuminate\Support\Facades\DB;
-use Gloudemans\Shoppingcart\Facades\Cart;
+// use Gloudemans\Shoppingcart\Facades\Cart;
+use Illuminate\Support\Facades\Auth;
+use App\Models\Cart;
 
 class ShowProductController extends Controller
 {
@@ -32,7 +34,18 @@ class ShowProductController extends Controller
             abort(404);
         }
 
-        $totalQuantity = Cart::count();
+        // HIỂN THỊ TỔNG SỐ SẢN PHẨM TRONG GIỎ HÀNG LÊN TRANG CHỦ
+
+        // $totalQuantity = Cart::count();
+
+        $userId = Auth::id();
+        $cartItems = Cart::where('user_id', $userId)->get();
+        $totalQuantity = 0;
+
+        foreach ($cartItems as $item) {
+                $totalQuantity += $item->quantity;
+        }
+
 
 
         return view('frontend.productdetails',

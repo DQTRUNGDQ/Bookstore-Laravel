@@ -9,9 +9,6 @@ use GuzzleHttp\RedirectMiddleware;
 use Illuminate\Support\Facades\Auth;
 USE Illuminate\Support\Facades\Hash;
 USE App\Models\User;
-use GrahamCampbell\ResultType\Success;
-use Gloudemans\Shoppingcart\Facades\Cart;
-use Illuminate\Support\Facades\Session;
 
 class AuthController extends Controller
 {
@@ -28,7 +25,7 @@ class AuthController extends Controller
         else{
              return view('backend.homepage');
         }
-       
+
     }
 
     public function product()
@@ -39,11 +36,11 @@ class AuthController extends Controller
         else{
              return view('frontend.productdetails');
         }
-       
+
     }
 
     public function register(Request $request){
-        
+
         $request->validate([
             'name' => 'required|string|max:256',
             'email_register' => 'required|string|email|unique:users,email',
@@ -65,9 +62,9 @@ class AuthController extends Controller
 
     }
 
-    public function login(AuthRequest $request){  
+    public function login(AuthRequest $request){
         $credentials = [
-            'email' => $request->input('email'), 
+            'email' => $request->input('email'),
             'password' => $request->input('password')
         ];
         if (Auth::attempt($credentials)) {
@@ -81,11 +78,11 @@ class AuthController extends Controller
                 return redirect()->route('auth.homepage')
                                 ->with('success', 'Đăng nhập thành công');
             }
-            
+
         }else{
             return redirect()->route('auth.homepage')
             ->with('error','Email hoặc Mật khẩu không chính xác');
-        }   
+        }
     }
 
     public function logout(Request $request){
@@ -93,9 +90,9 @@ class AuthController extends Controller
         Auth::logout();
 
         $request->session()->invalidate();
-    
+
         $request->session()->regenerateToken();
-    
+
         return redirect()->route('auth.homepage');
     }
 }

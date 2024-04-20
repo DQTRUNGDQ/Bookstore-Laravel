@@ -64,7 +64,7 @@
                             @endif
 
                             @if (Auth::check())
-                                <div class="cart-item">
+                                <div class="cart-item ">
                                     <a href="{{ route('cart.show') }}">
                                         <div class="border-cart">
                                             <div class="cart-wrapper">
@@ -306,7 +306,7 @@
                                                 <input type="checkbox" class="checkbox">
                                             </label>
                                             <a href="" target="_blank">
-                                                <img width="80" height="80" src="{{ $item->options->image }}"
+                                                <img width="80" height="80" src="{{ $item->image }}"
                                                     alt="">
                                             </a>
 
@@ -336,7 +336,7 @@
                                             <span class="qty-decrease">
                                                 <i class="fa-solid fa-minus"></i>
                                             </span>
-                                            <input type="tel" class="qty-input" value="{{ $item->qty }}">
+                                            <input type="tel" class="qty-input" value="{{ $item->quantity }}">
                                             <span class="qty-increase">
                                                 <i class="fa-solid fa-plus"></i>
                                             </span>
@@ -356,7 +356,8 @@
                                                     </div>
                                                 </div>
                                                 <div class="dialog-control">
-                                                    <form action="{{ route('cart.remove', $item->rowId) }}"
+                                                    <form {{-- action="{{ route('cart.remove', $item->rowId) }}" --}}
+                                                        action="{{ route('cart.remove', $item->id) }}"
                                                         method="POST">
                                                         @csrf
                                                         @method('DELETE')

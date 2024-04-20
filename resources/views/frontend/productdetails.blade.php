@@ -1242,7 +1242,7 @@
                                             Mua ngay
                                         </button>
 
-                                        <form id="addToCartForm"
+                                        <form id="addToCartForm" {{-- action="{{ url('/add-to-cart/' . $productdetails->product_id) }}" --}}
                                             action="{{ url('/add-to-cart/' . $productdetails->product_id) }}"
                                             method="post">
                                             @csrf

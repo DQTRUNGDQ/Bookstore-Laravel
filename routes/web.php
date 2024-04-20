@@ -79,6 +79,17 @@ Route::get('blog', [BlogController::class, 'data'])->name('blog.show');
 
 
 // Giỏ hàng
+
+Route::get('cart', [CartController::class, 'cart'])-> name('cart.show');
+
+Route::post('/add-to-cart/{id}', [CartController::class, 'addToCart'])-> name('cart.add');
+
+Route::delete('/cart/remove/{id}', [CartController::class, 'removeItem'])-> name('cart.remove');
+
+Route::delete('/cart/clear', [CartController::class, 'removeAll'])-> name('cart.remove.all');
+
+/*
+
 Route::get('cart', [CartController::class, 'cart'])-> name('cart.show');
 
 Route::post('/add-to-cart/{id}', [CartController::class, 'addToCart'])-> name('cart.add');
@@ -86,3 +97,5 @@ Route::post('/add-to-cart/{id}', [CartController::class, 'addToCart'])-> name('c
 Route::delete('/cart/remove/{rowID}', [CartController::class, 'removeItem'])-> name('cart.remove');
 
 Route::delete('/cart/clear', [CartController::class, 'removeAll'])-> name('cart.remove.all');
+
+*/

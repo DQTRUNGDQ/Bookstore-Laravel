@@ -5,9 +5,11 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use Illuminate\Http\Request;
-use Gloudemans\Shoppingcart\Facades\Cart;
+//use Gloudemans\Shoppingcart\Facades\Cart;
 use App\Models\CategoryDetail;
 use App\Models\Products;
+use Illuminate\Support\Facades\Auth;
+use App\Models\Cart;
 
 class CategoryController extends Controller
 {
@@ -31,7 +33,18 @@ class CategoryController extends Controller
         // Tạo biến breadcrumb
         $breadcrumb['category'] = $category;
 
-        $totalQuantity = Cart::count();
+
+        // HIỂN THỊ TỔNG SỐ SẢN PHẨM TRONG GIỎ HÀNG LÊN TRANG CHỦ
+
+        // $totalQuantity = Cart::count();
+
+        $userId = Auth::id();
+        $cartItems = Cart::where('user_id', $userId)->get();
+        $totalQuantity = 0;
+
+        foreach ($cartItems as $item) {
+                $totalQuantity += $item->quantity;
+        }
 
         return view('frontend.categories',
             compact(
@@ -39,7 +52,8 @@ class CategoryController extends Controller
                 'breadcrumb',
                 'totalQuantity',
                 'categoryDetails',
-                'product'
+                'product',
+                'totalQuantity'
             ));
     }
 }
