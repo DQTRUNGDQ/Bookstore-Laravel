@@ -446,9 +446,12 @@
                         </div>
                     </div>
                 </div>
-                <div class="buy-now-btn" style="margin: 15px 0px 0px;">
-                    Mua Hàng <span id="checkedProductsCount"></span>
-                </div>
+                <form action="{{ route('buy') }}" method="POST">
+                    @csrf
+                    <button type="submit" class="buy-now-btn" style="margin: 15px 0px 0px; width:320px">
+                        Mua Hàng <span id="checkedProductsCount"></span>
+                    </button>
+                </form>
             </div>
         </div>
     </div>

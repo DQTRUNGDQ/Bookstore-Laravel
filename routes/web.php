@@ -13,6 +13,7 @@ use App\Http\Controllers\Frontend\HomepageController;
 use App\hTTP\Controllers\Frontend\ShowProductController;
 use App\Http\Controllers\Frontend\BlogController;
 use App\Http\Controllers\Frontend\CategoryController;
+use App\Http\Controllers\Frontend\CheckoutController;
 
 
 Route::get('/', function(){
@@ -77,6 +78,9 @@ Route::get('category/{id}', [CategoryController::class, 'products'])-> name('cat
 // Trang Blog
 Route::get('blog', [BlogController::class, 'data'])->name('blog.show');
 
+//Thanh Toán
+Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout');
+
 
 // Giỏ hàng
 
@@ -93,6 +97,8 @@ Route::put('/carts/{id}/check', [CartController::class, 'check'])->name('cart.ch
 Route::get('/carts/total-price', [CartController::class,  'getTotalPrice'])->name('cart.total.price');
 
 Route::post('/carts/update', [CartController::class, 'updateCart'])->name('cart.update');
+
+Route::post('/buy', [CartController::class, 'buy'])->name('buy');
 
 /*
 

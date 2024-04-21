@@ -1982,7 +1982,7 @@ label .box{
     color: rgb(39, 39, 42);
     margin: 0px;
     word-break: break-word;
-    width: 200px;
+    width: 197px;
     height: 36px;
 }
 
@@ -2038,4 +2038,171 @@ label .box{
     font-size: 12px;
     font-weight: 500;
     line-height: 150%;
+}
+
+
+/* ----------------------------------------CHECK OUT---------------------------------------------------------------- */
+
+.header-styled{
+    background: rgb(255, 255, 255);
+    position: relative;
+    z-index: 1;
+}
+
+.header-styled .header-container {
+    display: flex;
+    align-items: center;
+    height: 100px;
+}
+
+.header-styled .logo{
+    display: flex;
+    align-items: center;
+}
+
+.header-styled .logo .divider {
+    width: 1px;
+    height: 32px;
+    background-color: #55c57a;
+    margin: 0px 16px;
+    display: block;
+}
+
+.header-styled .logo .title-checkout {
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 32px;
+    color: #55c57a;
+}
+
+.header-styled .hotline {
+    flex: 1 1 0%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.hotline .phone-icon{
+    padding: 10px 10px;
+    border: 1px solid #55c57a;
+    background-color: #55c57a;
+    border-radius: 50%;
+    margin-right: 15px;
+}
+
+.hotline a {
+    display: flex;
+    align-items: center;
+    border: 1px solid #55c57a;
+    border-radius: 50px;
+    padding: 10px;
+}
+
+.hotline .phone-icon i {
+    color: #fff;
+    font-size: 16px;
+    display: flex;
+    justify-content: center;
+}
+
+.hotline .tel-nb{
+    font-size: 20px;
+    font-weight: 600;
+    color: #55c57a;
+}
+
+.container-styled{
+    display: flex;
+    flex-wrap: wrap;
+    padding-top: 20px;
+    padding-bottom: 80px;
+}
+
+.container-styled .left {
+    width: 900px;
+    margin-right: 20px;
+}
+
+.shipping-plan-styled {
+    position: relative;
+    padding: 16px;
+    margin-bottom: 16px;
+    background-color: rgb(255, 255, 255);
+}
+
+
+.shipping-plan-styled h3{
+    color: rgb(56, 56, 61);
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 24px;
+    margin: 0px;
+}
+
+.shipping-method-list{
+    background: rgb(240, 248, 255);
+    border: 1px solid rgb(194, 225, 255);
+    border-radius: 10px;
+    padding: 16px;
+    display: flex;
+    row-gap: 12px;
+}
+
+.shipping-method-list label{
+    display: flex;
+    align-items: center;
+    padding: 4px 0px;
+}
+
+.shipping-method-list .label {
+    font-size: 14px;
+    line-height: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.shipping-method-list label input{
+    width: 18px;
+    height: 18px;
+    border: 1px solid rgb(196, 196, 207);
+    border-radius: 50%;
+    margin-right: 8px;
+    position: relative;
+    z-index: 1;
+    color: rgb(120, 120, 120);
+    flex-shrink: 0;
+    cursor: pointer;
+}
+
+.shipping-method-list label input[type="radio"]:checked + .radio-fake {
+    border-color: rgb(11, 116, 229);
+}
+
+.delivery-method .method-text{
+    font-size: 14px;
+    line-height: 20px;
+    color: rgb(56, 56, 61);
+}
+
+.delivery-method .freeship-badge {
+    font-size: 13px;
+    line-height: 20px;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    color: rgb(0, 171, 86);
+    padding: 0px 4px;
+    background-color: rgb(255, 255, 255);
+    margin-left: 4px;
+    border-radius: 4px;
+}
+
+.method-list .methods-arrow {
+    z-index: 1;
+    position: absolute;
+    width: 32px;
+    height: 12px;
+    left: 50%;
+    bottom: 18px;
+    transform: translate(-50%, 100%);
 }

@@ -124,6 +124,10 @@ class CartController extends Controller
         return response()->json(['success' => true,'subtotal' =>  number_format($newSubtotal, 0, ',', '.') . '₫']);
     }
 
+    public function buy(){
+        return redirect()->route('checkout');
+    }
+
 }
 
 
