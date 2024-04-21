@@ -92,7 +92,7 @@ Route::put('/carts/{id}/check', [CartController::class, 'check'])->name('cart.ch
 
 Route::get('/carts/total-price', [CartController::class,  'getTotalPrice'])->name('cart.total.price');
 
-
+Route::post('/carts/update', [CartController::class, 'updateCart'])->name('cart.update');
 
 /*
 

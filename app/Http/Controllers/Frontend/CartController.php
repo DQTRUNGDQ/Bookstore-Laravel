@@ -8,6 +8,7 @@ use App\Models\Products;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Cart;
 use App\Models\Category;
+use Illuminate\Http\Request;
 // use Gloudemans\Shoppingcart\Facades\Cart;
 
 
@@ -45,6 +46,7 @@ class CartController extends Controller
         return $totalPrice;
     }
 
+
     public function cart() {
         if (Auth::check()) {
             $userId = Auth::id();
@@ -71,7 +73,7 @@ class CartController extends Controller
 
             if ($cartItem) {
                 $cartItem->quantity += 1;
-                 $cartItem->subtotal = $cartItem->quantity * $cartItem->price;
+                $cartItem->subtotal = $cartItem->quantity * $cartItem->price;
                 $cartItem->save();
             } else {
                 $cartItem = new Cart();
@@ -110,6 +112,18 @@ class CartController extends Controller
             toastr()->success('Tất cả sản phẩm đã được xóa khỏi vào giỏ hàng!');
             return back();
     }
+
+    public function updateCart(Request $request){
+        $cartItem = Cart::find($request->cart_item_id);
+
+
+        $cartItem->quantity = $request->quantity;
+        $newSubtotal = $cartItem->subtotal = $cartItem->price * $request->quantity;
+        $cartItem->save();
+
+        return response()->json(['success' => true,'subtotal' =>  number_format($newSubtotal, 0, ',', '.') . '₫']);
+    }
+
 }
 
 

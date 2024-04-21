@@ -338,11 +338,14 @@
                                                 <i class="fa-solid fa-minus"></i>
                                             </span>
                                             <input type="tel" class="qty-input" value="{{ $item->quantity }}">
+                                            <input type="hidden" id="cart-update-url"
+                                                value="{{ route('cart.update') }}">
                                             <span class="qty-increase">
                                                 <i class="fa-solid fa-plus"></i>
                                             </span>
                                         </div>
-                                        <div class="item-subtotal" data-price="{{ $item->price }}">
+                                        <div class="item-subtotal" data-price="{{ $item->price }}"
+                                            id="subtotal_{{ $item->id }}">
                                             {{ number_format($item->subtotal, 0, ',', '.') }}
                                             <sup>₫</sup>
                                         </div>
@@ -375,7 +378,6 @@
                                         </div>
                                     </div>
                                 @endforeach
-
                             </div>
                             <div class="seller-discount">
                                 <div class="discount-wrapper">
