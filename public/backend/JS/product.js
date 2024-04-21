@@ -3,8 +3,8 @@ $(document).ready(function(){
         slidesToShow: 1,
         slidesToScroll: 1,
         // autoplay: true,
-        // autoplaySpeed: 2000, 
-        dots: true, 
+        // autoplaySpeed: 2000,
+        dots: true,
         arrows: true,
         prevArrow:
               "<button type='button' class='slick-prev slick-arrow'><i class='fa fa-angle-left' aria-hidden='true'></i></button>",
@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", function() {
       thumbnails.forEach(function(thumbnail) {
         thumbnail.classList.remove('selected');
       });
-      
+
       // Thêm 'selected' class đến các thumbnail được click
       this.classList.add('selected');
     });
@@ -50,7 +50,7 @@ document.addEventListener("DOMContentLoaded", function() {
   });
 });
 
-//Làm mờ description dài quá 
+//Làm mờ description dài quá
 
 function toggleGradient() {
     var additionalContent = document.getElementById('additional-content');

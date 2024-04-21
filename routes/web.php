@@ -88,6 +88,12 @@ Route::delete('/cart/remove/{id}', [CartController::class, 'removeItem'])-> name
 
 Route::delete('/cart/clear', [CartController::class, 'removeAll'])-> name('cart.remove.all');
 
+Route::put('/carts/{id}/check', [CartController::class, 'check'])->name('cart.check');
+
+Route::get('/carts/total-price', [CartController::class,  'getTotalPrice'])->name('cart.total.price');
+
+
+
 /*
 
 Route::get('cart', [CartController::class, 'cart'])-> name('cart.show');

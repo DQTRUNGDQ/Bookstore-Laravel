@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Apr 20, 2024 at 07:34 AM
+-- Generation Time: Apr 21, 2024 at 08:20 AM
 -- Server version: 10.8.4-MariaDB
 -- PHP Version: 8.1.9
 
@@ -183,16 +183,18 @@ CREATE TABLE `carts` (
   `image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `quantity` int(11) NOT NULL DEFAULT 1,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `checked` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `carts`
 --
 
-INSERT INTO `carts` (`id`, `user_id`, `product_id`, `product_name`, `price`, `subtotal`, `image`, `quantity`, `created_at`, `updated_at`) VALUES
-(8, 4, 1, 'Một người phụ nữ (Nobel Prize in Literature 2022)', 59300, 237200, './upload/img/products/vanhoc/1.jpg', 4, '2024-04-20 01:17:18', '2024-04-20 01:23:00'),
-(9, 3, 2, 'Xứ Cát', 174000, 174000, './upload/img/products/vanhoc/2.jpg', 1, '2024-04-20 01:29:22', '2024-04-20 01:29:22');
+INSERT INTO `carts` (`id`, `user_id`, `product_id`, `product_name`, `price`, `subtotal`, `image`, `quantity`, `created_at`, `updated_at`, `checked`) VALUES
+(9, 3, 2, 'Xứ Cát', 174000, 174000, './upload/img/products/vanhoc/2.jpg', 1, '2024-04-20 01:29:22', '2024-04-20 01:29:22', 0),
+(11, 4, 1, 'Một người phụ nữ (Nobel Prize in Literature 2022)', 59300, 118600, './upload/img/products/vanhoc/1.jpg', 2, '2024-04-20 08:40:57', '2024-04-21 02:18:31', 0),
+(12, 4, 2, 'Xứ Cát', 174000, 348000, './upload/img/products/vanhoc/2.jpg', 2, '2024-04-20 08:41:14', '2024-04-21 02:19:24', 0);
 
 -- --------------------------------------------------------
 
@@ -383,7 +385,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (16, '2019_12_14_000001_create_personal_access_tokens_table', 2),
 (18, '2024_03_31_153807_create_carts_table', 3),
 (19, '2024_04_19_150901_create_product_details_table', 4),
-(20, '2024_04_20_031050_create_carts_table', 5);
+(20, '2024_04_20_031050_create_carts_table', 5),
+(22, '2024_04_21_030008_add_checked_to_products_table', 6);
 
 -- --------------------------------------------------------
 
@@ -473,7 +476,7 @@ CREATE TABLE `products` (
 
 INSERT INTO `products` (`id`, `category_id`, `image`, `name`, `author`, `category`, `subcategory`, `thumbnail1`, `thumbnail2`, `thumbnail3`, `thumbnail4`, `feature1`, `feature2`, `feature3`, `description`, `price`, `rating`, `quantity`, `sold`, `discount_percent`, `delivery_time`, `created_at`, `updated_at`) VALUES
 (1, 1, './upload/img/products/vanhoc/1.jpg', 'Một người phụ nữ (Nobel Prize in Literature 2022)', 'Annie Ernaux', 'Sách văn học', 'Truyện ngắn - Tản văn - Tạp Văn\r\n', '/upload/img/Products/vanhoc/Thumbnail/1/1.jpg', '/upload/img/Products/vanhoc/Thumbnail/1/2.jpg', '/upload/img/Products/vanhoc/Thumbnail/1/3.jpg', '/upload/img/Products/vanhoc/Thumbnail/1/4.jpg', 'Nhân văn và cảm xúc sâu sắc.', 'Ngôn ngữ thân thiện và gần gũi.', 'Tác giả được trao giải Nobel Văn chương 2022.', NULL, 59300, 5, 1217, 497, '25.00', 'Giao thứ 2, 22/04', NULL, NULL),
-(2, 1, './upload/img/products/vanhoc/2.jpg', 'Xứ Cát', 'Frank Herbert', 'Sách văn ', 'Truyện Giả tưởng - Huyền Bí - Phiêu Lưu\r\n', '/upload/img/Products/vanhoc/Thumbnail/2/1.jpg', '/upload/img/Products/vanhoc/Thumbnail/2/2.jpg', '/upload/img/Products/vanhoc/Thumbnail/2/3.jpg', '/upload/img/Products/vanhoc/Thumbnail/2/4.jpg', 'Cốt truyện đa dạng và phức tạp, hấp dẫn và căng thẳng.\r\n', '\r\nXây dựng tâm lý nhân vật tinh tế, độc đáo và thú vị.\r\n', 'Kiến thức khổng lồ về không gian và con người được tận dụng một cách hấp dẫn.', NULL, 174000, 1, 0, 5000, '30.00', 'Giao Thứ 2, 22/04', NULL, NULL),
+(2, 1, './upload/img/products/vanhoc/2.jpg', 'Xứ Cát', 'Frank Herbert', 'Sách văn học', 'Truyện Giả tưởng - Huyền Bí - Phiêu Lưu\r\n', '/upload/img/Products/vanhoc/Thumbnail/2/1.jpg', '/upload/img/Products/vanhoc/Thumbnail/2/2.jpg', '/upload/img/Products/vanhoc/Thumbnail/2/3.jpg', '/upload/img/Products/vanhoc/Thumbnail/2/4.jpg', 'Cốt truyện đa dạng và phức tạp, hấp dẫn và căng thẳng.\r\n', '\r\nXây dựng tâm lý nhân vật tinh tế, độc đáo và thú vị.\r\n', 'Kiến thức khổng lồ về không gian và con người được tận dụng một cách hấp dẫn.', NULL, 174000, 1, 0, 5000, '30.00', 'Giao Thứ 2, 22/04', NULL, NULL),
 (3, 1, './upload/img/products/vanhoc/3.jpg', 'Utopia - Địa đàng trần gian (Tái Bản 2020)', 'Thomas More', 'Sách văn học', 'Truyện ngắn - Tản văn - Tạp Văn\r\n', 'Sách văn học', 'Sách văn học', 'Sách văn học', 'Sách văn học', 'Sách văn học', 'Sách văn học', 'Sách văn học', NULL, 45100, 5, 0, 1000, '25.00', 'Giao thứ 3, 23/04', NULL, NULL),
 (4, 1, './upload/img/products/vanhoc/4.jpg', 'Hoa Vẫn Nở Mỗi Ngày', 'Valérie Perrin', 'Sách văn học', 'Truyện ngắn - Tản văn - Tạp Văn\r\n', 'Sách văn học', 'Sách văn học', 'Sách văn học', 'Sách văn học', 'Sách văn học', 'Sách văn học', 'Sách văn học', NULL, 203650, 5, 0, 400, '0.00', 'Giao thứ 3, 23/04', NULL, NULL),
 (5, 1, '/upload/img/products/vanhoc/5.jpg', 'Nỗi nhục (Nobel Prize in Literature 2022)', 'Annie Ernaux', 'Sách văn học', 'Truyện ngắn - Tản văn - Tạp Văn\r\n', 'Sách văn học', 'Sách văn học', 'Sách văn học', 'Sách văn học', 'Sách văn học', 'Sách văn học', 'Sách văn học', NULL, 59300, 5, 0, 500, '25.00', '', NULL, NULL),
@@ -640,7 +643,7 @@ CREATE TABLE `users` (
   `role` varchar(256) COLLATE utf8mb4_unicode_ci NOT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `phone` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `province` varchar(256) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `province` varchar(256) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `province_id` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `district_id` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `ward_id` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -815,7 +818,7 @@ ALTER TABLE `banner`
 -- AUTO_INCREMENT for table `carts`
 --
 ALTER TABLE `carts`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `category_details`
@@ -833,7 +836,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -869,7 +872,7 @@ ALTER TABLE `similarproducts`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- Constraints for dumped tables

@@ -7,6 +7,7 @@ use App\Models\Cart as ModelsCart;
 use App\Models\Products;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Cart;
+use App\Models\Category;
 // use Gloudemans\Shoppingcart\Facades\Cart;
 
 
@@ -14,6 +15,35 @@ class CartController extends Controller
 {
 
 //LÀM CÁC CHỨC NĂNG GIỎ HÀNG BẰNG CSDL
+
+    public function check($id){
+        $cartItem = Cart::findOrFail($id);
+        $cartItem->checked = !$cartItem->checked;
+        $cartItem->save();
+
+        // Sau khi cập nhật trạng thái checked, tính toán lại tổng giá tiền và trả về kết quả
+        $totalPrice = $this->calculateTotalPrice();
+
+        return response()->json(['success' => true,'totalPrice' => number_format($totalPrice, 0, ',', '.') . '₫']);
+    }
+
+    public function getTotalPrice()
+    {
+        $totalPrice = $this->calculateTotalPrice();
+        return response()->json(['totalPrice' => number_format($totalPrice, 0, ',', '.') . '₫']);
+    }
+
+    public function calculateTotalPrice()
+    {
+        $checkedCartItems = Cart::where('checked', true)->get();
+        $totalPrice = 0;
+
+        foreach ($checkedCartItems as $cartItem) {
+            $totalPrice += $cartItem->price * $cartItem->quantity;
+        }
+
+        return $totalPrice;
+    }
 
     public function cart() {
         if (Auth::check()) {
@@ -25,7 +55,7 @@ class CartController extends Controller
                 $totalQuantity += $item->quantity;
             }
 
-            return view('frontend.cart', compact('cartItems','totalQuantity'));
+            return view('frontend.cart', compact('cartItems','totalQuantity',));
 
         } else {
             return redirect()->route('login')->with('error', 'Bạn cần đăng nhập để xem giỏ hàng!');

@@ -303,13 +303,14 @@
                                     <div class="seller-product cart-grid">
                                         <div class="item-info">
                                             <label for="" class="checkbox-styled">
-                                                <input type="checkbox" class="checkbox">
+                                                <input type="checkbox" class="checkbox"
+                                                    data-cart-item-id="{{ $item->id }}">
                                             </label>
-                                            <a href="" target="_blank">
+                                            <a href="{{ route('product.show', ['id' => $item->product_id]) }}"
+                                                target="_blank">
                                                 <img width="80" height="80" src="{{ $item->image }}"
                                                     alt="">
                                             </a>
-
                                             <div class="info-styled">
                                                 <img width="89" height="20"
                                                     src="{{ asset('/upload/img/official.png') }}" alt="">
@@ -393,21 +394,58 @@
 
             <div class="cart-content-right">
                 <div class="right-inner">
-                    <div class="address-block">
+                    <div class="address-block block-styled">
                         <div class="block-header">
                             <h3 class="block-header-title">Giao tới</h3>
                             <a href="" class="block-header-nav">Thay đổi</a>
                         </div>
                         <div class="customer-info">
-                            <p class="customer-info-name">Quốc Trung</p>
+                            <p class="customer-info-name">{{ Auth::user()->name }}</p>
                             <i></i>
-                            <p class="customer-info-phone">0796387080</p>
+                            <p class="customer-info-phone">{{ Auth::user()->phone }}</p>
                         </div>
-                        <div class="address-styled">
+                        <div class="address-styled ">
                             <span class="address-type-home">Nhà</span>
-                            Nhà văn hoá Nguyễn Xá, đường Đỗ Thế Diên, Xã Nhân Hòa, Huyện Mỹ Hào, Hưng Yên
+                            {{ Auth::user()->address }}
                         </div>
                     </div>
+                    <div class="coupon-block block-styled">
+                        <div class="block-header">
+                            <div class="block-header-tilte">
+                                BookWorld Khuyến Mãi
+                            </div>
+                            <div class="block-header-usage">
+                                <span>Có thể chọn 2</span>
+                                <i class="fa-solid fa-circle-info"></i>
+                            </div>
+                        </div>
+                        <div class="show-more">
+                            <i class="fa-solid fa-ticket"></i>
+                            <span>Chọn hoặc nhập Khuyến mãi khác</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="price-summary">
+                    <ul class="price-items">
+                        <li class="price-item">
+                            <span class="price-text">Tạm tính</span>
+                            <span class="price-value">
+                                0<sup>₫</sup>
+                            </span>
+                        </li>
+                    </ul>
+                    <div class="price-total">
+                        <div class="price-text">Tổng tiền</div>
+                        <div class="price-content">
+                            <div class="price-values-final ">
+                                <span class="price-values-empty">Vui lòng chọn sản phẩm</span>
+                            </div>
+                            <div class="price-values-noted">(Đã bao gồm VAT nếu có)</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="buy-now-btn" style="margin: 15px 0px 0px;">
+                    Mua Hàng <span id="checkedProductsCount"></span>
                 </div>
             </div>
         </div>

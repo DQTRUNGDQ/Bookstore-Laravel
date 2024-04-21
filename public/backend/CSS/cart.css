@@ -297,7 +297,7 @@ main {
     color: #787887;
 }
 
-.address-block{
+.block-styled{
     width: 320px;
     /* height: 157px; */
     border-radius: 4px;
@@ -347,6 +347,7 @@ main {
     color: #808089;
     text-decoration: none;
     white-space: normal;
+    font-size: 14px;
 }
 
 .address-type-home{
@@ -361,6 +362,96 @@ main {
     display: inline-flex;
     align-items: center;
 }
+
+
+.block-header-usage{
+    color: rgb(120, 120, 120);
+    display: flex;
+    align-items: center;
+}
+
+.block-header-usage span {
+    margin-right: 5px;
+}
+
+
+.coupon-block .show-more{
+    display: flex;
+    align-items: center;
+    color: rgb(11, 116, 229);
+    font-size: 13px;
+    line-height: 20px;
+    cursor: pointer;
+    margin-top:20px
+}
+
+.coupon-block .show-more i {
+    font-size: 20px;
+    margin-right: 10px;
+}
+
+.price-summary{
+    background: rgb(255, 255, 255);
+    border-radius: 4px;
+    padding-bottom: 8px;
+}
+
+.price-summary .price-items{
+    list-style: none;
+    margin: 0px;
+    padding: 17px 20px;
+    border-bottom: 1px solid rgb(244, 244, 244);
+}
+
+.price-summary .price-item{
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.price-summary .price-text{
+    font-weight: 300;
+    color: rgb(51, 51, 51);
+    display: inline-block;
+}
+
+.price-summary .price-total{
+    padding: 17px 20px;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    margin: 0px;
+}
+
+.price-summary .price-content{
+    text-align: right;
+}
+
+.price-summary .price-values-final{
+    color: rgb(254, 56, 52);
+    font-size: 22px;
+    font-weight: 500;
+    text-align: right;
+     margin-top: -8px;
+}
+
+.price-summary .price-values-empty{
+    color: rgb(254, 56, 52);
+    font-size: 15px;
+    font-weight: 500;
+    text-align: right;
+}
+
+.price-summary .price-values-noted{
+    font-weight: 300;
+    font-style: normal;
+    display: block;
+    font-size: 12px;
+    color: rgb(51, 51, 51);
+    margin-top: 3px;
+}
+
 
 
 /*--------------------------------------XÁC NHẬN XÓA SẢN PHẨM-------------------------------------*/

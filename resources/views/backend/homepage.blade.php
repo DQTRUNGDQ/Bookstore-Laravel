@@ -278,7 +278,7 @@
                                     </div>
 
                                     <div class="input">
-                                        <input type="password" name="password_register" id="password_register"
+                                        <input name="password_register" id="password_register" type="password"
                                             placeholder="Mật khẩu" />
                                     </div>
                                     @if ($errors->has('password_register'))
@@ -287,8 +287,9 @@
                                         </span>
                                     @endif
                                     <div class="input">
-                                        <input type="password" id="password_confirm" name="password_confirm"
-                                            placeholder="Nhập lại mật khẩu" required />
+                                        <input type="password" id="password_confirmation"
+                                            name="password_register_confirmation" placeholder="Nhập lại mật khẩu"
+                                            required />
                                     </div>
                                     <button>Đăng Ký</button>
                                 </form>

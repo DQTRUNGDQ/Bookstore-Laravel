@@ -75,7 +75,68 @@ function cancelDeleteAll() {
         });
     });
 
- 
 
-       
+// AJAX ĐỂ GỬI REQUEST KHI NGƯỜI DÙNG CHECK SẢN PHẨM
+
+    $(document).ready(function() {
+        $('.checkbox').change(function() {
+            var cartItemId = $(this).data('cart-item-id');
+            var isChecked = $(this).prop('checked');
+
+            $.ajax({
+                 headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                type: 'PUT',
+                url: '/public/carts/' + cartItemId + '/check',
+                data: { checked: isChecked },
+                success: function(response) {
+                    // Nếu cập nhật thành công, cập nhật giá tiền
+                    if (response.success) {
+                        updateTotalPriceChecked();
+                    }
+                },
+                error: function(xhr, status, error) {
+                    // Xử lý lỗi nếu có
+                }
+            });
+        });
+
+        function updateTotalPriceChecked() {
+            $.ajax({
+              type: 'GET',
+                        url: '/public/carts//total-price',
+                        success: function(response) {
+                            var totalPriceFormatted = response.totalPrice;
+                            $('.price-value').text(totalPriceFormatted); // Cập nhật giá tiền ở cả hai vị trí
+                            $('.price-values-final').text(totalPriceFormatted);
+                        },
+                        error: function(xhr, status, error) {
+                            console.error(error); // Xử lý lỗi nếu có
+                        }
+                    });
+        }
+
+        //SỐ LƯỢNG SẢN PHẨM ĐƯỢC CHECKED
+
+        function updateCheckedProductsCount() {
+            var checkedProductsCount = $('.checkbox:checked').length;
+            $('#checkedProductsCount').text(checkedProductsCount > 0 ? '(' + checkedProductsCount + ')' : '');
+        }
+
+        $(document).ready(function() {
+            // Cập nhật số lượng sản phẩm được check khi trang được tải
+            updateCheckedProductsCount();
+
+            $('.checkbox').change(function() {
+                // Cập nhật số lượng sản phẩm được check khi có sự thay đổi trong checkbox
+                updateCheckedProductsCount();
+        });
+    });
+
+    })
+
+
+
+
 

@@ -7,8 +7,9 @@ use Illuminate\Http\Request;
 use App\Http\Requests\AuthRequest;
 use GuzzleHttp\RedirectMiddleware;
 use Illuminate\Support\Facades\Auth;
-USE Illuminate\Support\Facades\Hash;
-USE App\Models\User;
+use Illuminate\Support\Facades\Hash;
+use App\Models\User;
+use Illuminate\Support\Facades\Validator;
 
 class AuthController extends Controller
 {
@@ -41,22 +42,31 @@ class AuthController extends Controller
 
     public function register(Request $request){
 
-        $request->validate([
+        $validator = Validator::make($request->all(),[
             'name' => 'required|string|max:256',
             'email_register' => 'required|string|email|unique:users,email',
-            'password_register' => 'required|string|min:8|confirmed'
+            'password_register' => 'required|min:1|confirmed',
+            'phone'=> 'min:10|max:10'
         ]);
 
+        // Nếu validation fails, redirect lại với thông báo lỗi
+        if ($validator->fails()) {
+            return redirect()->back()
+                ->withErrors($validator)
+                ->withInput()
+                ->with('error', 'Tạo tài khoản không thành công.');
+        }
 
-        $user = new User();
-        $user->name = $request->input('name');
-        $user->email = $request->input('email_register');
-        $user->phone = $request->input('phone');
-        $user->password = Hash::make($request->input('password_register'));
-        $user->role = 'user';
-        $user->save();
-
+        $user = User::create([
+                'name' => $request->name,
+                'email' => $request->email_register,
+                'role' => 'user',
+                'password' => Hash::make($request->password_register),
+                'phone' => $request->phone, // Chắc chắn rằng bạn đã có trường phone từ dữ liệu POST
+        ]);
+        toastr()->success('Đã tạo tài khoản thành công');
         Auth::login($user);
+
 
         return redirect()->route('auth.homepage')->with('success', 'Đăng ký thành công');
 

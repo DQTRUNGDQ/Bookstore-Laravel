@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Products;
-use App\Models\productdetails;
+use App\Models\Category;
 use App\Models\similarproducts;
 use Illuminate\Support\Facades\DB;
 // use Gloudemans\Shoppingcart\Facades\Cart;
@@ -29,6 +29,7 @@ class ShowProductController extends Controller
         $breadcrumb['subcategory'] = $subcategory;
         $breadcrumb['name'] = $productdetails->name;
 
+
         if(!$productdetails){
             // Xử lý khi không tìm thấy sản phẩm
             abort(404);
@@ -46,13 +47,17 @@ class ShowProductController extends Controller
                 $totalQuantity += $item->quantity;
         }
 
+        //Ấn vào breadcrumb sẽ điều hướng về trang chi tiết danh mục mà sản phẩm ấy thuộc về
+        $product = Products::find($id);
 
+        $categoryId = $product->category_id;
 
         return view('frontend.productdetails',
             compact(
                 'productdetails',
                 'breadcrumb',
                 'totalQuantity',
+                'categoryId'
             ));
     }
 }

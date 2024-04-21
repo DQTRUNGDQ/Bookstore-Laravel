@@ -197,7 +197,7 @@
                         </div>
                     </div>
                     <div class="login-right">
-                        <img width="203" src="./upload/img/Login/loginright.png" alt="" />
+                        <img width="203" src="../../../public/upload/img/Login/loginright.png" alt="" />
                         <div class="content-lgr">
                             <h4>Mua sắm tại BookWorld</h4>
                             <span>Siêu ưu đãi mỗi ngày</span>
@@ -218,29 +218,53 @@
                                 <h4>Tạo tài khoản</h4>
                                 <p>Vui lòng nhập thông tin</p>
                             </div>
-                            <form action="" method="post">
+                            <form action="{{ route('auth.register') }}" method="POST">
+                                @csrf
                                 <div class="input">
-                                    <input type="fullname" name="fullname" placeholder="Họ tên" value />
+                                    <input type="text" name="name" id="name" placeholder="Họ tên"
+                                        value />
                                 </div>
+                                @if ($errors->has('name'))
+                                    <span class="error-message">
+                                        {{ $errors->first('name') }}
+                                    </span>
+                                @endif
                                 <div class="input">
-                                    <input type="email" name="email" placeholder="acb@email.com" value />
+                                    <input type="email" name="email_register" id="email_register"
+                                        placeholder="acb@email.com" value />
                                 </div>
+                                <!-- Thông báo lỗi validate -->
+                                @if ($errors->has('email_register'))
+                                    <span class="error-message">
+                                        {{ $errors->first('email_register') }}
+                                    </span>
+                                @endif
+
                                 <div class="input">
-                                    <input type="password" name="password" placeholder="Mật khẩu" />
+                                    <input type="tel" name="phone" id="phone" placeholder="Số điện thoại"
+                                        maxlength="10" required />
                                 </div>
+
                                 <div class="input">
-                                    <input type="password" name="password_confirm" placeholder="Nhập lại mật khẩu" />
+                                    <input name="password_register" id="password_register" type="password"
+                                        placeholder="Mật khẩu" />
                                 </div>
+                                @if ($errors->has('password_register'))
+                                    <span class="error-message">
+                                        {{ $errors->first('password_register') }}
+                                    </span>
+                                @endif
                                 <div class="input">
-                                    <input type="tel" name="phone" placeholder="Số điện thoại"
-                                        maxlength="10" />
+                                    <input type="password" id="password_confirmation"
+                                        name="password_register_confirmation" placeholder="Nhập lại mật khẩu"
+                                        required />
                                 </div>
-                                <button type="submit">Đăng Ký</button>
+                                <button>Đăng Ký</button>
                             </form>
                         </div>
                     </div>
                     <div class="login-right-rg">
-                        <img width="203" src="./upload/img/Login/loginright.png" alt="" />
+                        <img width="203" src="../../../public/upload/img/Login/loginright.png" alt="" />
                         <div class="content-lgr">
                             <h4>Mua sắm tại BookWorld</h4>
                             <span>Siêu ưu đãi mỗi ngày</span>
@@ -253,7 +277,7 @@
                     <span>Trang chủ</span>
                 </a>
                 <span><i class="fa-solid fa-angle-right"></i></span>
-                <a href="" class="breadcrumb-item">
+                <a href="{{ route('category.products', ['id' => $categoryId]) }}" class="breadcrumb-item">
                     <span>{{ $breadcrumb['category'] }}</span>
                 </a>
                 <span><i class="fa-solid fa-angle-right"></i></span>
@@ -352,7 +376,7 @@
                                                             <div class="separator"></div>
                                                         </div>
                                                         <div class="quantity-sold">
-                                                            Đã bán {{ $productdetails->sold }}+
+                                                            Đã bán {{ $productdetails->sold }} +
                                                         </div>
                                                     </div>
                                                 </div>
