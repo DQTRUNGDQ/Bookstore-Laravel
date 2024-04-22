@@ -57,6 +57,10 @@ function cancelDeleteAll() {
     document.getElementById("confirmAllOverlay").style.display = "none";
 }
 
+function cancelNotification() {
+    document.getElementById("confirmNotice").style.display = "none";
+}
+
 // CHỌN TẤT CẢ
     // Xử lý checkbox "Tất cả sản phẩm"
     document.getElementById('select-all-products').addEventListener('click', function() {
@@ -132,6 +136,21 @@ function cancelDeleteAll() {
                 // Cập nhật số lượng sản phẩm được check khi có sự thay đổi trong checkbox
                 updateCheckedProductsCount();
         });
+
+        // Xử lý sự kiện khi submit form
+        $('form').submit(function(event) {
+            // Lấy số lượng sản phẩm được chọn
+            var checkedProductsCount = $('.checkbox:checked').length;
+
+            // Kiểm tra nếu không có sản phẩm nào được chọn
+            if (checkedProductsCount === 0) {
+                // Hiển thị overlay
+                $('#confirmNotice').show();
+
+                // Ngăn chặn sự kiện mặc định của form (không submit form)
+                event.preventDefault();
+            }
+        })
     });
 
     })

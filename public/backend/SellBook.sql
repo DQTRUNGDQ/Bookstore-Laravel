@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Apr 21, 2024 at 08:20 AM
+-- Generation Time: Apr 22, 2024 at 08:34 PM
 -- Server version: 10.8.4-MariaDB
 -- PHP Version: 8.1.9
 
@@ -192,9 +192,11 @@ CREATE TABLE `carts` (
 --
 
 INSERT INTO `carts` (`id`, `user_id`, `product_id`, `product_name`, `price`, `subtotal`, `image`, `quantity`, `created_at`, `updated_at`, `checked`) VALUES
-(9, 3, 2, 'Xứ Cát', 174000, 174000, './upload/img/products/vanhoc/2.jpg', 1, '2024-04-20 01:29:22', '2024-04-20 01:29:22', 0),
-(11, 4, 1, 'Một người phụ nữ (Nobel Prize in Literature 2022)', 59300, 118600, './upload/img/products/vanhoc/1.jpg', 2, '2024-04-20 08:40:57', '2024-04-21 02:18:31', 0),
-(12, 4, 2, 'Xứ Cát', 174000, 348000, './upload/img/products/vanhoc/2.jpg', 2, '2024-04-20 08:41:14', '2024-04-21 02:19:24', 0);
+(9, 3, 2, 'Xứ Cát', 174000, 174000, './upload/img/products/vanhoc/2.jpg', 1, '2024-04-20 01:29:22', '2024-04-22 14:28:51', 1),
+(11, 4, 1, 'Một người phụ nữ (Nobel Prize in Literature 2022)', 59300, 296500, './upload/img/products/vanhoc/1.jpg', 5, '2024-04-20 08:40:57', '2024-04-22 14:28:27', 0),
+(12, 4, 2, 'Xứ Cát', 174000, 870000, './upload/img/products/vanhoc/2.jpg', 5, '2024-04-20 08:41:14', '2024-04-22 14:28:27', 0),
+(13, 4, 5, 'Nỗi nhục (Nobel Prize in Literature 2022)', 59300, 59300, './upload/img/products/vanhoc/5.jpg', 1, '2024-04-21 08:23:12', '2024-04-22 14:28:28', 0),
+(14, 4, 4, 'Hoa Vẫn Nở Mỗi Ngày', 203650, 203650, './upload/img/products/vanhoc/4.jpg', 1, '2024-04-21 08:23:23', '2024-04-22 14:28:28', 0);
 
 -- --------------------------------------------------------
 
@@ -386,7 +388,40 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (18, '2024_03_31_153807_create_carts_table', 3),
 (19, '2024_04_19_150901_create_product_details_table', 4),
 (20, '2024_04_20_031050_create_carts_table', 5),
-(22, '2024_04_21_030008_add_checked_to_products_table', 6);
+(22, '2024_04_21_030008_add_checked_to_products_table', 6),
+(23, '2024_04_22_161227_create_order_details_table', 7);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `orders`
+--
+
+CREATE TABLE `orders` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `customer_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `phone_number` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `address` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `user_id` bigint(20) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `order_details`
+--
+
+CREATE TABLE `order_details` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `order_id` bigint(20) UNSIGNED NOT NULL,
+  `product_id` bigint(20) UNSIGNED NOT NULL,
+  `quantity` int(11) NOT NULL,
+  `totalprice` int(11) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -477,9 +512,9 @@ CREATE TABLE `products` (
 INSERT INTO `products` (`id`, `category_id`, `image`, `name`, `author`, `category`, `subcategory`, `thumbnail1`, `thumbnail2`, `thumbnail3`, `thumbnail4`, `feature1`, `feature2`, `feature3`, `description`, `price`, `rating`, `quantity`, `sold`, `discount_percent`, `delivery_time`, `created_at`, `updated_at`) VALUES
 (1, 1, './upload/img/products/vanhoc/1.jpg', 'Một người phụ nữ (Nobel Prize in Literature 2022)', 'Annie Ernaux', 'Sách văn học', 'Truyện ngắn - Tản văn - Tạp Văn\r\n', '/upload/img/Products/vanhoc/Thumbnail/1/1.jpg', '/upload/img/Products/vanhoc/Thumbnail/1/2.jpg', '/upload/img/Products/vanhoc/Thumbnail/1/3.jpg', '/upload/img/Products/vanhoc/Thumbnail/1/4.jpg', 'Nhân văn và cảm xúc sâu sắc.', 'Ngôn ngữ thân thiện và gần gũi.', 'Tác giả được trao giải Nobel Văn chương 2022.', NULL, 59300, 5, 1217, 497, '25.00', 'Giao thứ 2, 22/04', NULL, NULL),
 (2, 1, './upload/img/products/vanhoc/2.jpg', 'Xứ Cát', 'Frank Herbert', 'Sách văn học', 'Truyện Giả tưởng - Huyền Bí - Phiêu Lưu\r\n', '/upload/img/Products/vanhoc/Thumbnail/2/1.jpg', '/upload/img/Products/vanhoc/Thumbnail/2/2.jpg', '/upload/img/Products/vanhoc/Thumbnail/2/3.jpg', '/upload/img/Products/vanhoc/Thumbnail/2/4.jpg', 'Cốt truyện đa dạng và phức tạp, hấp dẫn và căng thẳng.\r\n', '\r\nXây dựng tâm lý nhân vật tinh tế, độc đáo và thú vị.\r\n', 'Kiến thức khổng lồ về không gian và con người được tận dụng một cách hấp dẫn.', NULL, 174000, 1, 0, 5000, '30.00', 'Giao Thứ 2, 22/04', NULL, NULL),
-(3, 1, './upload/img/products/vanhoc/3.jpg', 'Utopia - Địa đàng trần gian (Tái Bản 2020)', 'Thomas More', 'Sách văn học', 'Truyện ngắn - Tản văn - Tạp Văn\r\n', 'Sách văn học', 'Sách văn học', 'Sách văn học', 'Sách văn học', 'Sách văn học', 'Sách văn học', 'Sách văn học', NULL, 45100, 5, 0, 1000, '25.00', 'Giao thứ 3, 23/04', NULL, NULL),
-(4, 1, './upload/img/products/vanhoc/4.jpg', 'Hoa Vẫn Nở Mỗi Ngày', 'Valérie Perrin', 'Sách văn học', 'Truyện ngắn - Tản văn - Tạp Văn\r\n', 'Sách văn học', 'Sách văn học', 'Sách văn học', 'Sách văn học', 'Sách văn học', 'Sách văn học', 'Sách văn học', NULL, 203650, 5, 0, 400, '0.00', 'Giao thứ 3, 23/04', NULL, NULL),
-(5, 1, '/upload/img/products/vanhoc/5.jpg', 'Nỗi nhục (Nobel Prize in Literature 2022)', 'Annie Ernaux', 'Sách văn học', 'Truyện ngắn - Tản văn - Tạp Văn\r\n', 'Sách văn học', 'Sách văn học', 'Sách văn học', 'Sách văn học', 'Sách văn học', 'Sách văn học', 'Sách văn học', NULL, 59300, 5, 0, 500, '25.00', '', NULL, NULL),
+(3, 1, './upload/img/products/vanhoc/3.jpg', 'Utopia - Địa đàng trần gian (Tái Bản 2020)', 'Thomas More', 'Sách văn học', 'Truyện ngắn - Tản văn - Tạp Văn\r\n', '/upload/img/Products/vanhoc/Thumbnail/3/1.jpg', '/upload/img/Products/vanhoc/Thumbnail/3/2.jpg', '/upload/img/Products/vanhoc/Thumbnail/3/3.jpg', '/upload/img/Products/vanhoc/Thumbnail/3/4.jpg', 'Sách kinh điển, thu hút sự quan tâm của độc giả suốt năm thế kỷ qua.', 'Suy ngẫm sâu sắc về trách nhiệm của người tri thức và giá trị cuộc sống.', 'Giải pháp tín ngưỡng đáng kinh ngạc trong thế giới khủng bố.', NULL, 45100, 5, 0, 1000, '25.00', 'Giao thứ 3, 23/04', NULL, NULL),
+(4, 1, './upload/img/products/vanhoc/4.jpg', 'Hoa Vẫn Nở Mỗi Ngày', 'Valérie Perrin', 'Sách văn học', 'Tiểu Thuyết Phương Tây\r\n', '/upload/img/Products/vanhoc/Thumbnail/4/1.jpg', '/upload/img/Products/vanhoc/Thumbnail/4/2.png', '/upload/img/Products/vanhoc/Thumbnail/4/3.png', '/upload/img/Products/vanhoc/Thumbnail/4/4.jpg', 'Tiểu thuyết đầy cảm xúc và thấm thía.\r\n', '\r\nNhân vật hài hước và cuốn hút.\r\n', '\r\nCó những thông điệp tích cực về tình yêu, tổn thương và hy vọng.', NULL, 203650, 5, 0, 400, '25.00', 'Giao thứ 3, 23/04', NULL, NULL),
+(5, 1, './upload/img/products/vanhoc/5.jpg', 'Nỗi nhục (Nobel Prize in Literature 2022)', 'Annie Ernaux', 'Sách văn học', 'Truyện ngắn - Tản văn - Tạp Văn\r\n', '/upload/img/Products/vanhoc/Thumbnail/5/1.jpg', '/upload/img/Products/vanhoc/Thumbnail/5/2.jpg', '/upload/img/Products/vanhoc/Thumbnail/5/3.jpg', '/upload/img/Products/vanhoc/Thumbnail/5/4.jpg', 'Câu chuyện đầy cảm xúc về sự nhục nhã và sự thay đổi trong cuộc sống.', 'Ngôn ngữ tinh tế và chân thực, chứng thật đẹp về một mùa hè.', 'Annie Ernaux là nhà văn tài năng, giành giải Nobel Văn chương.', NULL, 59300, 5, 0, 500, '25.00', 'Giao thứ 4, 24/04', NULL, NULL),
 (6, 1, './upload/img/products/vanhoc/6.jpg', 'Cây Cam Ngọt Của Tôi', 'José Mauro de Vasconcelos', 'Sách văn học', 'Sách văn học', 'Sách văn học', 'Sách văn học', 'Sách văn học', 'Sách văn học', 'Sách văn học', 'Sách văn học', 'Sách văn học', NULL, 75400, 5, 13265, 5000, NULL, 'Giao thứ 3, 23/04', NULL, NULL),
 (7, 1, './upload/img/products/vanhoc/7.jpg', 'Thiên Tài Bên Trái, Kẻ Điên Bên Phải (Tái Bản)', 'Sách văn học', 'Sách văn học', 'Sách văn học', 'Sách văn học', 'Sách văn học', 'Sách văn học', 'Sách văn học', 'Sách văn học', 'Sách văn học', 'Sách văn học', NULL, 116000, 5, 0, 5000, NULL, 'Giao thứ 3, 23/04', NULL, NULL),
 (8, 1, './upload/img/products/vanhoc/8.jpg', 'Nhà Giả Kim (Tái Bản 2020)', 'Sách văn học', 'Sách văn học', 'Sách văn học', 'Sách văn học', 'Sách văn học', 'Sách văn học', 'Sách văn học', 'Sách văn học', 'Sách văn học', 'Sách văn học', NULL, 55100, 5, 0, 5000, NULL, 'Giao thứ 3, 23/04', NULL, NULL),
@@ -527,7 +562,10 @@ CREATE TABLE `product_details` (
 
 INSERT INTO `product_details` (`id`, `product_id`, `issuingcompany`, `versiontype`, `publicationdate`, `size`, `translator`, `covertype`, `pages`, `language`, `publishingcompany`, `titledescription`, `description`, `descriptionmore`, `created_at`, `updated_at`) VALUES
 (1, 1, 'Nhã Nam', 'Phiên bản thường', '2023-04-01', '14 x 20.5 cm', 'Thu Phương', 'Bìa mềm', 109, 'Tiếng Việt', 'Nhà Xuất Bản Phụ Nữ', 'Mô tả sản phẩm', '“Tôi sẽ không còn nghe thấy giọng nói của bà nữa. […] Tôi đã đánh mất sợi dây nối cuối cùng với thế giới xuất thân của mình.”\r\nẤy là cảm giác của Annie Ernaux khi thực sự nhận ra mẹ mình không còn trên cõi đời. Và bà gắng đi tìm lại những gương mặt khác nhau của người mẹ ấy, một người phụ nữ vốn rất khỏe, xông xáo, cởi mở, qua đời ngày 7 tháng Tư năm 1986, sau một thời gian mắc bệnh Alzeimer. Qua sự tái hiện cuộc đời một nữ công nhân, rồi chủ hàng thực phẩm luôn lo âu về địa vị và học hỏi không ngừng, Annie Ernaux cũng cho ta thấy sự tiến triển cũng như tính hai mặt của những tình cảm mà một người con gái dành cho mẹ: tình yêu, lòng thù ghét, sự âu yếm, cảm giác tội lỗi và cuối cùng là sự gắn bó máu thịt với người đàn bà già cả đã sa sút trí tuệ. Cùng với đó phảng phất những thăng trầm của nước Pháp suốt thế kỷ 20, giống như lời tổng thống Pháp Emmanuel Macron đã phát biểu khi Annie Ernaux trở thành chủ nhân giải Nobel Văn chương 2022:\r\n\r\n“Suốt 50 năm qua, Annie Ernaux viết cuốn tiểu thuyết về ký ức tập thể và riêng tư của đất nước chúng ta. Tiếng nói của bà là tiếng nói của tự do của người phụ nữ và của những điều đã bị lãng quên trong thế kỷ qua.”', 'Annie Ernaux sinh năm 1940 tại Lillebonne, lớn lên tại Yvetot, đều thuộc tỉnh Seine-Maritime, vùng Normandie, tây bắc nước Pháp. Bà học ngành Văn học hiện đại ở đại học Rouen, sau đó làm giáo viên văn ở Annecy, Pontoise rồi Trung tâm giáo dục từ xa quốc gia. Bà là tiến sĩ danh dự của đại học Cergy-Pontoise.\r\n\r\nNăm 1974, bà xuất bản tác phẩm đầu tay Les armoires vides (Những ngăn kéo rỗng) kể về lần phá thai chui của bản thân vào năm 1964. Năm 1983, bà xuất bản Một chỗ trong đời, kể về cuộc đời của cha mình, và cuốn sách đã đoạt giải Renaudot. Năm 2008, bà xuất bản Les années (Những năm tháng), tác phẩm được coi là hoàn chỉnh cả về nội dung lẫn hình thức của thể loại hồi ức tập thể.\r\n\r\nTrong suốt sự nghiệp, Annie Ernaux đã được trao rất nhiều giải thưởng: giải Renaudot (1984), giải thưởng về ngôn ngữ Pháp, giải François Mauriac (2008), giải Marguerite Youcenar (2017)… và đặc biệt, giải Nobel Văn chương (2022) vì “với lòng can đảm cùng sự nhạy bén bên trong, bà đã khám phá ra những cội rễ, những cách biệt và những câu thúc tập thể của hồi ức cá nhân”.\r\n\r\nBà hiện sống ở Cergy, vùng Île-de-France.\r\n\r\n\r\nCác tác phẩm của Annie Ernaux xuất bản tại Nhã Nam:\r\n\r\n- Một chỗ trong đời\r\n\r\n- Hồi ức thiếu nữ\r\n\r\n- Nỗi nhục\r\n\r\n- Cơn cuồng si\r\n\r\n- Một người phụ nữ\r\n\r\n- Những năm tháng (sắp xuất bản)\r\n\r\nGiá sản phẩm trên Tiki đã bao gồm thuế theo luật hiện hành. Bên cạnh đó, tuỳ vào loại sản phẩm, hình thức và địa chỉ giao hàng mà có thể phát sinh thêm chi phí khác như phí vận chuyển, phụ phí hàng cồng kềnh, thuế nhập khẩu (đối với đơn hàng giao từ nước ngoài có giá trị trên 1 triệu đồng).....', NULL, NULL),
-(2, 2, '\r\nNhã Nam', '\r\nPhiên bản thường', '2021-12-01', '17 x 25 cm', '\r\nTrần Tiễn Cao Đăng', 'Bìa mềm', 714, 'Tiếng Việt', 'Nhà Xuất Bản Hội Nhà Văn', 'Sơ lược về tác phẩm', 'Một thời điểm rất xa trong tương lai…\r\n\r\nTừ đời này sang đời khác, người Fremen trên hành tinh sa mạc lưu truyền lời tiên tri về một đấng cứu tinh sẽ dẫn dắt họ giành lấy tự do đích thực…\r\n\r\nTừ thế hệ này sang thế hệ khác, những nữ phù thủy Bene Gesserit mỏi mòn chờ đợi sự xuất hiện của một B.G. nam giới duy nhất, người có thể vượt qua mọi giới hạn không gian - thời gian…\r\n\r\nLà Lisal al-Gaib của người Fremen, là Kwisatz Haderach của học viện Bene Gesserit, chàng công tước trẻ tuổi Paul Atreides đã làm tất cả những gì có thể để thay đổi định mệnh đó. Cha bị giết chết, mẹ bị cho là kẻ phản bội, gia tộc bị tàn sát, bản thân bị săn đuổi đến đường cùng, Paul đơn độc dấn thân vào một cuộc phiêu lưu sinh tử, không hề biết rằng mỗi hành động của mình sẽ góp phần quyết định vận mệnh của cả thiên hà. Sa mạc Arrakis khắc nghiệt tưởng như sẽ là nơi chôn vùi vĩnh viễn vinh quang của gia tộc Atreides, nhưng hóa ra lại thành điểm khởi đầu cho một huyền thoại mới…', 'Là một trong những cuốn tiểu thuyết khoa học giả tưởng bán chạy nhất mọi thời đại, Xứ Cát không chỉ là lựa chọn đối với những tín đồ của Chúa nhẫn, Chiến tranh giữa các vì sao… mà còn chinh phục độc giả đủ mọi lứa tuổi, mọi tầng lớp và sở thích bởi sự đa dạng và phức tạp của con người và không gian trong truyện, bởi sự tinh tế trong xây dựng tâm lý, bởi sự hấp dẫn, căng thẳng và bất ngờ của cốt truyện, bởi sự độc đáo và thú vị của khối lượng kiến thức khổng lồ cũng như bởi sự hấp dẫn trong những tư tưởng về tôn giáo, về tự do, về tình yêu, về sự sống và cái chết…\r\n\r\nNhận định\r\n\r\nĐộc nhất vô nhị… Không gì có thể sánh nổi, ngoại trừ Chúa nhẫn.\r\nArthur C. Clarke\r\n\r\nCó lẽ khó khăn lớn nhất khi đọc quyển sách này chính là phải đặt nó xuống.\r\n\r\nClassic Sci-Fi\r\n\r\n“Bức tranh toàn cảnh về một xã hội ngoài hành tinh hoàn thiện và chi tiết hơn bất kỳ tác giả nào trong lĩnh vực này từng dựng được… Một câu chuyện lôi cuốn vừa bởi hành động vừa bởi tầm nhìn triết học.”\r\n\r\nWashington Post Book World\r\n\r\nGiá sản phẩm trên Tiki đã bao gồm thuế theo luật hiện hành. Bên cạnh đó, tuỳ vào loại sản phẩm, hình thức và địa chỉ giao hàng mà có thể phát sinh thêm chi phí khác như phí vận chuyển, phụ phí hàng cồng kềnh, thuế nhập khẩu (đối với đơn hàng giao từ nước ngoài có giá trị trên 1 triệu đồng).....', NULL, NULL);
+(2, 2, '\r\nNhã Nam', '\r\nPhiên bản thường', '2021-12-01', '17 x 25 cm', '\r\nTrần Tiễn Cao Đăng', 'Bìa mềm', 714, 'Tiếng Việt', 'Nhà Xuất Bản Hội Nhà Văn', 'Sơ lược về tác phẩm', 'Một thời điểm rất xa trong tương lai…\r\n\r\nTừ đời này sang đời khác, người Fremen trên hành tinh sa mạc lưu truyền lời tiên tri về một đấng cứu tinh sẽ dẫn dắt họ giành lấy tự do đích thực…\r\n\r\nTừ thế hệ này sang thế hệ khác, những nữ phù thủy Bene Gesserit mỏi mòn chờ đợi sự xuất hiện của một B.G. nam giới duy nhất, người có thể vượt qua mọi giới hạn không gian - thời gian…\r\n\r\nLà Lisal al-Gaib của người Fremen, là Kwisatz Haderach của học viện Bene Gesserit, chàng công tước trẻ tuổi Paul Atreides đã làm tất cả những gì có thể để thay đổi định mệnh đó. Cha bị giết chết, mẹ bị cho là kẻ phản bội, gia tộc bị tàn sát, bản thân bị săn đuổi đến đường cùng, Paul đơn độc dấn thân vào một cuộc phiêu lưu sinh tử, không hề biết rằng mỗi hành động của mình sẽ góp phần quyết định vận mệnh của cả thiên hà. Sa mạc Arrakis khắc nghiệt tưởng như sẽ là nơi chôn vùi vĩnh viễn vinh quang của gia tộc Atreides, nhưng hóa ra lại thành điểm khởi đầu cho một huyền thoại mới…', 'Là một trong những cuốn tiểu thuyết khoa học giả tưởng bán chạy nhất mọi thời đại, Xứ Cát không chỉ là lựa chọn đối với những tín đồ của Chúa nhẫn, Chiến tranh giữa các vì sao… mà còn chinh phục độc giả đủ mọi lứa tuổi, mọi tầng lớp và sở thích bởi sự đa dạng và phức tạp của con người và không gian trong truyện, bởi sự tinh tế trong xây dựng tâm lý, bởi sự hấp dẫn, căng thẳng và bất ngờ của cốt truyện, bởi sự độc đáo và thú vị của khối lượng kiến thức khổng lồ cũng như bởi sự hấp dẫn trong những tư tưởng về tôn giáo, về tự do, về tình yêu, về sự sống và cái chết…\r\n\r\nNhận định\r\n\r\nĐộc nhất vô nhị… Không gì có thể sánh nổi, ngoại trừ Chúa nhẫn.\r\nArthur C. Clarke\r\n\r\nCó lẽ khó khăn lớn nhất khi đọc quyển sách này chính là phải đặt nó xuống.\r\n\r\nClassic Sci-Fi\r\n\r\n“Bức tranh toàn cảnh về một xã hội ngoài hành tinh hoàn thiện và chi tiết hơn bất kỳ tác giả nào trong lĩnh vực này từng dựng được… Một câu chuyện lôi cuốn vừa bởi hành động vừa bởi tầm nhìn triết học.”\r\n\r\nWashington Post Book World\r\n\r\nGiá sản phẩm trên Tiki đã bao gồm thuế theo luật hiện hành. Bên cạnh đó, tuỳ vào loại sản phẩm, hình thức và địa chỉ giao hàng mà có thể phát sinh thêm chi phí khác như phí vận chuyển, phụ phí hàng cồng kềnh, thuế nhập khẩu (đối với đơn hàng giao từ nước ngoài có giá trị trên 1 triệu đồng).....', NULL, NULL),
+(3, 3, 'Nhã Nam', '\r\nPhiên bản thường', '2020-01-01', '\r\n13 x 20.5 cm', 'Trịnh Lữ', 'Bìa mềm', 212, 'Tiếng Việt ', 'Nhà Xuất Bản Hội Nhà Văn', 'Sơ lược tác phẩm ', 'Thomas More đã viết Utopia trong những năm từ 1515 đến 1516, thời điểm trí tưởng tượng của con người bị khuyấy đảo trước sự mở rộng đột ngột của các quan niệm về thế giới, và miêu tả của Amerigo Vespucci về những cuộc du hành về phía Tây của ông được in lần đầu tiên vào năm 1507, vẫn còn mới nguyên trong trí óc các học giả uyên thâm. More đã tưởng tượng ra một Raphael Hythloday-cái tên phiên từ tiếng Hy Lạp sang có nghĩa là “Thạo những chuyện tầm phào” – một lữ khách đồng hành cùng Vespucci nhưng không trở về sau chuyến du hành thứ ba, mà rời bỏ các bạn hữu để một thân một mình lang thang nơi xứ sở xa lạ. Rồi anh ta đã tìm thấy hòn đảo Utopia-gốc Hy Lạp sáng có nghĩa là “Không ở nơi đâu”. Và đó là một địa đàng lý tưởng, được More vẽ nên với một phong cách châm biếm sâu cay lối lãnh đạo quốc sự kiểu Châu Âu, mà cụ thể là kiểu Anh.', 'NHẬN ĐỊNH:\r\n\r\nTrong suốt năm thế kỷ qua kể từ ấn bản đầu tiên, Utopia vẫn được cả thế giới tìm đọc-bất kỳ lúc nào và ở đâu, nó cũng làm cho người đọc phải giật mình, xúc động, và bâng khuâng suy ngẫm về nhân tình thế thái. Nó nhắc nhở, bàn tán, phân tích, giải thích, gợi ý…về tất cả những vấn đề mới mà bạn và tôi quan tâm hàng ngày, từ truyện trộm cắp nghiện ngập đĩ điếm nghèo khổ tham nhũng cho đến chuyện trách nhiệm của người tri thức, chuyện trọng dụng nhân tài, và tư chất của người cầm cân nảy mực trong xã hội. Nó bàn thế nào là khoái lạc, là hạnh phúc, cái gì là đáng quý, cái gì không. Nó lột trần những giả ngụy của luật pháp hiện hành, những cáo thậm vô lý của thói thường. Giải pháp tín ngưỡng của nó thật đáng kinh ngạc và rất đáng được cổ vũ trong thế giới khủng bố hiện nay. Nó thiết kế một chế độ chính trị vã xã hội mà nó tin rằng sẽ giúp cho con người được no ấm và hạnh phúc. Và nó khẳng định rằng con người là rào cản của chính mình, bắt nguồn từ lòng ngạo mạn, ý thích được hơn người, được coi là quan trọng vốn bắt rễ rất sâu trong mỗi cá nhân.\r\n– Trịnh Lữ\r\n\r\n“Utopia được Thomas More viết năm 1516 và là một trong những cuốn sách quan trọng nhất từng được viết. Tại sao vậy? Đơn giản, bởi nó có ảnh hưởng tới nhiều người và thúc đẩy nhiều sự kiện: nó tạo nên sự khác biệt.”\r\n– A\r\n\r\n“Với “Utopia”, More đã tìm ra một cách thức mới để huy động những tiềm năng, và cho thấy rằng sự lựa chọn vẫn ẩn kín trong mắt những người không hài lòng với xã hội họ đang sống. Bên cạnh cái tên thể loại là văn chương hư cấu, ông đã đưa ra luận đàm những biện pháp chính trị mới, đồng thời mở ra con đường gắn tiểu thuyết với hiện thực cuộc sống, trong ánh sáng của những điều có thể có và nên có”\r\n– A\r\n\r\n“Utopia là một bản thống kê đầy đủ những thiếu sót của con người và là một câu chuyện thú vị, nhưng tác phẩm này không phải, và cũng không có ý định trở thành một mẫu hình bao gồm những giải pháp cho thế giới”\r\n– A\r\n******\r\n\r\n\r\nGiá sản phẩm trên Tiki đã bao gồm thuế theo luật hiện hành. Bên cạnh đó, tuỳ vào loại sản phẩm, hình thức và địa chỉ giao hàng mà có thể phát sinh thêm chi phí khác như phí vận chuyển, phụ phí hàng cồng kềnh, thuế nhập khẩu (đối với đơn hàng giao từ nước ngoài có giá trị trên 1 triệu đồng).....\r\n\r\n', NULL, NULL),
+(4, 4, '\r\nNhã Nam', 'Phiên bản thường', '2020-11-01', '\r\n15.5 x 24 cm', '\r\nNguyễn Thị Tươi', '\r\nBìa mềm', 532, 'Tiếng Việt ', 'Nhà Xuất Bản Hà Nội', 'Mô tả sản phẩm', '“Một tiểu thuyết đầy cảm xúc, một cuốn sách đưa ta đi từ tiếng cười đến những giọt nước mắt với các nhân vật hài hước và cuốn hút.”  – Ban giám khảo giải thưởng Prix des Maisons de la Presse.\r\n\r\nViolette Toussaint sống mà như chết. Người phụ nữ ấy bị mẹ đẻ bỏ rơi ngay khi vừa lọt lòng, tới lượt cô con gái nhỏ mà cô yêu thương nhất lại bỏ cô mà đi trong một tai nạn thảm khốc, rồi cả đến người chồng một ngày kia cũng không còn ở lại bên cô. Cuộc đời của một nhân viên gác chắn nơi ga xép với những chuyến tàu nhỏ mỗi ngày đến rồi đi hay của một người quản trang tại nghĩa trang tỉnh lẻ chuyên đón nhận người chết và chăm sóc các phần mộ tưởng chừng chỉ gắn chặt với mất mát, buồn đau, rồi úa tàn dần theo năm tháng. Nhưng sự sống là mầu nhiệm, hy vọng vẫn còn đó, hạnh phúc lại có dịp được hồi sinh khi hoa kia được thay nước, khi chính con người vẫn tin vào cuộc đời.', 'Một câu chuyện sẽ ở lại lâu trong lòng độc giả. Nhẹ nhàng mà thấm thía. Bởi dẫu có lẽ không ít lần lấy đi nước mắt của người đọc, câu chuyện về tình yêu, tổn thương và hy vọng này cuối cùng sẽ để lại trong ta những cảm xúc tích cực, hạnh phúc cùng niềm mãn nguyện êm đềm một khi đã lật giở đến những trang cuối.\r\n\r\nVỀ TÁC GIẢ:\r\n\r\nValérie Perrin sinh năm 1967 tại Gueugnon, Pháp. Ngoài viết văn, bà còn là một nhiếp ảnh gia hậu trường và nhà biên kịch, nhưng các tác phẩm văn chương mới chính là thứ đưa tên tuổi của bà đến với đông đảo công chúng. Tiểu thuyết đầu tay của Perrin, tạm dịch Những người bị lãng quên ngày Chủ nhật (Les Oubliés du dimanche) giành được gần mười giải thưởng. Tiểu thuyết thứ hai, Hoa vẫn nở mỗi ngày cũng giành nhiều giải thưởng, nổi bật là Prix des Maisons de la Presse.\r\n\r\nGiá sản phẩm trên Tiki đã bao gồm thuế theo luật hiện hành. Bên cạnh đó, tuỳ vào loại sản phẩm, hình thức và địa chỉ giao hàng mà có thể phát sinh thêm chi phí khác như phí vận chuyển, phụ phí hàng cồng kềnh, thuế nhập khẩu (đối với đơn hàng giao từ nước ngoài có giá trị trên 1 triệu đồng).....', NULL, NULL),
+(5, 5, '\r\nNhã Nam', '\r\nPhiên bản thường', '2023-04-01', '\r\n14 x 20.5 cm', '\r\nThu Phương', 'Bìa mềm', 109, 'Tiếng ', 'Nhà Xuất Bản Phụ Nữ', 'Mô tả sản phẩm', 'Giữa những năm chín mươi, Annie Ernaux đưa độc giả trở lại mùa hè năm 1952, cái mùa hè xảy ra một sự kiện khiến cô thiếu nữ khi ấy bắt đầu cảm thấy một nỗi nhục, về cha mẹ mình, về nghề nghiệp và môi trường sống của họ.\r\n\r\n“Bố tôi đã định giết mẹ tôi vào đầu buổi chiều một Chủ nhật tháng Sáu.”\r\n\r\nĐan xen giữa hồi ức và những suy tư về chuyện viết lách, Annie Ernaux đưa tới độc giả một lời chứng thật đẹp về mùa hè đã thay đổi cuộc đời mình, khi cô thiếu nữ bắt đầu ý thức được ánh mắt người khác đối với xuất thân của mình và khi cái nhìn của chính cô về cha mẹ mình cũng đã thay đổi.', 'Như mọi cuốn sách của Annie Ernaux, Nỗi nhục, xuất bản tại Pháp năm 1997, được viết nên bằng rất nhiều nỗi ngượng ngùng, nhưng cũng rất nhiều sự thật.\r\n\r\n“Suốt 50 năm qua, Annie Ernaux viết cuốn tiểu thuyết về ký ức tập thể và riêng tư của đất nước chúng ta. Tiếng nói của bà là tiếng nói của tự do của người phụ nữ và của những điều đã bị lãng quên trong thế kỷ qua.”\r\n\r\n- Tổng thống Pháp Emmanuel Macron\r\n\r\nAnnie Ernaux sinh năm 1940 tại Lillebonne, lớn lên tại Yvetot, đều thuộc tỉnh Seine-Maritime, vùng Normandie, tây bắc nước Pháp. Bà học ngành Văn học hiện đại ở đại học Rouen, sau đó làm giáo viên văn ở Annecy, Pontoise rồi Trung tâm giáo dục từ xa quốc gia. Bà là tiến sĩ danh dự của đại học Cergy-Pontoise.\r\n\r\nNăm 1974, bà xuất bản tác phẩm đầu tay Les armoires vides (Những ngăn kéo rỗng) kể về lần phá thai chui của bản thân vào năm 1964. Năm 1983, bà xuất bản Một chỗ trong đời, kể về cuộc đời của cha mình, và cuốn sách đã đoạt giải Renaudot. Năm 2008, bà xuất bản Les années (Những năm tháng), tác phẩm được coi là sự hoàn chỉnh về nội dung lẫn hình thức của thể loại hồi ức tập thể.\r\n\r\nTrong suốt sự nghiệp, Annie Ernaux đã được trao rất nhiều giải thưởng: giải Renaudot (1984), giải thưởng về ngôn ngữ Pháp, giải François Mauriac (2008), giải Marguerite Youcenar (2017)… và đặc biệt, giải Nobel Văn chương (2022) vì “với lòng can đảm cùng sự nhạy bén bên trong, bà đã khám phá ra những cội rễ, những cách biệt và những câu thúc tập thể của hồi ức cá nhân”.\r\n\r\nBà hiện sống ở Cergy, vùng Île-de-France.\r\n\r\nCác tác phẩm của Annie Ernaux xuất bản tại Nhã Nam:\r\n\r\n- Một chỗ trong đời\r\n\r\n- Hồi ức thiếu nữ\r\n\r\n- Nỗi nhục\r\n\r\n- Cơn cuồng si\r\n\r\n- Một người phụ nữ\r\n\r\n- Những năm tháng (sắp xuất bản)\r\n\r\nGiá sản phẩm trên Tiki đã bao gồm thuế theo luật hiện hành. Bên cạnh đó, tuỳ vào loại sản phẩm, hình thức và địa chỉ giao hàng mà có thể phát sinh thêm chi phí khác như phí vận chuyển, phụ phí hàng cồng kềnh, thuế nhập khẩu (đối với đơn hàng giao từ nước ngoài có giá trị trên 1 triệu đồng).....', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -668,7 +706,7 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `role`, `name`, `phone`, `province`, `province_id`, `district_id`, `ward_id`, `address`, `birthday`, `image`, `status`, `description`, `user_agent`, `ip`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
 (1, 'admin', 'TrungDepTrai', NULL, 'Lựa chọn', NULL, NULL, NULL, 'số 79 Tống Trân, Quang Trung,TP Hưng Yên, Hưng Yên', '06/11/2003', 'upload/img/users/photo.png', '', NULL, NULL, NULL, 'trungthpthy@gmail.com', NULL, '$2y$10$f.d.VH8/lqdM4qUo4XoVCe.7Cm.1EqrCpg1bCYy3y33t9DAaRerHK', NULL, NULL, '2024-04-06 06:51:48'),
-(3, 'user', 'Thần Đèn', NULL, 'Lựa chọn', NULL, NULL, NULL, 'Bãi Sậy, Bối Khê, Ân Thi, Hưng Yên', '04/11/2003', 'upload/img/users/thanden.jpg', '', NULL, NULL, NULL, 'thanden@gmail.com', NULL, '$2y$10$uc5N5r/zPxfdLXBqn5//pOONbRkUXTywJI8/Bz/H.jflGDlJx3.Ie', NULL, NULL, '2024-04-06 06:58:14'),
+(3, 'user', 'Thần Đèn', '0337190506', 'Lựa chọn', NULL, NULL, NULL, 'Bãi Sậy, Bối Khê, Ân Thi, Hưng Yên', '04/11/2003', 'upload/img/users/thanden.jpg', '', NULL, NULL, NULL, 'thanden@gmail.com', NULL, '$2y$10$uc5N5r/zPxfdLXBqn5//pOONbRkUXTywJI8/Bz/H.jflGDlJx3.Ie', NULL, NULL, '2024-04-06 06:58:14'),
 (4, 'user', 'Heo Con', '0788023724', 'Lựa chọn', NULL, NULL, NULL, 'Vân Trì, Dân Tiến, Khoái Châu, Hưng Yên', '05/03/2003', 'upload/img/users/heocon.jpg', '', NULL, NULL, NULL, 'heocon@gmail.com', NULL, '$2y$10$R8uvENf2dGR3E8ntILmkg.WF7ZFWQYRH8aMS6dtt60WySJldjS8J.', NULL, '2024-04-02 06:49:12', '2024-04-06 06:54:58'),
 (5, 'user', 'Tít Con', NULL, 'Lựa chọn', NULL, NULL, NULL, 'Tân Trường, Cẩm Giàng, Hải Dương', '23/05/2003', 'upload/img/users/titcon.jpg', NULL, NULL, NULL, NULL, 'titcon@gmail.com', NULL, '$2y$10$io56vDdBU/si0QA7fCTR.O3U7LU7KweYye/8WG/G5KNJ4NzyXNEky', NULL, '2024-04-04 13:08:26', '2024-04-06 06:55:13'),
 (9, 'user', 'Gia Đình Trường Con', '0788023724', 'Lựa chọn', NULL, NULL, NULL, NULL, '05/03/2003', 'upload/img/users/shrekfamily.jpg', NULL, NULL, NULL, NULL, 'shrekfamily@gmail.com', NULL, '$2y$10$pAPN3eBabAk4bi4hPjTkLuq9c7aQEiTTr/csauDbjSXmWKF9.1ixW', NULL, '2024-04-05 10:30:47', '2024-04-15 06:54:24');
@@ -739,6 +777,20 @@ ALTER TABLE `failed_jobs`
 --
 ALTER TABLE `migrations`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `orders`
+--
+ALTER TABLE `orders`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `order_details`
+--
+ALTER TABLE `order_details`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `order_details_order_id_foreign` (`order_id`),
+  ADD KEY `order_details_product_id_foreign` (`product_id`);
 
 --
 -- Indexes for table `password_resets`
@@ -818,7 +870,7 @@ ALTER TABLE `banner`
 -- AUTO_INCREMENT for table `carts`
 --
 ALTER TABLE `carts`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `category_details`
@@ -836,7 +888,19 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+
+--
+-- AUTO_INCREMENT for table `orders`
+--
+ALTER TABLE `orders`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `order_details`
+--
+ALTER TABLE `order_details`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -854,7 +918,7 @@ ALTER TABLE `products`
 -- AUTO_INCREMENT for table `product_details`
 --
 ALTER TABLE `product_details`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `quicktoolswidget`
@@ -884,6 +948,13 @@ ALTER TABLE `users`
 ALTER TABLE `carts`
   ADD CONSTRAINT `carts_product_id_foreign` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `carts_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
+
+--
+-- Constraints for table `order_details`
+--
+ALTER TABLE `order_details`
+  ADD CONSTRAINT `order_details_order_id_foreign` FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `order_details_product_id_foreign` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `product_details`

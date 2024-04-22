@@ -469,6 +469,8 @@ main {
   z-index: 100;
 }
 
+
+
 .confirm-box {
     position: absolute;
     width: 311px;
@@ -534,4 +536,53 @@ main {
     background-color: #55c57a;
     color: #fff;
     border: none;
+}
+
+.block-order{
+    background: rgb(255, 255, 255);
+    border-radius: 4px;
+    padding-bottom: 8px;
+    padding: 16px;
+    border-bottom: 1px solid rgb(244, 244, 244);
+}
+
+.block-order .flex-row-styled{
+    display: flex;
+    justify-content: space-between;
+}
+
+.block-order .block-order-title{
+    font-weight: 500;
+    color: rgb(56, 56, 61);
+    margin: 0px;
+}
+
+.block-order .block-order-nav{
+    color: #55c57a;
+    text-decoration: none;
+}
+
+.block-order .block-order-subtitle{
+    display: flex;
+    align-items: center;
+}
+
+.block-order .block-order-subtitle .subtitle-text{
+    color: rgb(128, 128, 137);
+    font-weight: 400;
+    margin: 0px 4px 0px 0px;
+}
+
+.block-order .block-order-subtitle .subtitle-link{
+    display: flex;
+    align-items: center;
+    color: #55c57a;
+    font-weight: 400;
+    margin: 0px;
+    cursor: pointer;
+}
+
+.block-order .block-order-subtitle .subtitle-link i{
+    margin-left: 5px;
+    font-size:10px;
 }

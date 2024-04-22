@@ -14,7 +14,7 @@ use App\hTTP\Controllers\Frontend\ShowProductController;
 use App\Http\Controllers\Frontend\BlogController;
 use App\Http\Controllers\Frontend\CategoryController;
 use App\Http\Controllers\Frontend\CheckoutController;
-
+use App\Http\Controllers\Frontend\OrderController;
 
 Route::get('/', function(){
     return view('welcome');
@@ -67,6 +67,8 @@ Route::get('/admin/users/deleteUser/{id}', [UserController::class,'DeleteUser'])
 // Trang chủ
 Route::get('homepage', [HomepageController::class, 'data'])->name('auth.homepage');
 
+
+
 // Chi tiết sản phẩm
 Route::get('product/{id}', [ShowProductController::class, 'product'])-> name('product.show');
 
@@ -75,11 +77,22 @@ Route::get('product/{id}', [ShowProductController::class, 'product'])-> name('pr
 Route::get('category/{id}', [CategoryController::class, 'products'])-> name('category.products');
 
 
+
 // Trang Blog
 Route::get('blog', [BlogController::class, 'data'])->name('blog.show');
 
+
+
 //Thanh Toán
 Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout');
+
+
+
+// Đặt Hàng thành công
+
+Route::get('/order/success/{orderId}', [OrderController::class, 'success'])->name('order.success');
+Route::post('/place-order', [OrderController::class, 'placeOrder'])->name('place.order');
+
 
 
 // Giỏ hàng

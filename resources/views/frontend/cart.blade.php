@@ -449,9 +449,23 @@
                 <form action="{{ route('buy') }}" method="POST">
                     @csrf
                     <button type="submit" class="buy-now-btn" style="margin: 15px 0px 0px; width:320px">
-                        Mua Hàng <span id="checkedProductsCount"></span>
+                        Mua Hàng<span id="checkedProductsCount"></span>
                     </button>
                 </form>
+                <div class="overlay-confirm" id="confirmNotice">
+                    <div class="confirm-box">
+                        <div class="dialog-content">
+                            <i class="fa-solid fa-circle-info" style="color: #55c57a"></i>
+                            <div class="dialog-content-text">
+                                <div class="dialog-title">Bạn vẫn chưa chọn sản phẩm nào để mua</div>
+                            </div>
+                        </div>
+                        <div class="dialog-control">
+                            <button onclick="cancelNotification()" class="dialog-control-btn cancel-btn">OK, đã
+                                hiểu</button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

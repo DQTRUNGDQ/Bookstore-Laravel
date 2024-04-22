@@ -125,7 +125,10 @@ class CartController extends Controller
     }
 
     public function buy(){
-        return redirect()->route('checkout');
+
+        $selectedProducts = Cart::where('checked', 1)->get();
+
+        return redirect()->route('checkout', ['selectedProducts' => $selectedProducts]);
     }
 
 }
