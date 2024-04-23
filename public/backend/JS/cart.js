@@ -155,6 +155,7 @@ function cancelNotification() {
 
     })
 
+
 // AJAX ĐỂ GỬI REQUEST KHI NGƯỜI DÙNG TĂNG GIẢM SỐ LƯỢNG SẢN PHẨM
 
 $(document).ready(function(){

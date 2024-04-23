@@ -113,6 +113,7 @@ Route::post('/carts/update', [CartController::class, 'updateCart'])->name('cart.
 
 Route::post('/buy', [CartController::class, 'buy'])->name('buy');
 
+
 /*
 
 Route::get('cart', [CartController::class, 'cart'])-> name('cart.show');

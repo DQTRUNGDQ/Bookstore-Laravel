@@ -36,7 +36,10 @@ class CartController extends Controller
 
     public function calculateTotalPrice()
     {
-        $checkedCartItems = Cart::where('checked', true)->get();
+        $userId = Auth::id();
+        $checkedCartItems = Cart::where('checked', true)
+                                ->where('user_id', $userId)
+                                ->get();;
         $totalPrice = 0;
 
         foreach ($checkedCartItems as $cartItem) {

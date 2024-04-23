@@ -315,7 +315,7 @@
                                                 <img width="89" height="20"
                                                     src="{{ asset('/upload/img/official.png') }}" alt="">
                                                 <a href="http://" target="_blank" class="item-name-styled">
-                                                    {{ $item->name }}
+                                                    {{ $item->product_name }}
                                                 </a>
                                                 <div class="styled-delivery-title">
                                                     <img width="32" height="16"

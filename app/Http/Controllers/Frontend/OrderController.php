@@ -25,6 +25,8 @@ class OrderController extends Controller
     {
         $user = Auth::user();
 
+        $userId = Auth::id();
+
         // Lưu thông tin hóa đơn vào cơ sở dữ liệu
         $order = new Orders;
         $order->customer_name = $user->name;;
@@ -36,7 +38,9 @@ class OrderController extends Controller
         $order->save();
         $orderId = $order->id;
 
-        $selectedProducts = Cart::where('checked', 1)->get();
+        $selectedProducts = Cart::where('checked', 1)
+                                ->where('user_id', $userId)
+                                ->get();
 
         // TỔNG TIỀN CỦA CÁC SẢN PHẨM ĐƯỢC CHECK
         $totalPrice = $selectedProducts->sum(function ($item) {
@@ -50,14 +54,28 @@ class OrderController extends Controller
 
         //lƯU THÔNG TIN CHI TIẾT HÓA ĐƠN VÀO CSDL
 
+
+        $orderDetailsSaved = true;
+
         foreach ($selectedProducts as $item) {
             $orderDetail = new OrderDetail;
             $orderDetail->order_id = $orderId;
             $orderDetail->product_id = $item->product_id;
             $orderDetail->quantity = $item->quantity;
             $orderDetail->totalprice = $totalPrice += $shippingFee;
-            $orderDetail->save();
+            if (!$orderDetail->save()) {
+            $orderDetailsSaved = false;
         }
+        }
+
+        // Xóa các đơn hàng đã được đặt khỏi giỏ hàng
+        if ($orderDetailsSaved) {
+            Cart::where('checked', 1)
+                ->where('user_id', $userId)
+                ->delete();
+        }
+
+
         // Điều hướng sang trang đặt hàng thành công và truyền ID của hóa đơn
          return view('frontend.ordersuccess', compact('order', 'selectedProducts', 'totalPrice', 'totalQuantity','shippingFee'));
     }
