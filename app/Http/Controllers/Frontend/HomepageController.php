@@ -18,6 +18,7 @@ use App\Models\careproduct;
 use App\Models\productdetails;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Cart;
+use App\Models\Products;
 
 class HomepageController extends Controller
 {
@@ -53,6 +54,33 @@ class HomepageController extends Controller
             'categories','populartools','banners',
             'bestproducts','careproducts','deals','QAs',
             'quicktools','sgproducts','brandproducts', 'productdetails','totalQuantity'
+            )
+        );
+    }
+
+    public function search(Request $request){
+
+        $keyword = $request->keywords_submit;
+
+        $categories = Category::all();
+        $populartools = populartool::all();
+        $searchproducts = Products::where('name', 'like', "%$keyword%")
+                                    ->orWhere('category', 'like', "%$keyword%")
+                                    ->orWhere('author', 'like', "%$keyword%")
+                                    ->get();
+
+
+        $userId = Auth::id();
+        $cartItems = Cart::where('user_id', $userId)->get();
+        $totalQuantity = 0;
+
+        foreach ($cartItems as $item) {
+                $totalQuantity += $item->quantity;
+        }
+
+        return view('frontend.search',
+        compact(
+            'categories','populartools','searchproducts','totalQuantity'
             )
         );
     }

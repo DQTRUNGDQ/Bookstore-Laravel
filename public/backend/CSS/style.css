@@ -74,7 +74,7 @@ main {
 
 .form-nav-left{
     display: flex;
-    width: 100%;
+    /* width: 100%; */
     position: relative;
     border: 1px solid #dddde3;
     align-items: center;
@@ -94,6 +94,7 @@ main {
     font-size: 14px;
     outline: none;
     flex: 1 1 0%;
+    width: 600px;
 }
 
 .form-nav-left button{

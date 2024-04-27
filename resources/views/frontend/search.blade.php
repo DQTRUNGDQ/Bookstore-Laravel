@@ -55,7 +55,6 @@
                                 </div>
                             </form>
 
-
                             <div class="main-nav-right">
                                 <div class="homepage-item">
                                     <i class="fa-solid fa-house"></i>
@@ -354,433 +353,68 @@
                 </div>
 
                 <div class="widget">
-                    <div class="banner">
-                        <div class="content">
-                            <div class="banner-slider">
-                                <?php foreach ($banners as $banner): ?>
-                                <div class="banner-item">
-                                    <div>
-                                        <a href="">
-                                            <img src="<?= $banner['image'] ?>" alt="" width="545"
-                                                height="364" />
-                                        </a>
-                                    </div>
-                                </div>
-                                <?php endforeach; ?>
-                            </div>
-                        </div>
-                    </div>
 
-                    <div class="quick-links-widget">
-                        <div class="quick-links-dt">
-                            <?php foreach($quicktools as $quicktool): ?>
-                            <a href="{{ route('blog.show') }}">
-                                <div>
-                                    <img src="<?= $quicktool['image'] ?>" alt="" height="64"
-                                        width="64" />
-                                </div>
-                                <div class="quick-links-title">
-                                    <?= $quicktool['title'] ?>
-                                </div>
-                            </a>
-                            <?php endforeach; ?>
-                        </div>
-                    </div>
+                    <div class="product-list-container">
 
-                    <div class="deal-today">
-                        <div class="header-deal">
-                            <div class="header-left">
-                                <p class="title-deal">
-                                    Giá tốt hôm nay
-                                </p>
+                        @foreach ($searchproducts as $Product)
+                            <div class>
                                 <div>
-                                    <a href="">
-                                        <div class="countdown">
-                                            <span class="hour"></span>
-                                            <b>:</b>
-                                            <span class="min"></span>
-                                            <b>:</b>
-                                            <span class="second"></span>
+                                    <a href="{{ route('product.show', ['id' => $Product['id']]) }}"
+                                        class="product-links-styled">
+                                        <div class="item-styled">
+                                            <div class="thumbnail-styled">
+                                                <div class="image-wrapper">
+                                                    <img src="{{ asset($Product->image) }}" alt=""
+                                                        width="200" height="200">
+                                                </div>
+                                            </div>
+                                            <div
+                                                style="height: 188px; min-height: 188px; display: flex; flex-direction: column;">
+                                                <div class="info">
+                                                    <div class="badges-styled">
+                                                        <img src="../../../public/upload/img/official.png"
+                                                            width="89" height="20" alt="">
+                                                        <p class="ads-badge">Tài trợ</p>
+                                                    </div>
+                                                    <div class="name-product-styled">
+                                                        <div class="name">
+                                                            <h3>{{ $Product->name }}</h3>
+                                                        </div>
+                                                        <div class="rating-list">
+                                                            <p class="stars-wrapper">
+                                                                <i class="fa-solid fa-star"></i>
+                                                                <i class="fa-solid fa-star"></i>
+                                                                <i class="fa-solid fa-star"></i>
+                                                                <i class="fa-solid fa-star"></i>
+                                                                <i class="fa-solid fa-star"></i>
+                                                            </p>
+                                                            <span class="quantity">Đã bán
+                                                                {{ $Product->sold }}+</span>
+                                                        </div>
+                                                    </div>
+                                                    <div style="margin:15px 0">
+                                                        <div class="price-dc">
+                                                            <div class="price-styled">
+                                                                {{ number_format($Product->price, 0, ',', '.') }}
+                                                                <sup>₫</sup>
+                                                            </div>
+                                                            <div class="discount-styled">
+                                                                -{{ $Product->discount_percent }}%</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div style="margin-left: 5px">
+                                                    <div class="style-deliveryInfo">
+                                                        <span>{{ $Product->delivery_time }}</span>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </a>
                                 </div>
                             </div>
-                            <div class="navigation">
-                                <a href=""> Xem tất cả </a>
-                            </div>
-                        </div>
-                        <div class="body-deal">
-                            <div class="content-deal">
-                                <div class="deal-slider">
-                                    @foreach ($deals as $deal)
-                                        <div class="product-deal" style="transition: all 1s ease-in-out 0s;">
-                                            <div>
-                                                <a class="deal-item"
-                                                    href="{{ route('product.show', ['id' => $deal['dealtoday_id']]) }}">
-                                                    <div style="position: relative;">
-                                                        <img src="<?= $deal['image'] ?>" alt=""
-                                                            width="171" height="171" />
-                                                    </div>
-                                                    <span class="discount"><?= '-' . $deal['discount'] . '%' ?></span>
-                                                    <div class="price-discount">
-                                                        <span><?= number_format($deal['pricediscount'], 0, ',', '.') ?><sup>₫</sup></span>
-                                                    </div>
-                                                    <div class="price-quantity">
-                                                        <div class="deal-progress"
-                                                            style="min-width: <?= $deal['percentsold'] ?>px;"></div>
-                                                        <span><?= $deal['status'] ?></span>
-                                                    </div>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    @endforeach
-                                </div>
-                            </div>
-                        </div>
+                        @endforeach
 
-                    </div>
-
-                    <div class="care-products">
-                        <div class="header-deal">
-                            <div class="header-left">
-                                <p class="title-deal">
-                                    Sản phẩm bạn quan tâm
-                                </p>
-                            </div>
-                        </div>
-                        <div class="body-care">
-                            <div class="content-deal">
-                                <div class="care-slider">
-                                    <?php foreach ($careproducts as $careproduct):?>
-                                    <div class="product-care"
-                                        style="
-                                                    transition: all 0.5s
-                                                        ease-in-out 0s;
-                                                ">
-                                        <div>
-                                            <a class="deal-item" href="">
-                                                <div
-                                                    style="
-                                                                position: relative;
-                                                            ">
-                                                    <img src="<?= $careproduct['image'] ?>" alt=""
-                                                        width="171" height="171" />
-                                                </div>
-                                                <div class="name-items">
-                                                    <h3 class="name-style">
-                                                        <?= $careproduct['name'] ?>
-                                                    </h3>
-                                                </div>
-                                                <div class="price-original">
-                                                    <span>
-                                                        <?= number_format($careproduct['price'], 0, ',', '.') ?>
-                                                        <sup>₫</sup>
-                                                    </span>
-                                                </div>
-                                            </a>
-                                        </div>
-                                        <div
-                                            style="
-                                                        display: flex;
-                                                        flex-direction: column;
-                                                        gap: 8px;
-                                                        margin-top: 20px;
-                                                        padding: 5px;
-                                                    ">
-                                            <div class="style-deliveryInfo">
-                                                <img width="32" height="16"
-                                                    src="<?= $careproduct['imgstatus'] ?>" alt=""
-                                                    style="
-                                                                padding-right: 8px;
-                                                            " />
-                                                <span><?= $careproduct['timedelivery'] ?></span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <?php endforeach; ?>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="brand-official">
-                        <div class="header-deal">
-                            <div class="header-left">
-                                <p class="title-deal">
-                                    Thương hiệu chính hãng
-                                </p>
-                            </div>
-                        </div>
-                        <div class="body-brand">
-                            <div class="content">
-                                <div class="brand-slider">
-                                    <?php foreach($brandproducts as $brandproduct):?>
-                                    <div class="brand-items">
-                                        <div style="padding-bottom: 5px">
-                                            <img width="160" height="160" src="<?= $brandproduct['imgbook'] ?>"
-                                                alt="" />
-                                        </div>
-                                        <div class="brand-logo">
-                                            <img width="60" height="60" src="<?= $brandproduct['imgbrand'] ?>"
-                                                alt="" />
-                                        </div>
-                                        <div class="brand-title">
-                                            <span><?= $brandproduct['title'] ?></span>
-                                        </div>
-                                    </div>
-                                    <?php endforeach; ?>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="QA-container">
-                        <div class="header-deal">
-                            <div class="header-left">
-                                <p class="title-deal">
-                                    Câu hỏi thường gặp
-                                </p>
-                            </div>
-                        </div>
-                        <div class="body-QA">
-                            <div class="content">
-                                <div class="QA-slider">
-                                    <?php foreach($QAs as $QA):?>
-                                    <div class="QA-items">
-                                        <div style="display: flex">
-                                            <img width="12" height="12" src="<?= $QA['img'] ?>"
-                                                alt="" />
-                                            <div class="QA-title">
-                                                <?= $QA['title'] ?>
-                                            </div>
-                                        </div>
-                                        <div class="question-content">
-                                            <?= $QA['question'] ?>
-                                        </div>
-                                    </div>
-                                    <?php endforeach; ?>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="best-products">
-                        <div class="header-deal">
-                            <div class="header-left">
-                                <p class="title-deal">BookWorld Best</p>
-                            </div>
-                        </div>
-                        <div class="best-categories">
-                            <span id="categorie1" class="style-cat active">Sách Văn Học - Tác Phẩm Kinh Điển</span>
-                            <span id="categorie2" class="style-cat">Sách Học Ngoại Ngữ</span>
-                            <span id="categorie3" class="style-cat">Sách Tư Duy - Kỹ Năng Sống</span>
-                            <span id="categorie4" class="style-cat">Truyện Tranh, Manga, Comic</span>
-                        </div>
-                        <div class="body-best">
-                            <div class="content-deal">
-                                <?php
-                                $groupedProducts = [];
-                                foreach ($bestproducts as $bestproduct) {
-                                    $category = $bestproduct['category'];
-                                    $groupedProducts[$category][] = $bestproduct;
-                                }
-                                ?>
-                                <?php foreach ($groupedProducts as $category =>
-                                        $products): ?>
-                                <div class="best-slider" id="best-slider<?= $category ?>">
-                                    <?php foreach ($products as $product):?>
-                                    <div class="product-best" data-category="<?= $product['category'] ?>"
-                                        style="
-                                                    transition: all 0.5s
-                                                        ease-in-out 0s;
-                                                ">
-                                        <div>
-                                            <a class="deal-item" href="">
-                                                <div
-                                                    style="
-                                                                position: relative;
-                                                            ">
-                                                    <img src="<?= $product['image'] ?>" alt="" width="171"
-                                                        height="171" />
-                                                </div>
-                                                <div class="badges-style">
-                                                    <div class="logo-best">
-                                                        <i class="fa-solid fa-thumbs-up"></i>
-                                                        <span>BOOKWORLD
-                                                            BEST</span>
-                                                    </div>
-
-                                                    <div class="auth-best">
-                                                        <img width="89" height="20"
-                                                            src="./upload/img/BestProducts/auth.png" alt="" />
-                                                    </div>
-                                                </div>
-                                                <div class="name-items">
-                                                    <h3 class="name-style">
-                                                        <?= $product['name'] ?>
-                                                    </h3>
-                                                </div>
-                                                <div class="ratings">
-                                                    <div class="star">
-                                                        <i class="fa-solid fa-star"></i>
-                                                        <i class="fa-solid fa-star"></i>
-                                                        <i class="fa-solid fa-star"></i>
-                                                        <i class="fa-solid fa-star"></i>
-                                                        <i class="fa-solid fa-star"></i>
-                                                    </div>
-                                                </div>
-                                                <div class="price-original">
-                                                    <span>
-                                                        <?= number_format($product['price'], 0, ',', '.') ?>
-                                                        <sup>₫</sup>
-                                                    </span>
-                                                </div>
-                                            </a>
-                                        </div>
-                                        <div
-                                            style="
-                                                        display: flex;
-                                                        flex-direction: column;
-                                                        gap: 8px;
-                                                        margin-top: 110px;
-                                                        padding: 5px;
-                                                    ">
-                                            <div class="style-deliveryInfo">
-                                                <img width="32" height="16" src="<?= $product['imgstatus'] ?>"
-                                                    alt=""
-                                                    style="
-                                                                padding-right: 8px;
-                                                            " />
-                                                <span><?= $product['timedelivery'] ?></span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <?php endforeach; ?>
-                                </div>
-                                <?php endforeach; ?>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="suggestion-widget">
-                        <div style="background: #fff; padding-top: 18px">
-                            <div class="header-sg">
-                                <div class="header-left">
-                                    <p class="title-deal">
-                                        Gợi ý hôm nay
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="header-tab">
-                                <div id="tab1" class="style-tab active-tab">
-                                    <img width="40" height="40" src="./upload/img/suggestionwidget/foryou.png"
-                                        alt="" />
-                                    <div class="tab-text">
-                                        Dành cho bạn
-                                    </div>
-                                </div>
-                                <div id="tab2" class="style-tab">
-                                    <img width="40" height="40" src="./upload/img/suggestionwidget/fire.png"
-                                        alt="" />
-                                    <div class="tab-text">
-                                        Top Deal Bán Chạy
-                                    </div>
-                                </div>
-                                <div id="tab3" class="style-tab">
-                                    <img width="40" height="40" src="./upload/img/suggestionwidget/book.jpg"
-                                        alt="" />
-                                    <div class="tab-text">
-                                        Sách Xả Kho -60%
-                                    </div>
-                                </div>
-                                <div id="tab4" class="style-tab">
-                                    <img width="40" height="40" src="./upload/img/suggestionwidget/fahasa.jpg"
-                                        alt="" />
-                                    <div class="tab-text">FAHASA</div>
-                                </div>
-                                <div id="tab5" class="style-tab">
-                                    <img width="40" height="40"
-                                        src="./upload/img/suggestionwidget/maydocsach.jpg" alt="" />
-                                    <div class="tab-text">
-                                        Máy Đọc Sách
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="body-sg">
-                            <div
-                                style="
-                                            display: grid;
-                                            grid-template-columns: repeat(
-                                                6,
-                                                1fr
-                                            );
-                                        ">
-                                <?php foreach ($sgproducts as $sgproduct):?>
-                                <div class="product-tab" data-tab="<?= $sgproduct['tab'] ?>"
-                                    style="
-                                                transition: all 0.5s ease-in-out
-                                                    0s;
-                                            ">
-                                    <div>
-                                        <a class="deal-item" href="">
-                                            <div
-                                                style="
-                                                            position: relative;
-                                                        ">
-                                                <img src="<?= $sgproduct['image'] ?>" alt="" width="171"
-                                                    height="171" />
-                                            </div>
-                                            <div class="badges-style">
-                                                <div class="auth-best">
-                                                    <img width="89" height="20"
-                                                        src="./upload/img/BestProducts/auth.png" alt="" />
-                                                </div>
-                                            </div>
-                                            <div class="name-items">
-                                                <h3 class="name-style">
-                                                    <?= $sgproduct['name'] ?>
-                                                </h3>
-                                            </div>
-                                            <div class="ratings">
-                                                <div class="star">
-                                                    <i class="fa-solid fa-star"></i>
-                                                    <i class="fa-solid fa-star"></i>
-                                                    <i class="fa-solid fa-star"></i>
-                                                    <i class="fa-solid fa-star"></i>
-                                                    <i class="fa-solid fa-star"></i>
-                                                </div>
-                                            </div>
-                                            <div class="price-original">
-                                                <span>
-                                                    <?= number_format($sgproduct['price'], 0, ',', '.') ?>
-                                                    <sup>₫</sup>
-                                                </span>
-                                            </div>
-                                        </a>
-                                    </div>
-                                    <div
-                                        style="
-                                                    display: flex;
-                                                    flex-direction: column;
-                                                    gap: 8px;
-                                                    margin-top: 110px;
-                                                    padding: 5px;
-                                                ">
-                                        <div class="style-deliveryInfo">
-                                            <img width="32" height="16" src="<?= $sgproduct['imgstatus'] ?>"
-                                                alt=""
-                                                style="
-                                                            padding-right: 8px;
-                                                        " />
-                                            <span><?= $sgproduct['timedelivery'] ?></span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <?php endforeach; ?>
-                            </div>
-                        </div>
                     </div>
 
                     <div class="footer">

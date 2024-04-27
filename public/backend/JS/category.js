@@ -13,3 +13,4 @@
             "<button type='button' class='slick-next slick-arrow'><i class='fa fa-angle-right' aria-hidden='true'></i></button>",
         });
       });
+

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Products;
+use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\similarproducts;
 use Illuminate\Support\Facades\DB;
@@ -60,4 +61,5 @@ class ShowProductController extends Controller
                 'categoryId'
             ));
     }
+
 }

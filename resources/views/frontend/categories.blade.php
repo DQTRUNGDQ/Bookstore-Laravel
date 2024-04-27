@@ -12,14 +12,23 @@
             <div class="nav-header">
                 <div class="main-nav">
                     <div class="main-nav-detail">
-                        <div class="main-nav-left">
-                            <div class="form-nav-left">
-                                <i class="fa-solid fa-magnifying-glass"
-                                    style="color: #696969; background-color: #fff"></i>
-                                <input type="text" placeholder="Tìm kiếm theo chủ đề, tác giả, thể loại" />
-                                <button class="search-btn">Tìm kiếm</button>
+                        <form action="{{ route('homepage.search') }}" method="POST">
+                            @csrf
+                            <div class="main-nav-left">
+                                <div class="form-nav-left">
+                                    <i class="fa-solid fa-magnifying-glass"
+                                        style="
+                                                color: #696969;
+                                                background-color: #fff;
+                                            "></i>
+                                    <input type="text" name="keywords_submit"
+                                        placeholder="Tìm kiếm theo chủ đề, tác giả, thể loại" />
+                                    <button type="submit" name="search_items" class="search-btn">
+                                        Tìm kiếm
+                                    </button>
+                                </div>
                             </div>
-                        </div>
+                        </form>
 
                         <div class="main-nav-right">
                             <div class="homepage-item">
@@ -788,6 +797,7 @@
                         </div>
                     </div>
                     <div class="product-list-container">
+
                         @foreach ($product as $Product)
                             <div class>
                                 <div>
@@ -820,7 +830,8 @@
                                                                 <i class="fa-solid fa-star"></i>
                                                                 <i class="fa-solid fa-star"></i>
                                                             </p>
-                                                            <span class="quantity">Đã bán {{ $Product->sold }}+</span>
+                                                            <span class="quantity">Đã bán
+                                                                {{ $Product->sold }}+</span>
                                                         </div>
                                                     </div>
                                                     <div style="margin:15px 0">
@@ -845,6 +856,7 @@
                                 </div>
                             </div>
                         @endforeach
+
                     </div>
 
                 </div>

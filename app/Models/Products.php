@@ -12,11 +12,13 @@ class Products extends Model
     protected $fillable = [
         'category_id',
         'name',
+        'category',
+        'author',
         'description',
         'price',
         'rating',
         'sold',
         'discount_percent',
-        'delivery_time'
+        'delivery_time',
     ];
 }

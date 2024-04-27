@@ -66,8 +66,7 @@ Route::get('/admin/users/deleteUser/{id}', [UserController::class,'DeleteUser'])
 
 // Trang chủ
 Route::get('homepage', [HomepageController::class, 'data'])->name('auth.homepage');
-
-
+Route::post('search', [HomepageController::class, 'search'])->name('homepage.search');
 
 // Chi tiết sản phẩm
 Route::get('product/{id}', [ShowProductController::class, 'product'])-> name('product.show');
@@ -81,6 +80,7 @@ Route::get('category/{id}', [CategoryController::class, 'products'])-> name('cat
 // Trang Blog
 Route::get('blog', [BlogController::class, 'data'])->name('blog.show');
 
+// Tìm kiếm sản phẩm
 
 
 //Thanh Toán
