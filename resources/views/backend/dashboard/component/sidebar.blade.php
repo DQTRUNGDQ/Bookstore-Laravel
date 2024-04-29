@@ -39,7 +39,7 @@
                     <a href="#"><i class="fa fa-th-large"></i> <span class="nav-label">Quản Lý Sản Phẩm</span>
                         <span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
-                        <li><a href="#">Quản Lý Sách</a></li>
+                        <li><a href="{{ route('product.index') }}">Quản Lý Sách</a></li>
                     </ul>
                 </li>
             </ul>

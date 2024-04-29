@@ -33,7 +33,8 @@ table.table td a {
 }
 
 table strong {
-    min-width: 90px;
+    min-width: 120px;
+    padding-top:10px;
     display: inline-block;
 }
 

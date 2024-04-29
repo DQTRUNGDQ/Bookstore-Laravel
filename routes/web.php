@@ -4,6 +4,7 @@
 use Illuminate\Support\Facades\Route;
 use App\http\Controllers\Backend\AuthController;
 use App\Http\Controllers\Backend\DashboardController;
+use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\UserController;
 use App\Http\Controllers\Frontend\CartController;
 
@@ -61,6 +62,16 @@ Route::post('/admin/users/updateUserToDB/{id}', [UserController::class,'updateUs
 Route::get('/admin/users/deleteUser/{id}', [UserController::class,'DeleteUser'])->name('user.delete');
 
 
+// Quản lý sản phẩm
+Route::get('products/index', [ProductController::class, 'index'])->name
+('product.index')->middleware('admin');
+
+
+Route::get('/admin/products/addProduct', [ProductController::class,'AddProduct'])->name('product.add');
+Route::post('/admin/users/addProductToDB', [ProductController::class,'AddProductToDB'])->name('product.AddToDB');
+Route::get('/admin/products/editProduct/{id}', [ProductController::class,'EditProduct'])->name('product.edit');
+Route::post('/admin/products/updateProductToDB/{id}', [ProductController::class,'updateProductToDB'])->name('product.UpdateToDB');
+Route::get('/admin/products/deleteProduct/{id}', [ProductController::class,'DeleteProduct'])->name('product.delete');
 
 /** FRONTEND ROUTES */
 

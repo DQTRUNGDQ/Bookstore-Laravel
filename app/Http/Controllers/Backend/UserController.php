@@ -39,7 +39,7 @@ class UserController extends Controller
         $user->birthday = $request->input('birthday');
         $user->phone = $request->input('phone');
         $user->province = $request->province;
-        $user->phone = $request->input('address');
+        $user->address = $request->input('address');
         $user->image = $request->input('file');
         $user->description = $request->input('productdesc');
         $user->province_id = $request->input('province_id');
@@ -128,29 +128,15 @@ class UserController extends Controller
 
     public function index()
     {
-        $config = $this->config();
         $template  = 'backend.user.index';
 
         $users = User::all();
 
         return view('backend.dashboard.layout', compact(
             'template',
-            'config',
             'users'
         ));
     }
 
 
-    private function config()
-    {
-        return [
-            'js' => [
-                'temp/js/plugins/switchery/switchery.js'
-            ],
-
-            'css' => [
-                'temp/css/plugins/switchery/switchery.css'
-            ]
-        ];
-    }
 }
